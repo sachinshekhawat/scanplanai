@@ -29,6 +29,7 @@ import numpy as np
 from scan2plan.io.stray import DEPTH_H, DEPTH_W
 
 VIDEO_FPS = 6.0
+MAX_FRAMES = 700  # ~15 min end-to-end on an M1 for a 3-4 min walk
 MAX_SIDE = 1024
 DA_MODEL = "depth-anything/DA3METRIC-LARGE"
 # DA3METRIC depth / LiDAR depth on upright frames with the iPhone focal prior (f = 0.83 x long
@@ -56,6 +57,9 @@ def extract_frames(video: Path, out: Path, fps: float = VIDEO_FPS) -> list[Path]
         return existing
     cap = cv2.VideoCapture(str(video))
     vfps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    n_total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) or 1
+    # cap runtime on long walks: at most MAX_FRAMES keyframes (fps lowered accordingly)
+    fps = min(fps, MAX_FRAMES * vfps / n_total)
     step = max(vfps / fps, 1.0)
     i, win, best = 0, 0, None
     paths = []
@@ -433,7 +437,8 @@ def chain_fragments(frags, work: Path, da: dict, log=print):
     for k, ((pc, st), br) in enumerate(zip(frags[1:], bridges), start=1):
         cands = []
         T, q = (None, {"ok": False, "reason": "DA3 failed"}) if br is None else bridge_transform(br, prev, pc, da, orient)
-        map_pc = _concat(placed)
+        # score against the recent map only (last 3 placed fragments): O(n) instead of O(n^2)
+        map_pc = _concat(placed[-3:])
         if T is not None and q.get("gap_translation_m", 99) < 5:
             c = _apply(pc, *T)
             cands.append((_overlap_score(map_pc, c), "da3_bridge", c))

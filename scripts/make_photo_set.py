@@ -45,16 +45,14 @@ def main(src, dst, n=6):
         # one go), then stills spread in heading (>= 40 deg apart), largest median depth first
         runs = np.split(inside, np.nonzero(np.diff(inside) > 15)[0] + 1)
         cand = max(runs, key=len)
-        med = np.array([np.median(cap.depth(i)[cap.confidence(i) == 2]) if (cap.confidence(i) == 2).any() else 0
-                        for i in cand])
-        sel = []
-        for sep in (40, 25, 12):
-            for i in cand[np.argsort(-med)]:
-                if len(sel) == n:
-                    break
-                if all(abs(np.angle(np.exp(1j * (yaw[i] - yaw[j])))) > np.deg2rad(sep) for j in sel):
-                    sel.append(int(i))
-            if len(sel) >= max(2, n - 2):
+        # protocol: turn in place, each photo overlapping ~1/3 with the previous one
+        # (heading step 35-45 deg at a 69 deg HFOV); keep sharp frames only
+        sel = [int(cand[0])]
+        for i in cand[1:]:
+            dy = abs(np.angle(np.exp(1j * (yaw[i] - yaw[sel[-1]]))))
+            if dy >= np.deg2rad(35):
+                sel.append(int(i))
+            if len(sel) == n:
                 break
         sel.sort()
         folder = dst / f"{k + 1:02d}_room{lbl}"

@@ -154,7 +154,7 @@ def stitch_rooms(room_results, meta: dict, log=print):
         raise RuntimeError("photo tier: no room could be reconstructed")
     placed = [_tf_room(rooms[0], 0, np.zeros(2))]
     links = []
-    for r in rooms[1:]:
+    for ri_new, r in enumerate(rooms[1:], start=1):
         best = None
         for k in range(4):
             R = _rot(k)
@@ -171,7 +171,7 @@ def stitch_rooms(room_results, meta: dict, log=print):
                         c_old = (d_old["a"] + d_old["b"]) / 2
                         t = c_old + d_old["normal"] * WALL_T - c_new
                         cand = _tf_room(r, k, t)
-                        sc, ov, sw = _score(cand, placed, rooms[rooms.index(r) - 1]["name"], p["name"], wmis)
+                        sc, ov, sw = _score(cand, placed, rooms[ri_new - 1]["name"], p["name"], wmis)
                         if ov > 0.3:
                             continue
                         if best is None or sc > best[0]:
@@ -199,8 +199,8 @@ def stitch_rooms(room_results, meta: dict, log=print):
         report["placements"].append(info)
         log(f"[photo] placed {info}")
         if info["via"] == "door":
-            links.append((len(placed) - 1, placed.index(next(p for p in placed if p["name"] == info["to"])),
-                          info["door_new"], info["door_old"]))
+            j_old = next(i for i, p in enumerate(placed) if p["name"] == info["to"])
+            links.append((len(placed) - 1, j_old, info["door_new"], info["door_old"]))
     # build Plan
     prooms, openings = [], []
     for p in placed:

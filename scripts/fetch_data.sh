@@ -8,6 +8,7 @@ mkdir -p "$ROOT/data/raw"
 shopt -s nullglob
 zips=("$ZIP_DIR"/*.zip)
 if [ ${#zips[@]} -eq 0 ]; then
+
   echo "No zips found in $ZIP_DIR" >&2; exit 1
 fi
 for z in "${zips[@]}"; do
