@@ -315,11 +315,11 @@ def find_openings(wall_img: np.ndarray, sealed: np.ndarray, labels: np.ndarray, 
 
 def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.ndarray,
                   fans: np.ndarray, R2: np.ndarray, floor_y: float, ceil_y: float | None,
-                  min_room_area: float = 1.0, min_cam_px: int = 15) -> RoomSeg:
+                  min_room_area: float = 1.0, min_cam_px: int = 15, min_views: int = 2) -> RoomSeg:
     band = wall_band(floor_y, ceil_y)
     grid = make_grid(np.concatenate([vxy[::10], cam_xy]))
     wall_img = structural_walls(grid, vxy, vy, band)
-    carved = carve_free(grid, cam_xy, fans, R2)
+    carved = carve_free(grid, cam_xy, fans, R2, min_views=min_views)
     ci, cj = grid.idx(cam_xy)
     cam = np.zeros((grid.h, grid.w), np.uint8)
     cam[cj, ci] = 1
@@ -416,8 +416,8 @@ def _snap_outward(edges: list[dict], runs: list[WallRun]) -> list[dict]:
     return edges
 
 
-def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float = 0.15,
-                 min_edge: float = 0.08) -> tuple[Polygon, list[dict]]:
+def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float = 0.15,  # noqa: E501
+                 min_edge: float = 0.40) -> tuple[Polygon, list[dict]]:  # 0.4: sweep in technical_report §6
     """Rectilinear polygon of a room mask with edges snapped to bounding wall faces.
     Returns the polygon and per-edge metadata (snapped run, sigma) for uncertainty."""
     m = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, disk(4))

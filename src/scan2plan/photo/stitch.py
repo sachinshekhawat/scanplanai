@@ -41,11 +41,14 @@ def _room_from_capture(name, pc, log=print):
     R2 = rot2(theta)
     v = cloud.vert
     seg = segment_rooms(v[:, [0, 2]] @ R2.T, cloud.vert_n @ R2.T, v[:, 1], cloud.cam_xz @ R2.T,
-                        cloud.fan_range, R2, level.floor_y, level.ceiling_y, min_room_area=0.8, min_cam_px=1)
+                        cloud.fan_range, R2, level.floor_y, level.ceiling_y, min_room_area=0.8, min_cam_px=1,
+                        min_views=1)  # 2-8 photos: a cell seen by one photo is evidence enough
     res = LidarResult(pc, cloud, level, theta, R2, seg, None, {})
     plan = lidar_to_plan(res, {"name": name})
     if not plan.rooms:
-        return None
+        plan.rooms = _fallback_room(seg, level)
+        if not plan.rooms:
+            return None
     cam = cloud.cam_xz @ R2.T
     # main room = the one containing most standpoints (else the largest)
     from shapely.geometry import Point
@@ -57,6 +60,29 @@ def _room_from_capture(name, pc, log=print):
     room.name = ""
     doors = boundary_openings(room, seg)
     return {"name": name, "room": room, "doors": doors, "seg": seg, "level": level}
+
+
+def _fallback_room(seg, level):
+    """Too few registered photos to close a room: use the axis-aligned rectangle of the largest
+    free-space component, every edge unsnapped (4 cm face sigma + placement + scale)."""
+    from scipy import ndimage as ndi
+    from shapely.geometry import box
+
+    from scan2plan.lidar.to_plan import CEILING_PRIOR
+    from scan2plan.measure import SIGMA_UNSNAPPED, unobserved
+
+    lab, n = ndi.label(seg.free)
+    if n == 0:
+        return []
+    k = int(np.argmax(ndi.sum(seg.free, lab, range(1, n + 1)))) + 1
+    ys, xs = np.nonzero(lab == k)
+    if len(xs) * seg.grid.res ** 2 < 0.8:
+        return []
+    p = seg.grid.to_m(np.array([[np.percentile(xs, 2), np.percentile(ys, 2)], [np.percentile(xs, 98) + 1, np.percentile(ys, 98) + 1]]))
+    poly = box(p[0, 0], p[0, 1], p[1, 0], p[1, 1])
+    c = list(poly.exterior.coords)[:-1]
+    edges = [PlanEdge(np.array(c[i]), np.array(c[(i + 1) % 4]), SIGMA_UNSNAPPED * 2, False) for i in range(4)]
+    return [PlanRoom(poly, edges, unobserved(*CEILING_PRIOR, "prior: ceiling not observed (photo fallback room)"))]
 
 
 def boundary_openings(room: PlanRoom, seg) -> list[dict]:

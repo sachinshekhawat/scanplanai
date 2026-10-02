@@ -53,8 +53,13 @@ def extract_frames(video: Path, out: Path, fps: float = VIDEO_FPS) -> list[Path]
     """Decode every frame, keep the sharpest (variance of Laplacian) in each 1/fps window."""
     out.mkdir(parents=True, exist_ok=True)
     existing = sorted(out.glob("*.jpg"))
-    if existing:
+    key = out / ".decode_params"
+    want = f"fps={fps} max_frames={MAX_FRAMES} max_side={MAX_SIDE}"
+    if existing and key.exists() and key.read_text() == want:
         return existing
+    for p in existing:
+        p.unlink()
+    key.write_text(want)
     cap = cv2.VideoCapture(str(video))
     vfps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     n_total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) or 1
@@ -97,7 +102,10 @@ def run_sfm(img_dir: Path, work: Path, log=print) -> list[dict]:
     import sys
 
     f = work / "sparse" / "export.npz"
-    if not f.exists():
+    n_frames = len(list(img_dir.glob("*.jpg")))
+    stamp = work / "sparse" / "frames.txt"
+    stale = (not stamp.exists()) or stamp.read_text().strip() != str(n_frames)
+    if stale or not f.exists() or len(np.load(f, allow_pickle=True)["data"]) == 0:
         cmd = [sys.executable, "-m", "scan2plan.video.sfm_worker", str(img_dir), str(work)]
         p = subprocess.run(cmd, capture_output=True, text=True)
         for line in p.stdout.splitlines():
@@ -105,6 +113,7 @@ def run_sfm(img_dir: Path, work: Path, log=print) -> list[dict]:
                 log(line)
         if p.returncode != 0:
             raise RuntimeError(f"SfM failed ({p.returncode}): {p.stderr[-2000:]}")
+        stamp.write_text(str(n_frames))
     return list(np.load(f, allow_pickle=True)["data"])
 
 
