@@ -50,7 +50,7 @@ def run(capture: str, tier: str = "auto", out: str | None = None, drift: bool = 
 
     def log(msg):
         line = f"[{time.strftime('%H:%M:%S')}] {msg}"
-        print(line)
+        print(line, flush=True)
         logf.write(line + "\n")
         logf.flush()
 
