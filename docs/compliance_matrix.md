@@ -29,4 +29,4 @@ Status: ✅ done and evidenced · 🟡 partial (limitation stated) · ❌ not do
 | 23 | Mirrors, glass, wet surfaces, low light covered | `docs/capture_protocol.md`, `docs/technical_report.md §7` | protocol rules + failure-mode section; LiDAR confidence masking + flying-pixel rejection in `lidar/fusion.py` | 🟡 mitigations, not measured |
 | 24 | Weights fetched by script, no own infrastructure | `scripts/install_learned.sh`, `.gitignore` | weights in `weights/` (ignored) | ✅ |
 | 25 | Run on the provided sample data (email) | `scripts/run_sample_data.sh` | `results/sample_data/*/plan.{json,png,svg}`, `benchmark/results/final/` | ✅ |
-| 26 | Tests | `tests/` | 12 tests: schema, intervals, geometry primitives, loader conventions | ✅ |
+| 26 | Tests | `tests/` | 9 tests: schema, intervals, geometry primitives, loader conventions | ✅ |

@@ -6,7 +6,7 @@ import pytest
 from scan2plan.io.stray import load_stray
 
 RAW = Path(__file__).resolve().parents[1] / "data" / "raw"
-CAPTURES = sorted(p.name for p in RAW.iterdir()) if RAW.exists() else []
+CAPTURES = sorted(p.name for p in RAW.iterdir() if p.is_dir()) if RAW.exists() else []
 
 
 @pytest.mark.skipif(not CAPTURES, reason="raw data not unpacked; run scripts/fetch_data.sh")
