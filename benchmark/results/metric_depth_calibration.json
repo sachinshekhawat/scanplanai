@@ -1,0 +1,37 @@
+{
+ "single_room": {
+  "n": 24,
+  "ratio_median": 0.9335919618606567,
+  "ratio_iqr": [
+   0.8872683495283127,
+   0.9629040956497192
+  ],
+  "per_frame_log_sigma": 0.05579680288024541,
+  "absrel_after_scale": 0.03595004230737686
+ },
+ "single_scan_floor_only": {
+  "n": 24,
+  "ratio_median": 0.9401611387729645,
+  "ratio_iqr": [
+   0.866008996963501,
+   0.9959532618522644
+  ],
+  "per_frame_log_sigma": 0.11457076501316235,
+  "absrel_after_scale": 0.07517975941300392
+ },
+ "single_scan_with_ceiling": {
+  "n": 24,
+  "ratio_median": 0.8540570139884949,
+  "ratio_iqr": [
+   0.7012939602136612,
+   1.0401314198970795
+  ],
+  "per_frame_log_sigma": 0.2939427386498198,
+  "absrel_after_scale": 0.11517893522977829
+ },
+ "pooled": {
+  "ratio_median": 0.9326185584068298,
+  "per_frame_log_sigma": 0.11788603246738881,
+  "capture_medians_spread": 0.03913350698887111
+ }
+}

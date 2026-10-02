@@ -389,8 +389,9 @@ def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float 
                 prev, nxt = merged[i - 1], merged[(i + 1) % len(merged)]
                 prev["b"] = nxt["b"]
                 prev["len"] += s["len"] + nxt["len"]
-                del merged[(i + 1) % len(merged)]
-                merged.remove(s)
+                j = (i + 1) % len(merged)
+                for idx in sorted({i, j}, reverse=True):
+                    del merged[idx]
                 changed = True
                 break
     # interior side: polygon orientation (shapely signed area)
