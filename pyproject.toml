@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scan2plan"
+version = "0.1.0"
+description = "Phone capture (photos / video / LiDAR) -> dimensioned, stitched floor plan with calibrated intervals"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "numpy==2.2.6",
+  "scipy==1.17.1",
+  "opencv-python-headless==5.0.0.93",
+  "open3d==0.20.0",
+  "shapely==2.1.2",
+  "scikit-learn==1.9.1",
+  "matplotlib",
+  "pillow",
+  "jsonschema==4.26.0",
+  "tqdm",
+]
+
+[project.optional-dependencies]
+# Learned monocular/multi-view models for the video + photo tiers (weights fetched by script)
+learned = ["torch", "torchvision", "huggingface_hub", "transformers"]
+dev = ["pytest"]
+
+[project.scripts]
+scan2plan = "scan2plan.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

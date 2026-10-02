@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store
+.pytest_cache/
+
+# Large binaries: fetched/unpacked by scripts/fetch_data.sh, never committed
+SampleDataTotest/
+data/raw/
+data/cache/
+weights/
+runs/*/cache/
+*.npy
+*.ply
