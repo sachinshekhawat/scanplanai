@@ -91,6 +91,46 @@ def load_photos(folder: Path) -> list[Photo]:
     return out
 
 
+def _loftr_pairs(photos: list[Photo], todo: list[tuple[int, int]], work: Path) -> dict:
+    """LoFTR (indoor) on pairs SIFT could not verify; child process (torch)."""
+    import subprocess
+    import sys
+
+    if not todo:
+        return {}
+    work.mkdir(parents=True, exist_ok=True)
+    d = work / "imgs"
+    d.mkdir(exist_ok=True)
+    paths = []
+    for k, ph in enumerate(photos):
+        q = d / f"{k:03d}_{ph.path.stem}.jpg"
+        if not q.exists():
+            cv2.imwrite(str(q), ph.img)
+        paths.append(str(q.resolve()))
+    f = work / "loftr.npz"
+    if not f.exists():
+        (work / "loftr_pairs.json").write_text(json.dumps([[paths[i], paths[j], f"{i}_{j}"] for i, j in todo]))
+        r = subprocess.run([sys.executable, "-m", "scan2plan.learned.loftr_worker", str(work / "loftr_pairs.json"), str(f)],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            return {}
+    z = np.load(f)
+    out = {}
+    for key in z.files:
+        i, j = map(int, key.split("_"))
+        M = z[key]
+        M = M[M[:, 4] > 0.5]
+        if len(M) < 15:
+            continue
+        F, inl = cv2.findFundamentalMat(M[:, :2], M[:, 2:4], cv2.USAC_MAGSAC, 1.5, 0.999)
+        if inl is None:
+            continue
+        inl = inl.ravel().astype(bool)
+        if inl.sum() >= 15:
+            out[(i, j)] = (M[inl, :2], M[inl, 2:4])
+    return out
+
+
 def _sift_pairs(photos: list[Photo]):
     sift = cv2.SIFT_create(nfeatures=6000, contrastThreshold=0.01)
     feats = []
@@ -189,25 +229,72 @@ def rotation_ransac(ri: np.ndarray, rj: np.ndarray, thr_deg: float = 1.0, iters:
     return best
 
 
-def room_poses(photos: list[Photo], depths: list[np.ndarray], log=print):
+def essential_pose(pi, pj, ph_i: Photo, ph_j: Photo, d_i: np.ndarray):
+    """Relative pose cam j -> cam i from the essential matrix; translation scaled to metres by
+    comparing triangulated depths with the metric depth of photo i. Returns (R, t, n_inliers)."""
+    h, w = ph_i.img.shape[:2]
+    # normalised coordinates (photos may differ in focal via EXIF)
+    ni = np.stack([(pi[:, 0] - w / 2) / ph_i.f_px, (pi[:, 1] - h / 2) / ph_i.f_px], 1)
+    hj, wj = ph_j.img.shape[:2]
+    nj = np.stack([(pj[:, 0] - wj / 2) / ph_j.f_px, (pj[:, 1] - hj / 2) / ph_j.f_px], 1)
+    E, inl = cv2.findEssentialMat(nj, ni, np.eye(3), cv2.USAC_MAGSAC, 0.999, 1.5 / ph_i.f_px)
+    if E is None or E.shape != (3, 3):
+        return None
+    n, R, t, inl2 = cv2.recoverPose(E, nj, ni, np.eye(3), mask=inl.copy())
+    m = inl2.ravel() > 0
+    if m.sum() < 12:
+        return None
+    t = t.ravel()
+    # triangulate in cam i: X_i = R X_j + t (unit baseline)
+    P_i = np.hstack([np.eye(3), np.zeros((3, 1))])
+    P_j = np.hstack([R.T, (-R.T @ t)[:, None]])
+    X = cv2.triangulatePoints(P_i, P_j, ni[m].T, nj[m].T)
+    X = (X[:3] / X[3]).T
+    z = X[:, 2]
+    ok = z > 1e-3
+    if ok.sum() < 8:
+        return None
+    _, valid = _lift(pi[m][ok], d_i, ph_i)
+    dm = _lift(pi[m][ok], d_i, ph_i)[0][:, 2]
+    r = dm[valid] / z[ok][valid]
+    if len(r) < 8:
+        return None
+    sc = float(np.median(r))
+    return R, t * sc, int(m.sum())
+
+
+def room_poses(photos: list[Photo], depths: list[np.ndarray], log=print, work: Path | None = None):
     """Camera->room-frame poses for photos connected by rigid 3D-3D matches (frame of photo 0
-    of the largest connected component)."""
+    of the largest connected component). SIFT first; LoFTR for pairs SIFT misses."""
     pairs = _sift_pairs(photos)
+    n_sift = len(pairs)
+    if work is not None:
+        todo = [(i, j) for i in range(len(photos)) for j in range(i + 1, len(photos))
+                if (i, j) not in pairs or len(pairs[(i, j)][0]) < 60]
+        for k, v in _loftr_pairs(photos, todo, work).items():
+            if k not in pairs or len(v[0]) > len(pairs[k][0]):
+                pairs[k] = v
     edges = []
     for (i, j), (pi, pj) in pairs.items():
         Xi, oki = _lift(pi, depths[i], photos[i])
         Xj, okj = _lift(pj, depths[j], photos[j])
         ok = oki & okj
         R, t, inl = rigid_ransac(Xj[ok], Xi[ok])  # maps cam j -> cam i
-        Rr, inl_r = rotation_ransac(_rays(pi, photos[i]), _rays(pj, photos[j]))
+        Rr, inl_r = rotation_ransac(_rays(pi, photos[i]), _rays(pj, photos[j]), thr_deg=1.5)
+        ess = essential_pose(pi, pj, photos[i], photos[j], depths[i])
         n_rig = int(inl.sum()) if R is not None else 0
         n_rot = int(inl_r.sum())
-        # prefer the pure rotation (protocol: turn in place) unless the rigid model explains
-        # clearly more matches (photos from a second standpoint)
-        if n_rot >= 12 and n_rot >= 0.8 * n_rig:
+        n_ess = ess[2] if ess else 0
+        # model selection: pure rotation (turning in place, protocol) when it explains as many
+        # matches as the essential model; else essential (metric-scaled); rigid 3D-3D last
+        if n_rot >= 12 and n_rot >= 0.85 * n_ess:
             edges.append((n_rot, i, j, Rr, np.zeros(3)))
-        elif n_rig >= 12:
+        elif n_rig >= 12 and n_rig >= 0.5 * n_ess:
             edges.append((n_rig, i, j, R, t))
+        elif n_ess >= 40:  # essential only with strong evidence (unstable at small baselines)
+            edges.append((n_ess, i, j, ess[0], ess[1]))
+    # sanity: photos of one room are taken within a few metres of each other
+    edges = [e for e in edges if np.linalg.norm(e[4]) < 4.0]
     n = len(photos)
     # maximum spanning tree (Prim) from the best-connected photo
     deg = np.zeros(n)
@@ -231,7 +318,7 @@ def room_poses(photos: list[Photo], depths: list[np.ndarray], log=print):
             Rw[i] = Rw[j] @ Ri
             tw[i] = Rw[j] @ ti + tw[j]
     used = sorted(Rw)
-    log(f"[photo]   {len(pairs)} matched pairs, {len(edges)} rigid edges, {len(used)}/{n} photos connected")
+    log(f"[photo]   {len(pairs)} matched pairs ({n_sift} SIFT), {len(edges)} pose edges, {len(used)}/{n} photos connected")
     return used, Rw, tw, edges
 
 
@@ -274,7 +361,7 @@ def photo_room_capture(folder: Path, work: Path, log=print):
     if not photos:
         return None, {"room": folder.name, "error": "no images"}
     depths = _metric_depths(photos, work, log=log)
-    used, Rw, tw, edges = room_poses(photos, depths, log=log)
+    used, Rw, tw, edges = room_poses(photos, depths, log=log, work=work)
     h, w = photos[0].img.shape[:2]
     # all photos share the device camera; use photo 0 focal for the depth grid intrinsics
     f = photos[used[0]].f_px
