@@ -37,6 +37,23 @@ python -m scan2plan.benchmark.run --tag after_fix        # fix-loop "after" run 
 ```
 Learned-model outputs are cached under `data/cache/` in deterministic npz files. Delete that folder to force the live path.
 
+## Results on the provided sample data
+`scripts/run_sample_data.sh SampleDataTotest final` runs everything below in about 25 min on an M1 with warm caches. Committed outputs (JSON/PNG/SVG/log per run) are in `results/sample_data/`, and the report is `benchmark/results/final/report.md`.
+
+| capture | tier | rooms | floor area (95% CI) | wall clock |
+|---|---|---|---|---|
+| single_room | LiDAR | 3 | 19.2 ± 1.7 m² | 39 s |
+| single_scan_floor_only | LiDAR | 6 | 47.4 ± 2.9 m² | 124 s |
+| single_scan_with_ceiling | LiDAR | 7 | 49.1 ± 3.3 m² | 154 s |
+| (same 3) | video | 2 / 3 / 4 | 14.6 / 30.8 / 35.4 m² | 83–196 s (cached SfM+depth; cold about 15–20 min) |
+| (same 3) | photo | 2 / 5 / 6 | 3.4 / 26.9 / 11.8 m² | 2–6 s (cached; cold about 1 min/room) |
+
+- **Same flat, two LiDAR sessions:** stitched footprint IoU **0.848** with drift correction vs 0.791 without. The two areas, 47.4 and 49.1 m², are mutually consistent within their intervals.
+- **Repeatability gate:** fails (23% of walls within 1 cm). The cause is that each walk divides the open-plan area into rooms differently (`docs/fix_loop.md`). The fully observed room agrees within 1.4 cm.
+- **Calibration:** intervals cover the cross-session differences 86% of the time.
+- **Video and photo** reconstruct a reduced part of the flat from these LiDAR-style sweeps (close range, fast turns). Their areas are under-estimates against the LiDAR reference, which is reported, not hidden.
+- **No ground truth:** the sample data has no tape GT, so absolute accuracy gates read `benchmark/ground_truth.csv` once measurements are added.
+
 ## Docs
 - `docs/capture_protocol.md`: the one-page protocol a non-engineer follows. `docs/device_matrix.md`: which tier runs on which hardware, and the accuracy each tier delivers.
 - `docs/compliance_matrix.md`: requirement → file → artifact → status.

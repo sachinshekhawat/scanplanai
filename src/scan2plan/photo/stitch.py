@@ -25,6 +25,7 @@ from scan2plan.lidar.rooms import DOOR_MAX, DOOR_MIN
 
 WALL_T = 0.12
 SIGMA_PLACE = 0.05  # 1-sigma per-room placement error added to stitched coordinates
+SIGMA_UNOBSERVED_EDGE = 0.6  # free-space-bounded edge in a sparsely photographed room (x 0.5..1.5)
 
 
 def _room_from_capture(name, pc, log=print):
@@ -171,6 +172,7 @@ def stitch_rooms(room_results, meta: dict, log=print):
         if r is None:
             report["rooms"].append({**st, "used": False, "error": "no room polygon"})
             continue
+        r["coverage"] = st.get("n_connected", 1) / max(st.get("n_photos", 1), 1)
         report["rooms"].append({**st, "used": True, "area_m2": round(r["room"].polygon.area, 2),
                                 "n_doors": len(r["doors"]),
                                 "door_widths": [round(d["width"], 2) for d in r["doors"]]})
@@ -231,7 +233,12 @@ def stitch_rooms(room_results, meta: dict, log=print):
     prooms, openings = [], []
     for p in placed:
         room = p["room"]
-        edges = [PlanEdge(e.a, e.b, float(np.hypot(e.sigma_face, SIGMA_PLACE)), e.snapped) for e in p["edges_w"]]
+        # an edge not bounded by an observed wall face only says "the room extends at least to
+        # here": with few registered photos the true wall can be metres further out
+        cov = p.get("coverage", 1.0)
+        unobs = SIGMA_UNOBSERVED_EDGE * (1.5 - min(cov, 1.0))
+        edges = [PlanEdge(e.a, e.b, float(np.hypot(e.sigma_face if e.snapped else max(e.sigma_face, unobs), SIGMA_PLACE)),
+                          e.snapped) for e in p["edges_w"]]
         pr = PlanRoom(p["poly"], edges, room.ceiling, scale_rel=PHOTO_SCALE_REL_LOCAL)
         prooms.append(pr)
     used = set()
@@ -247,7 +254,9 @@ def stitch_rooms(room_results, meta: dict, log=print):
                 continue
             sd = float(np.hypot(d["sigma"], PHOTO_SCALE_REL_LOCAL * d["width"]))
             openings.append(PlanOpening(np.asarray(d["a"]), np.asarray(d["b"]), sd, "door", (ri,), "photo:wall-gap (exterior/unmatched)"))
-    notes = ["Photo tier: per-room metric depth (DA3METRIC) + 3D-3D rigid photo registration; rooms stitched by "
+    low = [r["name"] for r in rooms if r.get("coverage", 1) < 0.5]
+    notes = ([f"Photo registration covered < 50% of the photos in {low}: room extents there are lower bounds "
+              f"with widened intervals."] if low else []) + ["Photo tier: per-room metric depth (DA3METRIC) + 3D-3D rigid photo registration; rooms stitched by "
              "door matching in folder order; placement error and monocular scale widen every interval."]
     fb = [pl["room"] for pl in report["placements"] if pl["via"] != "door"]
     if fb:

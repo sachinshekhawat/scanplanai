@@ -1,0 +1,716 @@
+{
+ "reference_note": "No tape/laser ground truth in the provided sample data. LiDAR is the reference for video/photo (LiDAR-referenced error, not GT). LiDAR absolute accuracy gates need benchmark/ground_truth.csv.",
+ "gates": {
+  "repeatability": {
+   "gate": "|diff| <= max(1 cm, 0.5%) per wall",
+   "value": 0.22727272727272727,
+   "pass": false
+  },
+  "drift_accountability": {
+   "gate": "drift handling stated + on/off ablation",
+   "pass": true,
+   "value": {
+    "on": 0.847859009050916,
+    "off": 0.7911490918534975
+   }
+  },
+  "ceiling_height": {
+   "gate": "<= 1.5 cm vs GT; spread <= 1 cm",
+   "pass": null,
+   "value": "no GT"
+  },
+  "video_tier": {
+   "gate": "walls within +-3% (LiDAR-referenced)",
+   "value": 0.05555555555555555,
+   "pass": false
+  },
+  "photo_tier": {
+   "gate": "walls within +-8%, footprint +-8%, no overlaps",
+   "value": 0.16666666666666666,
+   "pass": false
+  },
+  "opening_widths": {
+   "gate": "<= 2 cm on >= 85% (miss & phantom count as fail); cross-session proxy",
+   "value": 0.125,
+   "pass": false
+  }
+ },
+ "ground_truth_rows": 0,
+ "repeatability": {
+  "footprint_iou_after_alignment": 0.847859009050916,
+  "n_room_pairs": 6,
+  "n_rooms": [
+   7,
+   6
+  ],
+  "walls": [
+   {
+    "room_a": "R1",
+    "room_b": "R5",
+    "wall_a": "R1-W1",
+    "len_a": 3.0704,
+    "len_b": 3.0696,
+    "diff_m": -0.0007999999999999119,
+    "pass": true,
+    "sigma_diff": 0.027608875384557047
+   },
+   {
+    "room_a": "R1",
+    "room_b": "R5",
+    "wall_a": "R1-W2",
+    "len_a": 2.8444,
+    "len_b": 2.858,
+    "diff_m": 0.013600000000000279,
+    "pass": true,
+    "sigma_diff": 0.17602772508897568
+   },
+   {
+    "room_a": "R1",
+    "room_b": "R5",
+    "wall_a": "R1-W3",
+    "len_a": 3.0704,
+    "len_b": 3.0696,
+    "diff_m": -0.0007999999999999119,
+    "pass": true,
+    "sigma_diff": 0.027608875384557047
+   },
+   {
+    "room_a": "R1",
+    "room_b": "R5",
+    "wall_a": "R1-W4",
+    "len_a": 2.8444,
+    "len_b": 2.858,
+    "diff_m": 0.013600000000000279,
+    "pass": true,
+    "sigma_diff": 0.17602772508897568
+   },
+   {
+    "room_a": "R2",
+    "room_b": "R2",
+    "wall_a": "R2-W1",
+    "len_a": 2.1966,
+    "len_b": 1.7922,
+    "diff_m": -0.4044000000000001,
+    "pass": false,
+    "sigma_diff": 0.17185089467326028
+   },
+   {
+    "room_a": "R2",
+    "room_b": "R2",
+    "wall_a": "R2-W2",
+    "len_a": 3.4458,
+    "len_b": 2.99,
+    "diff_m": -0.4558,
+    "pass": false,
+    "sigma_diff": 0.3282670254533647
+   },
+   {
+    "room_a": "R2",
+    "room_b": "R2",
+    "wall_a": "R2-W4",
+    "len_a": 2.7635,
+    "len_b": 2.291,
+    "diff_m": -0.47250000000000014,
+    "pass": false,
+    "sigma_diff": 0.2596202226329837
+   },
+   {
+    "room_a": "R2",
+    "room_b": "R2",
+    "wall_a": "R2-W5",
+    "len_a": 0.5626,
+    "len_b": 0.8471,
+    "diff_m": 0.2845,
+    "pass": false,
+    "sigma_diff": 0.22020356491210583
+   },
+   {
+    "room_a": "R2",
+    "room_b": "R2",
+    "wall_a": "R2-W6",
+    "len_a": 0.6824,
+    "len_b": 0.699,
+    "diff_m": 0.016599999999999948,
+    "pass": false,
+    "sigma_diff": 0.39988339550423946
+   },
+   {
+    "room_a": "R3",
+    "room_b": "R3",
+    "wall_a": "R3-W1",
+    "len_a": 2.7469,
+    "len_b": 2.7314,
+    "diff_m": -0.015500000000000291,
+    "pass": false,
+    "sigma_diff": 0.04974746224683225
+   },
+   {
+    "room_a": "R3",
+    "room_b": "R3",
+    "wall_a": "R3-W2",
+    "len_a": 3.0791,
+    "len_b": 3.11,
+    "diff_m": 0.030899999999999928,
+    "pass": false,
+    "sigma_diff": 0.2177984618862126
+   },
+   {
+    "room_a": "R3",
+    "room_b": "R3",
+    "wall_a": "R3-W7",
+    "len_a": 2.0143,
+    "len_b": 1.9593,
+    "diff_m": -0.05499999999999994,
+    "pass": false,
+    "sigma_diff": 0.013118688958886097
+   },
+   {
+    "room_a": "R3",
+    "room_b": "R3",
+    "wall_a": "R3-W8",
+    "len_a": 4.0336,
+    "len_b": 3.8778,
+    "diff_m": -0.15579999999999972,
+    "pass": false,
+    "sigma_diff": 0.18884059415284626
+   },
+   {
+    "room_a": "R4",
+    "room_b": "R6",
+    "wall_a": "R4-W2",
+    "len_a": 0.8741,
+    "len_b": 1.6926,
+    "diff_m": 0.8185000000000001,
+    "pass": false,
+    "sigma_diff": 0.42318272649057875
+   },
+   {
+    "room_a": "R4",
+    "room_b": "R6",
+    "wall_a": "R4-W3",
+    "len_a": 1.3601,
+    "len_b": 1.5099,
+    "diff_m": 0.14979999999999993,
+    "pass": false,
+    "sigma_diff": 0.1820349966352624
+   },
+   {
+    "room_a": "R4",
+    "room_b": "R6",
+    "wall_a": "R4-W4",
+    "len_a": 0.8741,
+    "len_b": 1.6926,
+    "diff_m": 0.8185000000000001,
+    "pass": false,
+    "sigma_diff": 0.42318272649057875
+   },
+   {
+    "room_a": "R5",
+    "room_b": "R1",
+    "wall_a": "R5-W1",
+    "len_a": 1.9007,
+    "len_b": 2.2834,
+    "diff_m": 0.3826999999999998,
+    "pass": false,
+    "sigma_diff": 0.42508640298179384
+   },
+   {
+    "room_a": "R5",
+    "room_b": "R1",
+    "wall_a": "R5-W2",
+    "len_a": 2.2598,
+    "len_b": 2.2715,
+    "diff_m": 0.011700000000000266,
+    "pass": false,
+    "sigma_diff": 0.10495756285280257
+   },
+   {
+    "room_a": "R5",
+    "room_b": "R1",
+    "wall_a": "R5-W3",
+    "len_a": 1.9007,
+    "len_b": 2.2834,
+    "diff_m": 0.3826999999999998,
+    "pass": false,
+    "sigma_diff": 0.42508640298179384
+   },
+   {
+    "room_a": "R7",
+    "room_b": "R4",
+    "wall_a": "R7-W3",
+    "len_a": 2.6958,
+    "len_b": 0.8,
+    "diff_m": -1.8958000000000002,
+    "pass": false,
+    "sigma_diff": 0.5617892932408022
+   },
+   {
+    "room_a": "R7",
+    "room_b": "R4",
+    "wall_a": "R7-W5",
+    "len_a": 3.3659,
+    "len_b": 3.3493,
+    "diff_m": -0.016599999999999948,
+    "pass": true,
+    "sigma_diff": 0.37326865660004194
+   },
+   {
+    "room_a": "R7",
+    "room_b": "R4",
+    "wall_a": "R7-W6",
+    "len_a": 3.3,
+    "len_b": 3.2806,
+    "diff_m": -0.01939999999999964,
+    "pass": false,
+    "sigma_diff": 0.35355933024034314
+   }
+  ],
+  "pass_rate": 0.22727272727272727,
+  "median_abs_diff_m": 0.10239999999999994,
+  "calibration": {
+   "n": 22,
+   "coverage95": 0.8636363636363636,
+   "median_abs_z": 0.8239765786424784
+  }
+ },
+ "drift_ablation": {
+  "single_scan_floor_only": {
+   "on": {
+    "n_rooms": 6,
+    "area_m2": 47.4416,
+    "overlaps": 0,
+    "drift": {
+     "method": "submap pose graph: wall loop-closure + Manhattan yaw anchor + odometry prior + floor anchor",
+     "enabled": true,
+     "n_submaps": 22,
+     "n_keyframes": 567,
+     "path_m": 53.76,
+     "max_abs_theta_deg": 3.3095,
+     "max_abs_shift_m": 0.1028,
+     "max_abs_dy_m": 0.025,
+     "loop_residual_m_first_last": [
+      0.0305,
+      0.0148
+     ],
+     "n_loop_matches_found": true
+    }
+   },
+   "off": {
+    "n_rooms": 6,
+    "area_m2": 46.3337,
+    "overlaps": 0
+   }
+  },
+  "single_scan_with_ceiling": {
+   "on": {
+    "n_rooms": 7,
+    "area_m2": 49.0899,
+    "overlaps": 0,
+    "drift": {
+     "method": "submap pose graph: wall loop-closure + Manhattan yaw anchor + odometry prior + floor anchor",
+     "enabled": true,
+     "n_submaps": 40,
+     "n_keyframes": 1090,
+     "path_m": 98.8448,
+     "max_abs_theta_deg": 1.8341,
+     "max_abs_shift_m": 0.1029,
+     "max_abs_dy_m": 0.0043,
+     "loop_residual_m_first_last": [
+      0.0128,
+      0.0094
+     ],
+     "n_loop_matches_found": true
+    }
+   },
+   "off": {
+    "n_rooms": 6,
+    "area_m2": 49.2085,
+    "overlaps": 0
+   }
+  },
+  "cross_session_footprint_iou": {
+   "on": 0.847859009050916,
+   "off": 0.7911490918534975
+  }
+ },
+ "ceiling": {
+  "per_capture": {
+   "single_room_lidar": [
+    {
+     "room": "R1",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R2",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R3",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    }
+   ],
+   "single_scan_floor_only_lidar": [
+    {
+     "room": "R1",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R2",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R3",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R4",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R5",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    },
+    {
+     "room": "R6",
+     "h": 2.6,
+     "sigma": 0.3,
+     "observed": false
+    }
+   ],
+   "single_scan_with_ceiling_lidar": [
+    {
+     "room": "R1",
+     "h": 2.9566,
+     "sigma": 0.0073,
+     "observed": true
+    },
+    {
+     "room": "R2",
+     "h": 3.0764,
+     "sigma": 0.0075,
+     "observed": true
+    },
+    {
+     "room": "R3",
+     "h": 2.4427,
+     "sigma": 0.0065,
+     "observed": true
+    },
+    {
+     "room": "R4",
+     "h": 2.2744,
+     "sigma": 0.0063,
+     "observed": true
+    },
+    {
+     "room": "R5",
+     "h": 2.3437,
+     "sigma": 0.0063,
+     "observed": true
+    },
+    {
+     "room": "R6",
+     "h": 2.3666,
+     "sigma": 0.0064,
+     "observed": true
+    },
+    {
+     "room": "R7",
+     "h": 2.4119,
+     "sigma": 0.0064,
+     "observed": true
+    }
+   ]
+  },
+  "n_observed_rooms": 7,
+  "repeat_spread_m": null,
+  "note": "Only single_scan_with_ceiling observes the ceiling; the other session did not scan it, so cross-capture spread is not measurable on sample data (reported as unobserved prior)."
+ },
+ "cross_tier": {
+  "single_room_video": {
+   "footprint_iou": 0.39331903389380796,
+   "n_rooms": [
+    3,
+    2
+   ],
+   "floor_area_rel_err": -0.2389863588448332,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 6,
+   "wall_pass_rate": 0.16666666666666666,
+   "wall_median_abs_rel": 0.31866379572253994,
+   "calibration": {
+    "n": 6,
+    "coverage95": 0.6666666666666666,
+    "median_abs_z": 1.6882061068786833
+   },
+   "overlaps": 0
+  },
+  "single_room_photo": {
+   "footprint_iou": 0.17912284418875357,
+   "n_rooms": [
+    3,
+    2
+   ],
+   "floor_area_rel_err": -0.820880256332648,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 2,
+   "wall_pass_rate": 0.5,
+   "wall_median_abs_rel": 0.23903777740325943,
+   "calibration": {
+    "n": 2,
+    "coverage95": 1.0,
+    "median_abs_z": 0.7468953682657715
+   },
+   "overlaps": 0
+  },
+  "single_scan_floor_only_video": {
+   "footprint_iou": 0.3278662866848182,
+   "n_rooms": [
+    6,
+    3
+   ],
+   "floor_area_rel_err": -0.3509388384877407,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 5,
+   "wall_pass_rate": 0.0,
+   "wall_median_abs_rel": 0.17994739285161687,
+   "calibration": {
+    "n": 5,
+    "coverage95": 0.6,
+    "median_abs_z": 1.5593296089385473
+   },
+   "overlaps": 0
+  },
+  "single_scan_floor_only_photo": {
+   "footprint_iou": 0.37748891480793717,
+   "n_rooms": [
+    6,
+    5
+   ],
+   "floor_area_rel_err": -0.4333496340764224,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 2,
+   "wall_pass_rate": 0.0,
+   "wall_median_abs_rel": 1.4261891523092993,
+   "calibration": {
+    "n": 2,
+    "coverage95": 0.5,
+    "median_abs_z": 2.1110054019887876
+   },
+   "overlaps": 0
+  },
+  "single_scan_with_ceiling_video": {
+   "footprint_iou": 0.43292776972121927,
+   "n_rooms": [
+    7,
+    4
+   ],
+   "floor_area_rel_err": -0.27962982202041553,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 5,
+   "wall_pass_rate": 0.0,
+   "wall_median_abs_rel": 0.27682976377038726,
+   "calibration": {
+    "n": 5,
+    "coverage95": 0.4,
+    "median_abs_z": 2.2308231992516383
+   },
+   "overlaps": 0
+  },
+  "single_scan_with_ceiling_photo": {
+   "footprint_iou": 0.22555502040020378,
+   "n_rooms": [
+    7,
+    6
+   ],
+   "floor_area_rel_err": -0.7606228572476212,
+   "floor_area_in_ci": false,
+   "n_walls_matched": 1,
+   "wall_pass_rate": 0.0,
+   "wall_median_abs_rel": 0.2031880704460727,
+   "calibration": {
+    "n": 1,
+    "coverage95": 1.0,
+    "median_abs_z": 1.2379385964912277
+   },
+   "overlaps": 0
+  }
+ },
+ "openings_repeatability": {
+  "matched": 4,
+  "missed": 1,
+  "phantom": 3,
+  "within_2cm": 1,
+  "diffs_m": [
+   -0.11139999999999994,
+   0.012899999999999912,
+   0.4905999999999999,
+   -0.3727
+  ]
+ },
+ "photo_stitch": {
+  "single_room_photo": {
+   "n_rooms": 2,
+   "overlaps": [],
+   "adjacency": 1,
+   "notes": [
+    "Photo registration covered < 50% of the photos in ['02_room3']: room extents there are lower bounds with widened intervals.",
+    "Photo tier: per-room metric depth (DA3METRIC) + 3D-3D rigid photo registration; rooms stitched by door matching in folder order; placement error and monocular scale widen every interval.",
+    "Adjacency NOT verified by a matched doorway for: ['02_room3'] (placed against a shared wall).",
+    "Damage detection not run for this tier input (no posed views available)."
+   ]
+  },
+  "single_scan_floor_only_photo": {
+   "n_rooms": 5,
+   "overlaps": [],
+   "adjacency": 4,
+   "notes": [
+    "Photo registration covered < 50% of the photos in ['02_room1', '03_room4', '05_room5']: room extents there are lower bounds with widened intervals.",
+    "Photo tier: per-room metric depth (DA3METRIC) + 3D-3D rigid photo registration; rooms stitched by door matching in folder order; placement error and monocular scale widen every interval.",
+    "Adjacency NOT verified by a matched doorway for: ['03_room4', '04_room6', '05_room5', '06_room3'] (placed against a shared wall).",
+    "Damage detection not run for this tier input (no posed views available)."
+   ]
+  },
+  "single_scan_with_ceiling_photo": {
+   "n_rooms": 6,
+   "overlaps": [],
+   "adjacency": 7,
+   "notes": [
+    "Photo registration covered < 50% of the photos in ['01_room2', '02_room5', '05_room1']: room extents there are lower bounds with widened intervals.",
+    "Photo tier: per-room metric depth (DA3METRIC) + 3D-3D rigid photo registration; rooms stitched by door matching in folder order; placement error and monocular scale widen every interval.",
+    "Adjacency NOT verified by a matched doorway for: ['02_room5', '03_room7', '04_room4', '05_room1', '06_room3'] (placed against a shared wall).",
+    "Damage detection not run for this tier input (no posed views available)."
+   ]
+  }
+ },
+ "damage": {
+  "single_room_lidar": {
+   "n_regions": 1,
+   "classes": [
+    "crack"
+   ],
+   "flags": []
+  },
+  "single_room_lidar_nodrift": {
+   "n_regions": 1,
+   "classes": [
+    "crack"
+   ],
+   "flags": []
+  },
+  "single_room_video": {
+   "n_regions": 3,
+   "classes": [
+    "crack"
+   ],
+   "flags": [
+    "R5_long_crack"
+   ]
+  },
+  "single_room_photo": {
+   "n_regions": 0,
+   "classes": [],
+   "flags": []
+  },
+  "single_scan_floor_only_lidar": {
+   "n_regions": 3,
+   "classes": [
+    "crack",
+    "hole",
+    "mold"
+   ],
+   "flags": []
+  },
+  "single_scan_floor_only_lidar_nodrift": {
+   "n_regions": 2,
+   "classes": [
+    "crack",
+    "mold"
+   ],
+   "flags": []
+  },
+  "single_scan_floor_only_video": {
+   "n_regions": 2,
+   "classes": [
+    "crack"
+   ],
+   "flags": []
+  },
+  "single_scan_floor_only_photo": {
+   "n_regions": 0,
+   "classes": [],
+   "flags": []
+  },
+  "single_scan_with_ceiling_lidar": {
+   "n_regions": 10,
+   "classes": [
+    "crack",
+    "hole",
+    "mold",
+    "water_stain"
+   ],
+   "flags": [
+    "R1_ceiling_water",
+    "R1_ceiling_water",
+    "R5_long_crack"
+   ]
+  },
+  "single_scan_with_ceiling_lidar_nodrift": {
+   "n_regions": 7,
+   "classes": [
+    "crack",
+    "mold",
+    "water_stain"
+   ],
+   "flags": [
+    "R1_ceiling_water",
+    "R1_ceiling_water",
+    "R6_crack_at_opening",
+    "R5_long_crack",
+    "R2_low_wall_moisture"
+   ]
+  },
+  "single_scan_with_ceiling_video": {
+   "n_regions": 1,
+   "classes": [
+    "mold"
+   ],
+   "flags": []
+  },
+  "single_scan_with_ceiling_photo": {
+   "n_regions": 0,
+   "classes": [],
+   "flags": []
+  }
+ },
+ "timing_s": {
+  "single_room_lidar": 39.13,
+  "single_room_lidar_nodrift": 36.52,
+  "single_room_video": 82.74,
+  "single_room_photo": 1.6,
+  "single_scan_floor_only_lidar": 123.78,
+  "single_scan_floor_only_lidar_nodrift": 111.94,
+  "single_scan_floor_only_video": 195.64,
+  "single_scan_floor_only_photo": 4.1,
+  "single_scan_with_ceiling_lidar": 154.21,
+  "single_scan_with_ceiling_lidar_nodrift": 137.08,
+  "single_scan_with_ceiling_video": 181.16,
+  "single_scan_with_ceiling_photo": 6.1
+ }
+}

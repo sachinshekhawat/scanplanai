@@ -1,0 +1,1651 @@
+{
+ "schema_version": "1.0.0",
+ "generator": {
+  "name": "scan2plan",
+  "version": "0.1.0"
+ },
+ "tier": "video",
+ "capture": {
+  "name": "single_room",
+  "source": "data/raw/single_room",
+  "tier": "video",
+  "n_frames_used": 186,
+  "video": "data/raw/single_room/c00a170fe1/rgb.mp4",
+  "sfm": {
+   "fragments": [
+    {
+     "n": 27,
+     "scale_m_per_unit": 0.1152118014012484,
+     "per_frame_log_spread": 0.09291537447765175,
+     "first": "000002",
+     "last": "000200",
+     "focal_px": 916.330099417398
+    },
+    {
+     "n": 37,
+     "scale_m_per_unit": 0.21402467770824096,
+     "per_frame_log_spread": 0.02883202662299226,
+     "first": "000290",
+     "last": "000562",
+     "focal_px": 833.8601491349659
+    },
+    {
+     "n": 51,
+     "scale_m_per_unit": 0.23753076118098132,
+     "per_frame_log_spread": 0.04046097698992579,
+     "first": "000599",
+     "last": "000978",
+     "focal_px": 833.550789579723
+    },
+    {
+     "n": 21,
+     "scale_m_per_unit": 0.10186452889651217,
+     "per_frame_log_spread": 0.0390191549186793,
+     "first": "000991",
+     "last": "001138",
+     "focal_px": 827.4125695485096
+    },
+    {
+     "n": 26,
+     "scale_m_per_unit": 0.0923869660645947,
+     "per_frame_log_spread": 0.026498427545259662,
+     "first": "001191",
+     "last": "001376",
+     "focal_px": 816.5643566745274
+    },
+    {
+     "n": 24,
+     "scale_m_per_unit": 0.21971178225930268,
+     "per_frame_log_spread": 0.06672419869986758,
+     "first": "001406",
+     "last": "001581",
+     "focal_px": 697.9880741347115
+    }
+   ],
+   "stitch": [
+    {
+     "fragment": 0,
+     "n": 27,
+     "placed": true,
+     "via": "reference"
+    },
+    {
+     "fragment": 1,
+     "n": 37,
+     "placed": true,
+     "via": "da3_bridge",
+     "overlap": 1.0,
+     "bridge": {
+      "ok": true,
+      "scale_m_per_unit": 1.3319292068481445,
+      "anchor_rot_spread_deg": 0.4158923611056136,
+      "anchor_rot_spread_b_deg": 2.2134762488156228,
+      "gap_translation_m": 0.8496905216428714
+     },
+     "alternatives": {
+      "da3_bridge": 1.0
+     }
+    },
+    {
+     "fragment": 2,
+     "n": 51,
+     "placed": true,
+     "via": "da3_bridge",
+     "overlap": 1.0,
+     "bridge": {
+      "ok": true,
+      "scale_m_per_unit": 1.3872699737548828,
+      "anchor_rot_spread_deg": 0.4447488588102365,
+      "anchor_rot_spread_b_deg": 1.20340210802718,
+      "gap_translation_m": 0.5323793107840221
+     },
+     "alternatives": {
+      "da3_bridge": 1.0
+     }
+    },
+    {
+     "fragment": 3,
+     "n": 21,
+     "placed": true,
+     "via": "da3_bridge",
+     "overlap": 1.0,
+     "bridge": {
+      "ok": true,
+      "scale_m_per_unit": 2.142916679382324,
+      "anchor_rot_spread_deg": 0.1262042556637406,
+      "anchor_rot_spread_b_deg": 0.5840198031876823,
+      "gap_translation_m": 0.18875589176056945
+     },
+     "alternatives": {
+      "da3_bridge": 1.0
+     }
+    },
+    {
+     "fragment": 4,
+     "n": 26,
+     "placed": true,
+     "via": "da3_bridge",
+     "overlap": 1.0,
+     "bridge": {
+      "ok": true,
+      "scale_m_per_unit": 1.3543870449066162,
+      "anchor_rot_spread_deg": 0.8879384219584915,
+      "anchor_rot_spread_b_deg": 1.2832382448486566,
+      "gap_translation_m": 0.3406641869012603
+     },
+     "alternatives": {
+      "da3_bridge": 1.0
+     }
+    },
+    {
+     "fragment": 5,
+     "n": 24,
+     "placed": true,
+     "via": "wall_correlation",
+     "overlap": 0.7837948999177407,
+     "bridge": {
+      "ok": true,
+      "scale_m_per_unit": 1.3270673751831055,
+      "anchor_rot_spread_deg": 1.5363118168372376,
+      "anchor_rot_spread_b_deg": 8.860109856825346,
+      "gap_translation_m": 0.5054023823718423
+     },
+     "alternatives": {
+      "da3_bridge": 0.296,
+      "wall_correlation": 0.784
+     }
+    }
+   ],
+   "registered_frames": 186,
+   "decoded_frames": 223,
+   "da_scale_bias": 0.933
+  }
+ },
+ "units": {
+  "length": "m",
+  "area": "m2"
+ },
+ "frame": {
+  "description": "plan frame: gravity-aligned, x/y on the dominant wall axes, origin arbitrary",
+  "bounds": [
+   -5.563,
+   -0.487,
+   1.328,
+   3.67
+  ]
+ },
+ "property": {
+  "n_rooms": 2,
+  "floor_area_total": {
+   "value": 14.583,
+   "unit": "m2",
+   "sigma": 1.9794,
+   "ci95": [
+    10.7034,
+    18.4627
+   ],
+   "observed": true,
+   "method": "video:sum-room-areas"
+  },
+  "adjacency": [],
+  "overlaps": [],
+  "drift_correction": {
+   "method": "submap pose graph: wall loop-closure + Manhattan yaw anchor + odometry prior + floor anchor",
+   "enabled": true,
+   "n_submaps": 7,
+   "n_keyframes": 96,
+   "path_m": 15.1024,
+   "max_abs_theta_deg": 4.9277,
+   "max_abs_shift_m": 0.0169,
+   "max_abs_dy_m": 0.0522,
+   "loop_residual_m_first_last": [
+    0.0359,
+    0.0192
+   ],
+   "n_loop_matches_found": true
+  }
+ },
+ "rooms": [
+  {
+   "id": "R1",
+   "type": "closet_or_wc",
+   "polygon": [
+    [
+     -0.062,
+     -0.4874
+    ],
+    [
+     -0.062,
+     0.3926
+    ],
+    [
+     1.328,
+     0.3926
+    ],
+    [
+     1.328,
+     -0.4874
+    ]
+   ],
+   "floor_area": {
+    "value": 1.2232,
+    "unit": "m2",
+    "sigma": 0.7124,
+    "ci95": [
+     -0.1732,
+     2.6196
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   },
+   "perimeter": {
+    "value": 4.54,
+    "unit": "m",
+    "sigma": 0.8579,
+    "ci95": [
+     2.8585,
+     6.2215
+    ],
+    "observed": true,
+    "method": "video:perimeter"
+   },
+   "ceiling_height": {
+    "value": 2.6,
+    "unit": "m",
+    "sigma": 0.6089,
+    "ci95": [
+     1.4065,
+     3.7935
+    ],
+    "observed": false,
+    "method": "prior: ceiling not observed in this capture (scan the ceiling to measure)"
+   },
+   "walls": [
+    {
+     "id": "R1-W1",
+     "start": [
+      -0.062,
+      -0.4874
+     ],
+     "end": [
+      -0.062,
+      0.3926
+     ],
+     "length": {
+      "value": 0.88,
+      "unit": "m",
+      "sigma": 0.4304,
+      "ci95": [
+       0.0364,
+       1.7236
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R1-W2",
+     "start": [
+      -0.062,
+      0.3926
+     ],
+     "end": [
+      1.328,
+      0.3926
+     ],
+     "length": {
+      "value": 1.39,
+      "unit": "m",
+      "sigma": 0.4325,
+      "ci95": [
+       0.5422,
+       2.2378
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R1-W3",
+     "start": [
+      1.328,
+      0.3926
+     ],
+     "end": [
+      1.328,
+      -0.4874
+     ],
+     "length": {
+      "value": 0.88,
+      "unit": "m",
+      "sigma": 0.4304,
+      "ci95": [
+       0.0364,
+       1.7236
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R1-W4",
+     "start": [
+      1.328,
+      -0.4874
+     ],
+     "end": [
+      -0.062,
+      -0.4874
+     ],
+     "length": {
+      "value": 1.39,
+      "unit": "m",
+      "sigma": 0.4325,
+      "ci95": [
+       0.5422,
+       2.2378
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    }
+   ]
+  },
+  {
+   "id": "R2",
+   "type": "room",
+   "polygon": [
+    [
+     -5.5633,
+     0.097
+    ],
+    [
+     -5.5633,
+     2.3926
+    ],
+    [
+     -5.402,
+     2.3926
+    ],
+    [
+     -5.402,
+     1.1876
+    ],
+    [
+     -4.7539,
+     1.1876
+    ],
+    [
+     -4.7539,
+     3.6701
+    ],
+    [
+     -3.2169,
+     3.6701
+    ],
+    [
+     -3.2169,
+     1.1876
+    ],
+    [
+     -2.432,
+     1.1876
+    ],
+    [
+     -2.432,
+     3.0026
+    ],
+    [
+     0.378,
+     3.0026
+    ],
+    [
+     0.378,
+     1.6726
+    ],
+    [
+     -0.572,
+     1.6726
+    ],
+    [
+     -0.572,
+     0.8226
+    ],
+    [
+     -1.582,
+     0.8226
+    ],
+    [
+     -1.582,
+     0.097
+    ]
+   ],
+   "floor_area": {
+    "value": 13.3598,
+    "unit": "m2",
+    "sigma": 1.8468,
+    "ci95": [
+     9.7403,
+     16.9794
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   },
+   "perimeter": {
+    "value": 25.0684,
+    "unit": "m",
+    "sigma": 1.4341,
+    "ci95": [
+     22.2575,
+     27.8792
+    ],
+    "observed": true,
+    "method": "video:perimeter"
+   },
+   "ceiling_height": {
+    "value": 2.6,
+    "unit": "m",
+    "sigma": 0.6089,
+    "ci95": [
+     1.4065,
+     3.7935
+    ],
+    "observed": false,
+    "method": "prior: ceiling not observed in this capture (scan the ceiling to measure)"
+   },
+   "walls": [
+    {
+     "id": "R2-W1",
+     "start": [
+      -5.5633,
+      0.097
+     ],
+     "end": [
+      -5.5633,
+      2.3926
+     ],
+     "length": {
+      "value": 2.2955,
+      "unit": "m",
+      "sigma": 0.3299,
+      "ci95": [
+       1.649,
+       2.9421
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.2648,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W2",
+     "start": [
+      -5.5633,
+      2.3926
+     ],
+     "end": [
+      -5.402,
+      2.3926
+     ],
+     "length": {
+      "value": 0.1613,
+      "unit": "m",
+      "sigma": 0.4027,
+      "ci95": [
+       -0.628,
+       0.9505
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W3",
+     "start": [
+      -5.402,
+      2.3926
+     ],
+     "end": [
+      -5.402,
+      1.1876
+     ],
+     "length": {
+      "value": 1.2049,
+      "unit": "m",
+      "sigma": 0.3352,
+      "ci95": [
+       0.548,
+       1.8618
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W4",
+     "start": [
+      -5.402,
+      1.1876
+     ],
+     "end": [
+      -4.7539,
+      1.1876
+     ],
+     "length": {
+      "value": 0.6481,
+      "unit": "m",
+      "sigma": 0.3316,
+      "ci95": [
+       -0.0018,
+       1.298
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1342,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W5",
+     "start": [
+      -4.7539,
+      1.1876
+     ],
+     "end": [
+      -4.7539,
+      3.6701
+     ],
+     "length": {
+      "value": 2.4824,
+      "unit": "m",
+      "sigma": 0.4091,
+      "ci95": [
+       1.6806,
+       3.2842
+      ],
+      "observed": true,
+      "method": "video:face-to-face"
+     },
+     "face_sigma_m": 0.1314,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W6",
+     "start": [
+      -4.7539,
+      3.6701
+     ],
+     "end": [
+      -3.2169,
+      3.6701
+     ],
+     "length": {
+      "value": 1.537,
+      "unit": "m",
+      "sigma": 0.1466,
+      "ci95": [
+       1.2497,
+       1.8243
+      ],
+      "observed": true,
+      "method": "video:face-to-face"
+     },
+     "face_sigma_m": 0.3735,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W7",
+     "start": [
+      -3.2169,
+      3.6701
+     ],
+     "end": [
+      -3.2169,
+      1.1876
+     ],
+     "length": {
+      "value": 2.4824,
+      "unit": "m",
+      "sigma": 0.4091,
+      "ci95": [
+       1.6806,
+       3.2842
+      ],
+      "observed": true,
+      "method": "video:face-to-face"
+     },
+     "face_sigma_m": 0.0206,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W8",
+     "start": [
+      -3.2169,
+      1.1876
+     ],
+     "end": [
+      -2.432,
+      1.1876
+     ],
+     "length": {
+      "value": 0.7849,
+      "unit": "m",
+      "sigma": 0.1966,
+      "ci95": [
+       0.3996,
+       1.1701
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1342,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W9",
+     "start": [
+      -2.432,
+      1.1876
+     ],
+     "end": [
+      -2.432,
+      3.0026
+     ],
+     "length": {
+      "value": 1.8149,
+      "unit": "m",
+      "sigma": 0.3143,
+      "ci95": [
+       1.199,
+       2.4309
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1929,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W10",
+     "start": [
+      -2.432,
+      3.0026
+     ],
+     "end": [
+      0.378,
+      3.0026
+     ],
+     "length": {
+      "value": 2.81,
+      "unit": "m",
+      "sigma": 0.3767,
+      "ci95": [
+       2.0717,
+       3.5483
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.2747,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W11",
+     "start": [
+      0.378,
+      3.0026
+     ],
+     "end": [
+      0.378,
+      1.6726
+     ],
+     "length": {
+      "value": 1.33,
+      "unit": "m",
+      "sigma": 0.4127,
+      "ci95": [
+       0.5212,
+       2.1388
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W12",
+     "start": [
+      0.378,
+      1.6726
+     ],
+     "end": [
+      -0.572,
+      1.6726
+     ],
+     "length": {
+      "value": 0.95,
+      "unit": "m",
+      "sigma": 0.4306,
+      "ci95": [
+       0.106,
+       1.794
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W13",
+     "start": [
+      -0.572,
+      1.6726
+     ],
+     "end": [
+      -0.572,
+      0.8226
+     ],
+     "length": {
+      "value": 0.85,
+      "unit": "m",
+      "sigma": 0.4303,
+      "ci95": [
+       0.0066,
+       1.6934
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W14",
+     "start": [
+      -0.572,
+      0.8226
+     ],
+     "end": [
+      -1.582,
+      0.8226
+     ],
+     "length": {
+      "value": 1.01,
+      "unit": "m",
+      "sigma": 0.4309,
+      "ci95": [
+       0.1655,
+       1.8545
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W15",
+     "start": [
+      -1.582,
+      0.8226
+     ],
+     "end": [
+      -1.582,
+      0.097
+     ],
+     "length": {
+      "value": 0.7255,
+      "unit": "m",
+      "sigma": 0.3181,
+      "ci95": [
+       0.102,
+       1.3491
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.3033,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W16",
+     "start": [
+      -1.582,
+      0.097
+     ],
+     "end": [
+      -5.5633,
+      0.097
+     ],
+     "length": {
+      "value": 3.9813,
+      "unit": "m",
+      "sigma": 0.4331,
+      "ci95": [
+       3.1325,
+       4.8301
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.0914,
+     "bounded_by_wall_face": true,
+     "openings": []
+    }
+   ]
+  }
+ ],
+ "openings": [],
+ "surfaces": [
+  {
+   "id": "R1-W1-S",
+   "room": "R1",
+   "kind": "wall",
+   "wall": "R1-W1",
+   "area": {
+    "value": 2.288,
+    "unit": "m2",
+    "sigma": 1.2407,
+    "ci95": [
+     -0.1438,
+     4.7198
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R1-W2-S",
+   "room": "R1",
+   "kind": "wall",
+   "wall": "R1-W2",
+   "area": {
+    "value": 3.614,
+    "unit": "m2",
+    "sigma": 1.4076,
+    "ci95": [
+     0.8552,
+     6.3728
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R1-W3-S",
+   "room": "R1",
+   "kind": "wall",
+   "wall": "R1-W3",
+   "area": {
+    "value": 2.288,
+    "unit": "m2",
+    "sigma": 1.2407,
+    "ci95": [
+     -0.1438,
+     4.7198
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R1-W4-S",
+   "room": "R1",
+   "kind": "wall",
+   "wall": "R1-W4",
+   "area": {
+    "value": 3.614,
+    "unit": "m2",
+    "sigma": 1.4076,
+    "ci95": [
+     0.8552,
+     6.3728
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R1-FLOOR",
+   "room": "R1",
+   "kind": "floor",
+   "area": {
+    "value": 1.2232,
+    "unit": "m2",
+    "sigma": 0.7124,
+    "ci95": [
+     -0.1732,
+     2.6196
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  },
+  {
+   "id": "R1-CEIL",
+   "room": "R1",
+   "kind": "ceiling",
+   "area": {
+    "value": 1.2232,
+    "unit": "m2",
+    "sigma": 0.7124,
+    "ci95": [
+     -0.1732,
+     2.6196
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  },
+  {
+   "id": "R2-W1-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W1",
+   "area": {
+    "value": 5.9684,
+    "unit": "m2",
+    "sigma": 1.64,
+    "ci95": [
+     2.7541,
+     9.1827
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W2-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W2",
+   "area": {
+    "value": 0.4193,
+    "unit": "m2",
+    "sigma": 1.0516,
+    "ci95": [
+     -1.6418,
+     2.4804
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W3-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W3",
+   "area": {
+    "value": 3.1328,
+    "unit": "m2",
+    "sigma": 1.1392,
+    "ci95": [
+     0.9001,
+     5.3656
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W4-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W4",
+   "area": {
+    "value": 1.6851,
+    "unit": "m2",
+    "sigma": 0.9482,
+    "ci95": [
+     -0.1733,
+     3.5435
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W5-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W5",
+   "area": {
+    "value": 6.4543,
+    "unit": "m2",
+    "sigma": 1.8484,
+    "ci95": [
+     2.8316,
+     10.0771
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W6-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W6",
+   "area": {
+    "value": 3.9962,
+    "unit": "m2",
+    "sigma": 1.0106,
+    "ci95": [
+     2.0155,
+     5.9769
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W7-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W7",
+   "area": {
+    "value": 6.4543,
+    "unit": "m2",
+    "sigma": 1.8484,
+    "ci95": [
+     2.8316,
+     10.0771
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W8-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W8",
+   "area": {
+    "value": 2.0407,
+    "unit": "m2",
+    "sigma": 0.6997,
+    "ci95": [
+     0.6692,
+     3.4121
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W9-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W9",
+   "area": {
+    "value": 4.7188,
+    "unit": "m2",
+    "sigma": 1.3744,
+    "ci95": [
+     2.025,
+     7.4127
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W10-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W10",
+   "area": {
+    "value": 7.306,
+    "unit": "m2",
+    "sigma": 1.9716,
+    "ci95": [
+     3.4417,
+     11.1703
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W11-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W11",
+   "area": {
+    "value": 3.458,
+    "unit": "m2",
+    "sigma": 1.3443,
+    "ci95": [
+     0.8232,
+     6.0928
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W12-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W12",
+   "area": {
+    "value": 2.47,
+    "unit": "m2",
+    "sigma": 1.2603,
+    "ci95": [
+     -0.0001,
+     4.9401
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W13-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W13",
+   "area": {
+    "value": 2.21,
+    "unit": "m2",
+    "sigma": 1.2327,
+    "ci95": [
+     -0.2061,
+     4.6261
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W14-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W14",
+   "area": {
+    "value": 2.626,
+    "unit": "m2",
+    "sigma": 1.278,
+    "ci95": [
+     0.1213,
+     5.1307
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W15-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W15",
+   "area": {
+    "value": 1.8864,
+    "unit": "m2",
+    "sigma": 0.9377,
+    "ci95": [
+     0.0485,
+     3.7243
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W16-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W16",
+   "area": {
+    "value": 10.3513,
+    "unit": "m2",
+    "sigma": 2.6731,
+    "ci95": [
+     5.1121,
+     15.5904
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-FLOOR",
+   "room": "R2",
+   "kind": "floor",
+   "area": {
+    "value": 13.3598,
+    "unit": "m2",
+    "sigma": 1.8468,
+    "ci95": [
+     9.7403,
+     16.9794
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  },
+  {
+   "id": "R2-CEIL",
+   "room": "R2",
+   "kind": "ceiling",
+   "area": {
+    "value": 13.3598,
+    "unit": "m2",
+    "sigma": 1.8468,
+    "ci95": [
+     9.7403,
+     16.9794
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  }
+ ],
+ "damage": [
+  {
+   "id": "D1",
+   "surface": "R2-W1-S",
+   "class": "crack",
+   "confidence": 0.942,
+   "n_views": 1,
+   "extent": {
+    "area": {
+     "value": 0.0003,
+     "unit": "m2",
+     "sigma": 0.0027,
+     "ci95": [
+      -0.005,
+      0.0055
+     ],
+     "observed": true,
+     "method": "damage:surface-cells"
+    },
+    "width": {
+     "value": 0.0872,
+     "unit": "m",
+     "sigma": 0.0308,
+     "ci95": [
+      0.0269,
+      0.1475
+     ],
+     "observed": true,
+     "method": "damage:surface-u"
+    },
+    "height": {
+     "value": 0.0872,
+     "unit": "m",
+     "sigma": 0.0308,
+     "ci95": [
+      0.0269,
+      0.1476
+     ],
+     "observed": true,
+     "method": "damage:surface-v"
+    }
+   },
+   "position_on_surface_m": {
+    "u0": 1.368,
+    "v0": 0.825,
+    "u1": 1.455,
+    "v1": 0.912
+   },
+   "plan_footprint": [
+    [
+     -5.6433,
+     1.4648264464415979
+    ],
+    [
+     -5.6433,
+     1.5520184959366716
+    ],
+    [
+     -5.4833,
+     1.5520184959366716
+    ],
+    [
+     -5.4833,
+     1.4648264464415979
+    ]
+   ]
+  },
+  {
+   "id": "D2",
+   "surface": "R2-W3-S",
+   "class": "crack",
+   "confidence": 0.856,
+   "n_views": 1,
+   "extent": {
+    "area": {
+     "value": 0.0004,
+     "unit": "m2",
+     "sigma": 0.0025,
+     "ci95": [
+      -0.0045,
+      0.0054
+     ],
+     "observed": true,
+     "method": "damage:surface-cells"
+    },
+    "width": {
+     "value": 0.0446,
+     "unit": "m",
+     "sigma": 0.0214,
+     "ci95": [
+      0.0027,
+      0.0866
+     ],
+     "observed": true,
+     "method": "damage:surface-u"
+    },
+    "height": {
+     "value": 0.1415,
+     "unit": "m",
+     "sigma": 0.0456,
+     "ci95": [
+      0.0521,
+      0.2308
+     ],
+     "observed": true,
+     "method": "damage:surface-v"
+    }
+   },
+   "position_on_surface_m": {
+    "u0": 0.459,
+    "v0": 0.33,
+    "u1": 0.504,
+    "v1": 0.471
+   },
+   "plan_footprint": [
+    [
+     -5.482,
+     1.6466380739312012
+    ],
+    [
+     -5.482,
+     1.69128721507968
+    ],
+    [
+     -5.322,
+     1.69128721507968
+    ],
+    [
+     -5.322,
+     1.6466380739312012
+    ]
+   ]
+  },
+  {
+   "id": "D3",
+   "surface": "R2-W16-S",
+   "class": "crack",
+   "confidence": 0.441,
+   "n_views": 1,
+   "extent": {
+    "area": {
+     "value": 0.0013,
+     "unit": "m2",
+     "sigma": 0.0425,
+     "ci95": [
+      -0.0819,
+      0.0845
+     ],
+     "observed": true,
+     "method": "damage:surface-cells"
+    },
+    "width": {
+     "value": 0.3179,
+     "unit": "m",
+     "sigma": 0.0973,
+     "ci95": [
+      0.1272,
+      0.5087
+     ],
+     "observed": true,
+     "method": "damage:surface-u"
+    },
+    "height": {
+     "value": 0.4383,
+     "unit": "m",
+     "sigma": 0.1329,
+     "ci95": [
+      0.1778,
+      0.6989
+     ],
+     "observed": true,
+     "method": "damage:surface-v"
+    }
+   },
+   "position_on_surface_m": {
+    "u0": 1.431,
+    "v0": 0.113,
+    "u1": 1.749,
+    "v1": 0.551
+   },
+   "plan_footprint": [
+    [
+     -4.132465260868816,
+     0.017
+    ],
+    [
+     -3.8145417353196556,
+     0.017
+    ],
+    [
+     -3.8145417353196556,
+     0.177
+    ],
+    [
+     -4.132465260868816,
+     0.177
+    ]
+   ]
+  }
+ ],
+ "concealed_damage_flags": [
+  {
+   "id": "F1",
+   "surface": "R2-W16-S",
+   "rule": "R5_long_crack",
+   "severity": "medium",
+   "evidence": [
+    "D3"
+   ],
+   "rationale": "A crack longer than 0.5 m can reflect movement of the structure or a failed board joint; check for continuation behind finishes and on the other side of the wall."
+  }
+ ],
+ "scope": [
+  {
+   "id": "S1",
+   "surface": "R2-W1-S",
+   "action": "rake out and fill crack, sand flush",
+   "quantity": {
+    "value": 0.1357,
+    "unit": "m",
+    "sigma": 0.0479,
+    "ci95": [
+     0.0419,
+     0.2295
+    ],
+    "observed": true,
+    "method": "damage:length+10%"
+   },
+   "unit": "m",
+   "because": [
+    "D1"
+   ]
+  },
+  {
+   "id": "S2",
+   "surface": "R2-W1-S",
+   "action": "redecorate full surface (mist coat + 2 coats)",
+   "quantity": {
+    "value": 5.9684,
+    "unit": "m",
+    "sigma": 1.64,
+    "ci95": [
+     2.7541,
+     9.1827
+    ],
+    "observed": true,
+    "method": "surface:area"
+   },
+   "unit": "m2",
+   "because": [
+    "D1"
+   ]
+  },
+  {
+   "id": "S3",
+   "surface": "R2-W3-S",
+   "action": "rake out and fill crack, sand flush",
+   "quantity": {
+    "value": 0.1632,
+    "unit": "m",
+    "sigma": 0.0554,
+    "ci95": [
+     0.0546,
+     0.2718
+    ],
+    "observed": true,
+    "method": "damage:length+10%"
+   },
+   "unit": "m",
+   "because": [
+    "D2"
+   ]
+  },
+  {
+   "id": "S4",
+   "surface": "R2-W3-S",
+   "action": "redecorate full surface (mist coat + 2 coats)",
+   "quantity": {
+    "value": 3.1328,
+    "unit": "m",
+    "sigma": 1.1392,
+    "ci95": [
+     0.9,
+     5.3656
+    ],
+    "observed": true,
+    "method": "surface:area"
+   },
+   "unit": "m2",
+   "because": [
+    "D2"
+   ]
+  },
+  {
+   "id": "S5",
+   "surface": "R2-W16-S",
+   "action": "rake out and fill crack, sand flush",
+   "quantity": {
+    "value": 0.5956,
+    "unit": "m",
+    "sigma": 0.1812,
+    "ci95": [
+     0.2405,
+     0.9508
+    ],
+    "observed": true,
+    "method": "damage:length+10%"
+   },
+   "unit": "m",
+   "because": [
+    "D3"
+   ]
+  },
+  {
+   "id": "S6",
+   "surface": "R2-W16-S",
+   "action": "redecorate full surface (mist coat + 2 coats)",
+   "quantity": {
+    "value": 10.3513,
+    "unit": "m",
+    "sigma": 2.6731,
+    "ci95": [
+     5.1121,
+     15.5905
+    ],
+    "observed": true,
+    "method": "surface:area"
+   },
+   "unit": "m2",
+   "because": [
+    "D3"
+   ]
+  },
+  {
+   "id": "S7",
+   "surface": "R2-W16-S",
+   "action": "investigate concealed damage (R5_long_crack): moisture/structural survey",
+   "quantity": {
+    "value": 1.0,
+    "unit": "count",
+    "sigma": 0.0,
+    "ci95": [
+     1.0,
+     1.0
+    ],
+    "observed": true,
+    "method": "count"
+   },
+   "unit": "each",
+   "because": [
+    "F1"
+   ]
+  }
+ ],
+ "calibration": {
+  "tier_sigma_multiplier": 1.0
+ },
+ "timing_s": {
+  "decode_s": 0.0,
+  "sfm_s": 0.01,
+  "depth_s": 0.08,
+  "drift_s": 0.1,
+  "layout_s": 2.23,
+  "total_s": 53.01,
+  "damage_s": 29.42,
+  "wall_clock_s": 82.74
+ },
+ "notes": [
+  "Ceiling not observed: ceiling heights are priors (observed=false) with wide intervals.",
+  "Video tier: poses from COLMAP SfM on RGB only; metric scale from Depth-Anything-V2 metric-indoor (bias-corrected x1.072); intervals include a 4% relative scale term.",
+  "Damage: classical candidates + CLIP ViT-B/32 zero-shot classification (no damage-specific training); confidence = CLIP probability. Scope: quantities only; pricing intentionally omitted (use local rate tables)."
+ ]
+}

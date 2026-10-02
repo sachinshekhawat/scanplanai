@@ -1,0 +1,7 @@
+derived from /Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_floor_only
+01_room2: frames [118, 142, 172, 193, 471, 491], lidar room 2 area 7.33 m2
+02_room1: frames [761, 905, 941, 968, 998, 1171], lidar room 1 area 5.42 m2
+03_room4: frames [1853, 1914, 1980, 2009, 2033, 2222], lidar room 4 area 10.67 m2
+04_room6: frames [2750, 2779, 2944, 2961], lidar room 6 area 2.52 m2
+05_room5: frames [3182, 3312, 3389, 3429, 3457, 3476], lidar room 5 area 8.77 m2
+06_room3: frames [3872, 3916, 3945, 4133, 4223, 4256], lidar room 3 area 12.40 m2

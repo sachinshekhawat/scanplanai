@@ -1,6 +1,6 @@
 # scan2plan: technical report
 
-All numbers below come from `benchmark/results/{baseline,after_fix}` and `benchmark/results/metric_depth_calibration.json`. The provided sample data has **no tape or laser ground truth**. LiDAR accuracy is therefore shown through cross-session repeatability, and the video and photo tiers are scored against the LiDAR result of the same capture ("LiDAR-referenced", which is not ground truth).
+All numbers below come from `benchmark/results/{baseline,after_fix,final}` and `benchmark/results/metric_depth_calibration.json`. The provided sample data has **no tape or laser ground truth**. LiDAR accuracy is therefore shown through cross-session repeatability, and the video and photo tiers are scored against the LiDAR result of the same capture ("LiDAR-referenced", which is not ground truth).
 
 ## 1. Architecture
 ```
@@ -27,7 +27,8 @@ See `docs/device_matrix.md`. Key facts measured on the sample data:
   - SIFT with a low peak threshold (≈3,400 keypoints/frame instead of 440) plus sequential matching. Interiors break SfM into fragments (6 on `single_room`).
   - Fragments are joined by **DA3-BASE multi-view poses on the gap window**. Measured relative-rotation error on upright gap windows is 0.6–1.3° median, with one gap failing at 88°. Wall-raster correlation is the fallback.
   - Metric scale comes from **DA3METRIC-LARGE**.
-  - Trajectory vs ARKit on `single_room`: 0.57 m RMSE, scale error +2%.
+  - Trajectory vs ARKit on `single_room` (final): pairwise-distance error median +4%, MAD 12%. All 5 gaps were bridged by DA3 in one model load.
+  - The orientation is probed on about 3 frames per fragment *before* dense depth, so depth runs once (cold run on the 9,745-frame capture: 81 min → about 20 min).
 - **Photo:**
   - Per-room metric depth. Registration uses SIFT, with LoFTR for pairs SIFT misses, and picks a model per pair: pure rotation (turn in place, per the protocol), rigid 3D–3D, or essential matrix only with ≥ 40 inliers. A max-spanning tree, then rooms are stitched by door matching in folder order.
   - Evaluation photo sets are frames of the Stray video (`scripts/make_photo_set.py`, disclosed in each `MANIFEST.txt`). They are motion-blurred, close-range and low-overlap, which is harder than protocol photos. Only 2–4 of 4–8 photos register per room.
@@ -46,7 +47,7 @@ Corrections are interpolated per frame by path length and applied before full fu
 | with_ceiling | 40 | 98.8 m | 1.83° | 10.3 cm | 12.8 → 9.4 mm |
 | floor_only | 22 | 53.8 m | 3.31° | 10.3 cm | 30.5 → 14.8 mm |
 
-Ablation: the same flat captured in two sessions has a stitched-footprint IoU of **0.836 with drift correction vs 0.786 without**, and cross-session wall overlap rises from 0.21 to 0.61 on raw wall pixels. The on/off footprints are in `metrics.json::drift_ablation`.
+Ablation (final run): the same flat captured in two sessions has a stitched-footprint IoU of **0.848 with drift correction vs 0.791 without** (baseline 0.836 / 0.786), and cross-session wall overlap rises from 0.21 to 0.61 on raw wall pixels. The on/off footprints are in `metrics.json::drift_ablation`.
 
 ## 4. Error budget (1-σ, `measure.py`)
 | term | LiDAR | video | photo |
@@ -72,11 +73,12 @@ Lengths combine the two perpendicular bounding faces and the scale term in quadr
 |---|---|---|---|---|
 | LiDAR cross-session walls, baseline | 20 | 0.30 | 5.2 | over-confident |
 | LiDAR cross-session walls, after fix | 20 | **0.80** | **0.75** | close to calibrated (target 0.95) |
-| video vs LiDAR, single_room walls | 9 | 0.44 | — | over-confident (geometry errors > scale model) |
-| video vs LiDAR, single_room floor area | 1 | in CI (+10.2%) | — | ok |
-| video / photo, with_ceiling | 1–2 | 0.0 | — | wrong geometry (footprint IoU 0.39 / 0.19) |
+| LiDAR cross-session walls, final (+ min_edge 0.4) | 22 | **0.86** | 0.82 | close to calibrated |
+| video vs LiDAR walls (final; 3 captures) | 6 / 5 / 5 | 0.67 / 0.60 / 0.40 | — | over-confident |
+| video floor area vs LiDAR (final) | 3 | 0 of 3 in CI (−24%, −35%, −28%) | — | partial coverage, not scale: footprint IoU 0.39 / 0.33 / 0.43 |
+| photo floor area vs LiDAR (final) | 3 | 0 of 3 in CI (−82%, −43%, −76%) | — | only 2–4 photos register per room on video-derived stills |
 
-Confident garbage on thin input is the risk the brief names. The video and photo tiers are not yet calibrated on multi-room walks. Their intervals cover scale error but not gross registration failures. §7 lists this as the top open item.
+The video and photo floor-area intervals do **not** cover the LiDAR reference. Their error model covers scale but not *unobserved extent*: the reconstruction misses rooms or parts of rooms that its registered views never saw. The photo tier now widens free-space-bounded edges by 0.3–0.9 m in sparsely registered rooms (`photo/stitch.py::SIGMA_UNOBSERVED_EDGE`). That moves wall coverage to 0.5–1.0, but not area coverage. Confident garbage on thin input is the risk the brief names. The video and photo tiers are not yet calibrated on multi-room walks. Their intervals cover scale error but not gross registration failures. §7 lists this as the top open item.
 
 ## 6. Fix loop (`docs/fix_loop.md`)
 - **Worst LiDAR gate:** repeatability. 25% of walls pass, median 13.8 cm.

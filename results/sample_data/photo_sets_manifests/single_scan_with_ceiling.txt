@@ -1,0 +1,7 @@
+derived from data/raw/single_scan_with_ceiling
+01_room2: frames [6629, 6745, 6781, 6796, 6832, 6865, 6899, 7019], lidar room 2 area 9.12 m2
+02_room5: frames [2660, 2822, 2884, 2900, 2931, 2976, 3001, 3052], lidar room 5 area 4.30 m2
+03_room7: frames [3482, 3723, 3757, 3791, 3906, 3940], lidar room 7 area 12.70 m2
+04_room4: frames [4557, 4606, 4659, 4679], lidar room 4 area 1.54 m2
+05_room1: frames [4910, 5096, 5170, 5194, 5237, 5264, 5314], lidar room 1 area 8.73 m2
+06_room3: frames [5759, 5796, 5853, 5989, 6042, 6111, 6144, 6238], lidar room 3 area 11.76 m2

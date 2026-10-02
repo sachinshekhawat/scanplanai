@@ -72,3 +72,5 @@ Why the gate fell short, and what moves it next:
 Both are recorded as known failure modes in the technical report.
 
 Reproduce: `git checkout <before-commit> && python -m scan2plan.benchmark.run --tiers lidar --tag baseline`, then the same at HEAD with `--tag after_fix`. The readable diff is `git diff 9b30998 HEAD -- src/scan2plan/lidar/rooms.py src/scan2plan/lidar/to_plan.py`.
+
+**Follow-up after the fix loop (`benchmark/results/final`):** a sweep of the polygon jog threshold (`min_edge`, 0.08 → 0.4 m, 9 settings in the commit message). Cross-session footprint IoU 0.836 → **0.848**, median |diff| 13.8 → **10.2 cm**, CI coverage 0.80 → **0.86**. Wall pass rate stays about 0.23. The gate still fails for the partitioning reason above.

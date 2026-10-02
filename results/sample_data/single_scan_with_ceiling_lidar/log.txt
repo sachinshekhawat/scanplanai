@@ -1,0 +1,7 @@
+[22:38:52] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_with_ceiling tier=lidar drift=True
+[22:39:03] [drift] 40 submaps over 98.8 m; max yaw corr 1.83 deg, max shift 10.3 cm
+[22:39:37] [lidar] 7 rooms, 5 openings, floor -1.493 ceiling 1.5787244436622034, 45.6 s
+[22:40:13] [damage] rgb/odometry offset [12, 54, 48, 81, 66, 27] frames (36 s)
+[22:41:10] [damage] 257 views, 414 candidates -> CLIP
+[22:41:26] [damage] 10 accepted detections -> 10 regions
+[22:41:26] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_scan_with_ceiling_lidar/plan.json (7 rooms, 5 openings, 10 damage regions) in 154.4 s

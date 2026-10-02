@@ -1,0 +1,3 @@
+derived from /Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_room
+01_room1: frames [241, 263, 311, 345], lidar room 1 area 8.76 m2
+02_room3: frames [942, 1057, 1105, 1156, 1169, 1182], lidar room 3 area 4.78 m2

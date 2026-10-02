@@ -1,0 +1,24 @@
+[00:14:28] capture=data/photo_sets/single_scan_floor_only tier=photo drift=True
+[00:14:29] [photo] 6 room folders under data/photo_sets/single_scan_floor_only
+[00:14:29] [photo] room 1/6: 01_room2
+[00:14:29] [photo]   4 matched pairs (4 SIFT), 0 pose edges, 1/6 photos connected
+[00:14:29] [photo] room 2/6: 02_room1
+[00:14:30] [photo]   8 matched pairs (8 SIFT), 1 pose edges, 2/6 photos connected
+[00:14:30] [photo] room 3/6: 03_room4
+[00:14:30] [photo]   5 matched pairs (5 SIFT), 1 pose edges, 2/6 photos connected
+[00:14:30] [photo] room 4/6: 04_room6
+[00:14:31] [photo]   5 matched pairs (5 SIFT), 1 pose edges, 2/4 photos connected
+[00:14:31] [photo] room 5/6: 05_room5
+[00:14:31] [photo]   4 matched pairs (4 SIFT), 0 pose edges, 1/6 photos connected
+[00:14:31] [photo] room 6/6: 06_room3
+[00:14:32] [photo]   9 matched pairs (9 SIFT), 3 pose edges, 4/6 photos connected
+[00:14:32] [photo] 02_room1: 1.2 m2, doors []
+[00:14:32] [photo] 03_room4: 8.9 m2, doors []
+[00:14:32] [photo] 04_room6: 0.1 m2, doors []
+[00:14:32] [photo] 05_room5: 1.5 m2, doors []
+[00:14:32] [photo] 06_room3: 15.2 m2, doors []
+[00:14:32] [photo] placed {'room': '03_room4', 'to': '02_room1', 'k': 2, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 1.98}
+[00:14:32] [photo] placed {'room': '04_room6', 'to': '03_room4', 'k': 3, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 1.21}
+[00:14:32] [photo] placed {'room': '05_room5', 'to': '04_room6', 'k': 0, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 0.89}
+[00:14:32] [photo] placed {'room': '06_room3', 'to': '05_room5', 'k': 0, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 2.1}
+[00:14:33] wrote runs/bench_final/single_scan_floor_only_photo/plan.json (5 rooms, 0 openings, 0 damage regions) in 4.3 s

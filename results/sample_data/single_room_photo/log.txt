@@ -1,0 +1,10 @@
+[00:14:26] capture=data/photo_sets/single_room tier=photo drift=True
+[00:14:26] [photo] 2 room folders under data/photo_sets/single_room
+[00:14:26] [photo] room 1/2: 01_room1
+[00:14:27] [photo]   1 matched pairs (1 SIFT), 1 pose edges, 2/4 photos connected
+[00:14:27] [photo] room 2/2: 02_room3
+[00:14:27] [photo]   9 matched pairs (9 SIFT), 1 pose edges, 2/6 photos connected
+[00:14:27] [photo] 01_room1: 2.5 m2, doors []
+[00:14:27] [photo] 02_room3: 1.0 m2, doors []
+[00:14:27] [photo] placed {'room': '02_room3', 'to': '01_room1', 'k': 1, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 1.93}
+[00:14:28] wrote runs/bench_final/single_room_photo/plan.json (2 rooms, 0 openings, 0 damage regions) in 1.8 s

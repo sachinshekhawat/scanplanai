@@ -1,0 +1,26 @@
+[00:14:33] capture=data/photo_sets/single_scan_with_ceiling tier=photo drift=True
+[00:14:34] [photo] 6 room folders under data/photo_sets/single_scan_with_ceiling
+[00:14:34] [photo] room 1/6: 01_room2
+[00:14:35] [photo]   8 matched pairs (8 SIFT), 3 pose edges, 2/8 photos connected
+[00:14:35] [photo] room 2/6: 02_room5
+[00:14:36] [photo]   11 matched pairs (11 SIFT), 1 pose edges, 2/8 photos connected
+[00:14:36] [photo] room 3/6: 03_room7
+[00:14:37] [photo]   10 matched pairs (9 SIFT), 4 pose edges, 3/6 photos connected
+[00:14:37] [photo] room 4/6: 04_room4
+[00:14:37] [photo]   1 matched pairs (1 SIFT), 1 pose edges, 2/4 photos connected
+[00:14:37] [photo] room 5/6: 05_room1
+[00:14:38] [photo]   6 matched pairs (6 SIFT), 3 pose edges, 3/7 photos connected
+[00:14:38] [photo] room 6/6: 06_room3
+[00:14:39] [photo]   12 matched pairs (12 SIFT), 6 pose edges, 4/8 photos connected
+[00:14:39] [photo] 01_room2: 2.1 m2, doors []
+[00:14:39] [photo] 02_room5: 1.0 m2, doors []
+[00:14:39] [photo] 03_room7: 0.0 m2, doors []
+[00:14:39] [photo] 04_room4: 1.2 m2, doors []
+[00:14:39] [photo] 05_room1: 3.6 m2, doors []
+[00:14:39] [photo] 06_room3: 3.8 m2, doors [0.46]
+[00:14:39] [photo] placed {'room': '02_room5', 'to': '01_room2', 'k': 1, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 1.58}
+[00:14:39] [photo] placed {'room': '03_room7', 'to': '02_room5', 'k': 0, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 2.22}
+[00:14:39] [photo] placed {'room': '04_room4', 'to': '03_room7', 'k': 1, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 2.64}
+[00:14:39] [photo] placed {'room': '05_room1', 'to': '04_room4', 'k': 3, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 2.38}
+[00:14:39] [photo] placed {'room': '06_room3', 'to': '05_room1', 'k': 0, 'via': 'shared_wall_fallback', 'overlap_m2': 0.0, 'shared_wall_m': 2.13}
+[00:14:40] wrote runs/bench_final/single_scan_with_ceiling_photo/plan.json (6 rooms, 1 openings, 0 damage regions) in 6.5 s
