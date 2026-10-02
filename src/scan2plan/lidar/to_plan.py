@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import numpy as np
-from matplotlib.path import Path as MplPath
+import shapely
 
 from scan2plan.lidar.pipeline import LidarResult
 from scan2plan.measure import (SCALE_REL, SIGMA_JAMB, SIGMA_JAMB_RAW, SIGMA_LEVEL_SYS, SIGMA_UNSNAPPED,
@@ -28,7 +28,9 @@ def room_heights(res: LidarResult, poly, cam_hi: float):
     minx, miny, maxx, maxy = poly.bounds
     bb = (xy[:, 0] > minx) & (xy[:, 0] < maxx) & (xy[:, 1] > miny) & (xy[:, 1] < maxy)
     inside = np.zeros(len(h), bool)
-    inside[bb] = MplPath(np.asarray(poly.buffer(-0.05).exterior.coords)).contains_points(xy[bb]) if poly.area > 0.2 else False
+    inner = poly.buffer(-0.05)
+    if bb.any() and not inner.is_empty:
+        inside[bb] = shapely.contains_xy(inner, xy[bb, 0], xy[bb, 1])
     y = h[inside, 1]
     fl = _level_in(y, res.level.floor_y, 0.05)
     floor_y, fs, fn = fl if fl else (res.level.floor_y, res.level.floor_sigma, 1000)

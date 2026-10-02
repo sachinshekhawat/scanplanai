@@ -46,6 +46,7 @@ def bridge_windows(frags_names: list[list[str]], all_names: list[str]) -> list[l
 
 def run_da3_windows(wins: list[list[str]], frames_dir: Path, work: Path, log=print) -> list[dict]:
     out = []
+    work.mkdir(parents=True, exist_ok=True)
     for k, w in enumerate(wins):
         f = work / f"bridge_{k:02d}.npz"
         if not f.exists():
@@ -62,14 +63,17 @@ def run_da3_windows(wins: list[list[str]], frames_dir: Path, work: Path, log=pri
     return out
 
 
-def bridge_transform(da3: dict, A, B, metric_depth: dict[str, np.ndarray]):
+def bridge_transform(da3: dict, A, B, metric_depth: dict[str, np.ndarray], orient: int = 0):
     """Return (R, t) mapping fragment B's world frame into fragment A's world frame (metric),
     plus a quality dict. A and B are PseudoCaptures (metric, own frames)."""
     import cv2
 
     names = da3["names"]
     E = da3["E"]
-    Rwc_d = np.array([e[:, :3].T for e in E])  # DA3 cam->world
+    from scan2plan.video.pipeline import ROT, UNROT
+
+    M = ROT[orient][1]  # p_upright = M p_stored  =>  R_wc(stored) = R_wc(upright) @ M
+    Rwc_d = np.array([e[:, :3].T @ M for e in E])  # DA3 cam->world, stored-camera convention
     C_d = np.array([-e[:, :3].T @ e[:, 3] for e in E])
     ia = {n: i for i, n in enumerate(A.names)}
     ib = {n: i for i, n in enumerate(B.names)}
@@ -81,7 +85,10 @@ def bridge_transform(da3: dict, A, B, metric_depth: dict[str, np.ndarray]):
     ratios = []
     for j in a_anc + b_anc:
         dm = metric_depth[names[j]]
-        dd = cv2.resize(da3["depth"][j].astype(np.float32), (dm.shape[1], dm.shape[0]))
+        dj = da3["depth"][j].astype(np.float32)
+        if orient:
+            dj = cv2.rotate(dj, UNROT[orient])
+        dd = cv2.resize(dj, (dm.shape[1], dm.shape[0]))
         m = (dd > 1e-3) & (dm > 0.2)
         if m.sum() > 100:
             ratios.append(np.median(dm[m] / dd[m]))
@@ -94,6 +101,8 @@ def bridge_transform(da3: dict, A, B, metric_depth: dict[str, np.ndarray]):
     # consistency of the anchor rotations (deg): a quality signal
     spread_a = max(np.degrees(np.arccos(np.clip((np.trace(R_A.T @ A.rotations[ia[names[j]]] @ Rwc_d[j].T) - 1) / 2, -1, 1)))
                    for j in a_anc)
+    spread_b = max(np.degrees(np.arccos(np.clip((np.trace(R_B.T @ B.rotations[ib[names[j]]] @ Rwc_d[j].T) - 1) / 2, -1, 1)))
+                   for j in b_anc)
     # translation: DA3 centres (scaled) -> A frame through anchor centroids
     cA_d = C_d[a_anc].mean(0) * s
     cA = np.mean([A.positions[ia[names[j]]] for j in a_anc], 0)
@@ -103,5 +112,5 @@ def bridge_transform(da3: dict, A, B, metric_depth: dict[str, np.ndarray]):
     R = R_A @ R_B.T
     # a point x_B in B-world: x_d = R_B^T (x_B - cB) + cB_d ; x_A = R_A (x_d - cA_d) + cA
     t = R_A @ (cB_d - cA_d) + cA - R @ cB
-    return (R, t), {"ok": True, "scale_m_per_unit": s, "anchor_rot_spread_deg": float(spread_a),
+    return (R, t), {"ok": True, "scale_m_per_unit": s, "anchor_rot_spread_deg": float(spread_a), "anchor_rot_spread_b_deg": float(spread_b),
                     "gap_translation_m": float(np.linalg.norm(R_A @ (cB_d - cA_d)))}

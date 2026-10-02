@@ -31,11 +31,11 @@ from scan2plan.io.stray import DEPTH_H, DEPTH_W
 VIDEO_FPS = 6.0
 MAX_SIDE = 1024
 DA_MODEL = "depth-anything/DA3METRIC-LARGE"
-# DA3METRIC depth / LiDAR depth with the iPhone focal prior (f = 0.83 x long side), measured
-# on the three Stray captures (scripts/calibrate_metric_depth.py): 0.916, 0.873, 0.900.
-# Uncertainty of this correction is part of the video error model (VIDEO_SCALE_REL).
-DA_SCALE_BIAS = 0.896
-VIDEO_SCALE_REL = 0.04
+# DA3METRIC depth / LiDAR depth on upright frames with the iPhone focal prior (f = 0.83 x long
+# side), scripts/calibrate_metric_depth.py -> benchmark/results/metric_depth_calibration.json:
+# per capture 0.934 / 0.940 / 0.854, pooled 0.933, per-frame log-sigma 0.118, capture spread 0.039.
+DA_SCALE_BIAS = 0.933
+VIDEO_SCALE_REL = 0.04  # capture-level spread of the bias (many frames average the per-frame term)
 
 
 def find_video(p: Path) -> Path:
@@ -104,18 +104,20 @@ def run_sfm(img_dir: Path, work: Path, log=print) -> list[dict]:
     return list(np.load(f, allow_pickle=True)["data"])
 
 
-def depth_cache(frames: list[Path], cache: Path, log=print) -> dict[str, np.ndarray]:
-    """Metric depth per frame (DA3METRIC-LARGE in a child process), as a deterministic
-    replayable cache (float16 npz keyed by frame name)."""
+def depth_cache(frames: list[Path], cache: Path, log=print, orient: int = 0) -> dict[str, np.ndarray]:
+    """Metric depth per frame (DA3METRIC-LARGE in a child process) on upright frames, rotated
+    back to the stored frame orientation; deterministic replayable cache (float16 npz)."""
     import subprocess
     import sys
 
-    f = cache / "da3m_depth.npz"
+    f = cache / f"da3m_depth_o{orient}.npz"
+    src_frames = frames
+    frames = upright_frames(frames, orient, cache / f"frames_o{orient}")
     if f.exists():
         z = np.load(f)
         if all(p.stem in z.files for p in frames):
             log(f"[video] depth cache hit ({len(frames)} frames)")
-            return {k: z[k].astype(np.float32) for k in z.files}
+            return _unrotate_depths({k: z[k].astype(np.float32) for k in z.files}, orient)
     cache.mkdir(parents=True, exist_ok=True)
     lst = cache / "depth_list.txt"
     lst.write_text("\n".join(str(p.resolve()) for p in frames))
@@ -126,7 +128,18 @@ def depth_cache(frames: list[Path], cache: Path, log=print) -> dict[str, np.ndar
         raise RuntimeError(f"depth worker failed: {p.stderr[-2000:]}")
     log(f"[video] DA3-metric depth on {len(frames)} frames in {time.time() - t:.0f} s")
     z = np.load(f)
-    return {k: z[k].astype(np.float32) for k in z.files}
+    return _unrotate_depths({k: z[k].astype(np.float32) for k in z.files}, orient)
+
+
+def _unrotate_depths(d: dict, orient: int) -> dict:
+    if orient == 0:
+        return d
+    out = {}
+    for k, v in d.items():
+        # worker resizes to 256x192 regardless of orientation; restore the upright aspect first
+        up = cv2.resize(v, (DEPTH_H, DEPTH_W)) if orient in (1, 3) else v
+        out[k] = cv2.resize(cv2.rotate(up, UNROT[orient]), (DEPTH_W, DEPTH_H))
+    return out
 
 
 @dataclass
@@ -411,13 +424,15 @@ def chain_fragments(frags, work: Path, da: dict, log=print):
 
     all_names = sorted(da.keys())
     wins = bridge_windows([pc.names for pc, _ in frags], all_names)
-    bridges = run_da3_windows(wins, work / "frames", work, log=log)
+    orient = getattr(chain_fragments, "orient", 0)
+    fdir = work / f"frames_o{orient}" if orient else work / "frames"
+    bridges = run_da3_windows(wins, fdir, work / f"o{orient}", log=log)
     placed = [frags[0][0]]
     report = [{"fragment": 0, "n": frags[0][1]["n"], "placed": True, "via": "reference"}]
     prev = frags[0][0]
     for k, ((pc, st), br) in enumerate(zip(frags[1:], bridges), start=1):
         cands = []
-        T, q = (None, {"ok": False, "reason": "DA3 failed"}) if br is None else bridge_transform(br, prev, pc, da)
+        T, q = (None, {"ok": False, "reason": "DA3 failed"}) if br is None else bridge_transform(br, prev, pc, da, orient)
         map_pc = _concat(placed)
         if T is not None and q.get("gap_translation_m", 99) < 5:
             c = _apply(pc, *T)
@@ -430,8 +445,17 @@ def chain_fragments(frags, work: Path, da: dict, log=print):
         if not cands:
             report.append({"fragment": k, "n": st["n"], "placed": False, "bridge": q})
             continue
-        score, via, nxt = max(cands, key=lambda c: c[0])
-        report.append({"fragment": k, "n": st["n"], "placed": score > 0.15, "via": via, "overlap": score,
+        # DA3 bridge is trusted when its anchor frames agree with both fragments (measured:
+        # 0.6-1.3 deg median relative-rotation error on upright frames); wall correlation is a
+        # fallback because repeated room geometry makes its peak ambiguous.
+        da3_ok = T is not None and q.get("anchor_rot_spread_deg", 99) < 5 and q.get("anchor_rot_spread_b_deg", 99) < 5
+        alt = {c[1]: c[0] for c in cands}
+        if da3_ok:
+            score, via, nxt = next(c for c in cands if c[1] == "da3_bridge")
+            score = max(score, 0.2)
+        else:
+            score, via, nxt = max(cands, key=lambda c: c[0])
+        report.append({"fragment": k, "n": st["n"], "placed": score > 0.15, "via": via, "overlap": score, "bridge": q,
                        "alternatives": {v: round(sc, 3) for sc, v, _ in cands}})
         if score <= 0.15:
             continue
@@ -462,6 +486,40 @@ def k_short(r: dict) -> dict:
     return {k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()}
 
 
+# Image rotations: code -> (cv2 rotate flag or None, camera-frame matrix M with p_rot = M p)
+ROT = {
+    0: (None, np.eye(3)),
+    1: (cv2.ROTATE_90_CLOCKWISE, np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1.0]])),
+    2: (cv2.ROTATE_180, np.diag([-1, -1, 1.0])),
+    3: (cv2.ROTATE_90_COUNTERCLOCKWISE, np.array([[0, 1, 0], [-1, 0, 0], [0, 0, 1.0]])),
+}
+UNROT = {0: None, 1: cv2.ROTATE_90_COUNTERCLOCKWISE, 2: cv2.ROTATE_180, 3: cv2.ROTATE_90_CLOCKWISE}
+
+
+def detect_orientation(frags) -> int:
+    """Rotation code that makes frames upright, voted over fragments: world up expressed in
+    camera coordinates should be -y (image up) after rotation."""
+    votes = np.zeros(4)
+    for pc, st in frags:
+        up_cam = np.median(np.array([R.T @ np.array([0, 1.0, 0]) for R in pc.rotations]), 0)
+        for code, (_, M) in ROT.items():
+            votes[code] += st["n"] * float(-(M @ up_cam)[1])
+    return int(np.argmax(votes))
+
+
+def upright_frames(frames: list[Path], code: int, out: Path) -> list[Path]:
+    if code == 0:
+        return frames
+    out.mkdir(parents=True, exist_ok=True)
+    res = []
+    for p in frames:
+        q = out / p.name
+        if not q.exists():
+            cv2.imwrite(str(q), cv2.rotate(cv2.imread(str(p)), ROT[code][0]), [cv2.IMWRITE_JPEG_QUALITY, 95])
+        res.append(q)
+    return res
+
+
 def video_cache_dir(video: Path) -> Path:
     h = hashlib.sha1(f"{video.resolve()}:{video.stat().st_size}".encode()).hexdigest()[:10]
     return Path("data/cache/video") / f"{video.stem}_{h}"
@@ -488,13 +546,26 @@ def run_video(src: Path, meta: dict, drift: bool = True, log=print):
     t1 = time.time()
     da = depth_cache(frames, work, log=log)
     T["depth_s"] = time.time() - t1
-    frags = []
-    for rec in recs:
-        pc_f, st = fragment_capture(rec, da, log=log)
-        if pc_f is not None:
-            frags.append((pc_f, st))
+    def build(da_):
+        out = []
+        for rec in recs:
+            pc_f, st = fragment_capture(rec, da_, log=log)
+            if pc_f is not None:
+                out.append((pc_f, st))
+        return out
+
+    frags = build(da)
+    orient = detect_orientation(frags) if frags else 0
+    if orient != 0:
+        # monocular depth models expect upright images: re-run on rotated frames
+        log(f"[video] frames are stored rotated (code {orient}); re-running depth on upright frames")
+        t1 = time.time()
+        da = depth_cache(frames, work, log=log, orient=orient)
+        T["depth_s"] += time.time() - t1
+        frags = build(da)
     if not frags:
         raise RuntimeError("video tier: no usable SfM fragment (too little texture / too fast motion)")
+    chain_fragments.orient = orient
     pc, frag_report = chain_fragments(frags, work, da, log=log)
     n_frames_total = len(frames)
     vstats = {"fragments": [st for _, st in frags], "stitch": frag_report,
