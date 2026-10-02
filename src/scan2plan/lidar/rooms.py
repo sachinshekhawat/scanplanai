@@ -225,12 +225,17 @@ def _face_xy(axis: int, c: float, t: float) -> np.ndarray:
     return np.array([c, t]) if axis == 0 else np.array([t, c])
 
 
-def axis_close(wall_img: np.ndarray, max_gap: float) -> np.ndarray:
-    """Close collinear gaps up to max_gap along x and along y. Doorways and arches sit in
-    straight walls, so this seals rooms without the shape bias of isotropic morphology."""
+def axis_close(wall_img: np.ndarray, max_gap: float, min_run: float = 0.06) -> np.ndarray:
+    """Bridge doorway gaps in straight walls only. Wall pixels are split by orientation
+    (opening with a min_run line kernel keeps only runs along that axis), and each set is
+    closed along its own axis. This seals doorways but never fills a corridor: a corridor's
+    two side walls are parallel to the corridor, not collinear across it."""
     L = int(round(max_gap / RES)) | 1
-    h = cv2.morphologyEx(wall_img, cv2.MORPH_CLOSE, np.ones((1, L), np.uint8))
-    v = cv2.morphologyEx(wall_img, cv2.MORPH_CLOSE, np.ones((L, 1), np.uint8))
+    m = int(round(min_run / RES)) | 1
+    horiz = cv2.morphologyEx(wall_img, cv2.MORPH_OPEN, np.ones((1, m), np.uint8))
+    vert = cv2.morphologyEx(wall_img, cv2.MORPH_OPEN, np.ones((m, 1), np.uint8))
+    h = cv2.morphologyEx(horiz, cv2.MORPH_CLOSE, np.ones((1, L), np.uint8))
+    v = cv2.morphologyEx(vert, cv2.MORPH_CLOSE, np.ones((L, 1), np.uint8))
     return wall_img | h | v
 
 
