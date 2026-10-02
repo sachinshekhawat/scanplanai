@@ -42,6 +42,7 @@ class PlanRoom:
     edges: list[PlanEdge]
     ceiling: Measurement | None = None  # height above floor
     name: str = ""
+    scale_rel: float | None = None  # tier's relative scale 1-sigma (None = LiDAR default)
 
 
 @dataclass
@@ -66,10 +67,12 @@ def _classify(poly: Polygon, n_openings: int) -> str:
     return "room"
 
 
-def _edge_meas(e: PlanEdge, prev: PlanEdge, nxt: PlanEdge, tier: str) -> Measurement:
+def _edge_meas(e: PlanEdge, prev: PlanEdge, nxt: PlanEdge, tier: str, scale_rel: float | None) -> Measurement:
     L = float(np.linalg.norm(e.b - e.a))
     # a wall's length is bounded by the two perpendicular faces at its ends
     s = length_sigma(L, prev.sigma_face, nxt.sigma_face)
+    if scale_rel is not None:
+        s = float(np.hypot(s, scale_rel * L))
     snapped = prev.snapped and nxt.snapped
     method = f"{tier}:face-to-face" if snapped else f"{tier}:face-to-freespace"
     return Measurement(L, s, method)
@@ -78,6 +81,8 @@ def _edge_meas(e: PlanEdge, prev: PlanEdge, nxt: PlanEdge, tier: str) -> Measure
 def _area_meas(room: PlanRoom, tier: str) -> Measurement:
     # first-order: dA = sum(edge_len * d_face); faces independent
     var = sum((np.linalg.norm(e.b - e.a) * e.sigma_face) ** 2 for e in room.edges)
+    if room.scale_rel is not None:
+        var += (2 * room.scale_rel * room.polygon.area) ** 2  # area scales with s^2
     return Measurement(room.polygon.area, float(np.sqrt(var)), f"{tier}:polygon-area-propagated", "m2")
 
 
@@ -127,7 +132,7 @@ def to_document(plan: Plan) -> dict:
             prev = room.edges[ei - 1]
             nxt = room.edges[(ei + 1) % len(room.edges)]
             wid = f"{rid}-W{ei + 1}"
-            L = _edge_meas(e, prev, nxt, tier)
+            L = _edge_meas(e, prev, nxt, tier, room.scale_rel)
             walls.append({"id": wid, "start": np.round(e.a, 4).tolist(), "end": np.round(e.b, 4).tolist(),
                           "length": L.to_json(k), "face_sigma_m": round(e.sigma_face * k, 4),
                           "bounded_by_wall_face": bool(e.snapped), "openings": []})

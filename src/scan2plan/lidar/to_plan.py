@@ -77,8 +77,9 @@ def lidar_to_plan(res: LidarResult, capture_meta: dict) -> Plan:
         st = res.drift.stats
         drift.update({k: (round(v, 4) if isinstance(v, float) else v) for k, v in st.items()
                       if k != "match_median_residual_m"})
-        drift["loop_residual_m_first_last"] = [round(st["match_median_residual_m"][0], 4),
-                                               round(st["match_median_residual_m"][-1], 4)]
+        h = st["match_median_residual_m"]
+        drift["loop_residual_m_first_last"] = [round(h[0], 4), round(h[-1], 4)] if h else None
+        drift["n_loop_matches_found"] = bool(h)
     notes = []
     if res.level.ceiling_y is None:
         notes.append("Ceiling not observed: ceiling heights are priors (observed=false) with wide intervals.")

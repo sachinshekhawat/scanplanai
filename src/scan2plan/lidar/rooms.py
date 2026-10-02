@@ -432,8 +432,11 @@ def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float 
     poly = Polygon(corners)
     if not poly.is_valid:
         poly = poly.buffer(0)
-        if poly.geom_type == "MultiPolygon":
-            poly = max(poly.geoms, key=lambda g: g.area)
+    if poly.geom_type != "Polygon":
+        parts = [g for g in getattr(poly, "geoms", []) if g.geom_type == "Polygon"]
+        if not parts:
+            return Polygon(), []
+        poly = max(parts, key=lambda g: g.area)
     # recompute edge extents from final corners
     final = []
     cs_ = list(poly.exterior.coords)[:-1] if poly.geom_type == "Polygon" else []

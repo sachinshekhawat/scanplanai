@@ -1,0 +1,6 @@
+property,room,kind,element,value_cm,instrument,photo_file,notes
+# kind: wall_length | opening_width | ceiling_height | room_dim_x | room_dim_y | damage_extent
+# element: free text matching what you measured, e.g. "north wall (window side)", "door to kitchen"
+apt1,living,wall_length,north wall,412.3,Bosch GLM 50,IMG_0101.jpg,
+apt1,living,opening_width,door to hall,81.5,Bosch GLM 50,IMG_0102.jpg,clear width jamb-to-jamb at 1 m
+apt1,living,ceiling_height,centre,251.0,Bosch GLM 50,IMG_0103.jpg,

@@ -32,6 +32,9 @@ def estimate_levels(horiz: np.ndarray, cam_y: np.ndarray, bin_m: float = 0.01) -
     y = horiz[:, 1]
     cam_lo, cam_hi = float(np.percentile(cam_y, 2)), float(np.percentile(cam_y, 98))
     below = y[y < cam_lo - 0.5]
+    if len(below) < 200:
+        # floor never observed: handheld camera-height prior (~1.35 m), wide sigma
+        return Level(float(np.median(cam_y) - 1.35), 0.15, None, None, 0)
     hist, edges = np.histogram(below, bins=np.arange(below.min(), below.max() + bin_m, bin_m))
     floor_c = edges[np.argmax(hist)] + bin_m / 2
     floor_y, floor_s, _ = _refine_peak(y, floor_c)
