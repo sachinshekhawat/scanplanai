@@ -12,7 +12,7 @@
       "required": ["value", "unit", "sigma", "ci95", "observed", "method"],
       "properties": {
         "value": {"type": "number"},
-        "unit": {"enum": ["m", "m2"]},
+        "unit": {"enum": ["m", "m2", "count"]},
         "sigma": {"type": "number", "minimum": 0},
         "ci95": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
         "observed": {"type": "boolean", "description": "false = prior, not measured by this capture"},

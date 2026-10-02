@@ -602,7 +602,7 @@ def run_video(src: Path, meta: dict, drift: bool = True, log=print):
                       f"metric-indoor (bias-corrected x{1 / DA_SCALE_BIAS:.3f}); intervals include a "
                       f"{VIDEO_SCALE_REL:.0%} relative scale term.")
     log(f"[video] {len(seg.polygons)} rooms, {len(seg.openings)} openings in {T['total_s']:.0f} s")
-    return plan, {"lidar": res, "video": True}
+    return plan, {"lidar": res, "video": True, "frames_dir": str(work / "frames"), "orient": orient}
 
 
 def _video_error_model(plan, face_floor: float = 0.02):
