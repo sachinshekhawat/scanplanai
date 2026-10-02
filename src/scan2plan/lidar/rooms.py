@@ -114,7 +114,12 @@ def make_grid(xy: np.ndarray, pad: float = 0.5) -> Grid:
     return Grid(float(lo[0]), float(lo[1]), int(w), int(h))
 
 
+FIXED_BAND = False  # fix loop: band must not depend on whether this session saw the ceiling
+
+
 def wall_band(floor_y: float, ceil_y: float | None) -> tuple[float, float]:
+    if FIXED_BAND:
+        return floor_y + 0.15, floor_y + 2.0
     top = (ceil_y - 0.25) if ceil_y is not None else floor_y + 2.2
     return floor_y + 0.15, top
 
@@ -344,6 +349,73 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
     return seg
 
 
+# Fix loop (docs/fix_loop.md): edges bounded only by free space are pushed outward to the
+# nearest wall face; short jogs between edges that snap to the same face are collapsed.
+SNAP_OUTWARD = False  # tried in fix loop: no repeatability gain (see docs/fix_loop.md)
+OUT_SNAP_MAX = 0.6
+JOG_MAX = 0.35
+
+
+AMBIGUITY = True  # fix loop: per-edge face-ambiguity term in the error model
+AMB_REACH = 0.6
+
+
+def _edge_ambiguity(e: dict, runs: list[WallRun]) -> float:
+    """1-sigma for 'which face bounds this edge': half the spread of alternative compatible
+    faces (same axis and normal, overlapping the edge) within AMB_REACH. Inner faces such as
+    wardrobe fronts, radiators and partition stubs make the room boundary depend on what a
+    walk happened to observe. Unsnapped edges get at least half the distance to the nearest
+    face, or AMB_REACH/2 if none exists."""
+    alts = []
+    for r in runs:
+        if r.axis != e["axis"] or r.sign != e["inward"]:
+            continue
+        ov = min(e["hi"], r.hi) - max(e["lo"], r.lo)
+        if ov > 0.2 * (e["hi"] - e["lo"]) and abs(r.c - e["c"]) < AMB_REACH:
+            alts.append(r.c)
+    if not e["snapped"]:
+        return 0.5 * (min(abs(a - e["c"]) for a in alts) if alts else AMB_REACH)
+    spread = max(alts) - min(alts) if len(alts) > 1 else 0.0
+    return 0.5 * spread
+
+
+def _snap_outward(edges: list[dict], runs: list[WallRun]) -> list[dict]:
+    for e in edges:
+        # every edge (snapped or not) moves to the OUTERMOST compatible face within reach:
+        # inner faces (wardrobe fronts, radiators, shelving) are what one session sees and the
+        # other does not; the structural wall behind them is common to both.
+        ax, inward = e["axis"], e["inward"]
+        # free space stops at or before the wall: the true face lies on the outward side,
+        # i.e. at c' with (c' - c) * inward <= 0, and the face's normal must point inward
+        best, bd = None, -1.0
+        for r in runs:
+            if r.axis != ax or r.sign != inward:
+                continue
+            d = (e["c"] - r.c) * inward
+            ov = min(e["hi"], r.hi) - max(e["lo"], r.lo)
+            reach = OUT_SNAP_MAX if not e["snapped"] else 0.12
+            if -0.03 <= d < reach and ov > 0.3 * (e["hi"] - e["lo"]) and (best is None or d > bd):
+                best, bd = r, d
+        if best is not None:
+            e.update(c=best.c, snapped=True, sigma=best.sigma, support=best.support)
+    # collapse jogs: A(axis k, c1) - J(short, other axis) - B(axis k, c2) with |c1-c2| small
+    # after snapping both to the same face -> merge into one edge
+    changed = True
+    while changed and len(edges) > 4:
+        changed = False
+        n = len(edges)
+        for i in range(n):
+            a, j, b = edges[i], edges[(i + 1) % n], edges[(i + 2) % n]
+            if a["axis"] == b["axis"] and j["axis"] != a["axis"] and abs(a["c"] - b["c"]) < 0.02 \
+                    and (j["hi"] - j["lo"]) < JOG_MAX:
+                a["lo"], a["hi"] = min(a["lo"], b["lo"]), max(a["hi"], b["hi"])
+                for idx in sorted({(i + 1) % n, (i + 2) % n}, reverse=True):
+                    del edges[idx]
+                changed = True
+                break
+    return edges
+
+
 def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float = 0.15,
                  min_edge: float = 0.08) -> tuple[Polygon, list[dict]]:
     """Rectilinear polygon of a room mask with edges snapped to bounding wall faces.
@@ -419,6 +491,11 @@ def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float 
         edges.append({"axis": ax, "c": best.c if best else c_raw, "lo": lo, "hi": hi,
                       "snapped": best is not None, "sigma": best.sigma if best else 0.03,
                       "support": best.support if best else 0, "inward": inward})
+    if SNAP_OUTWARD:
+        edges = _snap_outward(edges, runs)
+    if AMBIGUITY:
+        for e in edges:
+            e["amb"] = _edge_ambiguity(e, runs)
     # corners = intersections of consecutive (alternating-axis) edges
     corners = []
     for i in range(len(edges)):

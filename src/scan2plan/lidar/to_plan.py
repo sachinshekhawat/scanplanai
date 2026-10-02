@@ -58,6 +58,7 @@ def lidar_to_plan(res: LidarResult, capture_meta: dict) -> Plan:
         edges = []
         for e in seg.edges[lbl]:
             s = face_sigma(e["sigma"], e["support"]) if e["snapped"] else SIGMA_UNSNAPPED
+            s = float(np.hypot(s, e.get("amb", 0.0)))
             edges.append(PlanEdge(np.array(e["a"]), np.array(e["b"]), s, bool(e["snapped"])))
         if len(edges) < 3:
             continue
