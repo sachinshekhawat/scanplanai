@@ -45,19 +45,30 @@ def bridge_windows(frags_names: list[list[str]], all_names: list[str]) -> list[l
 
 
 def run_da3_windows(wins: list[list[str]], frames_dir: Path, work: Path, log=print) -> list[dict]:
-    out = []
+    """All gap windows in ONE DA3 child process (one model load)."""
+    import json
+
     work.mkdir(parents=True, exist_ok=True)
+    jobs = []
     for k, w in enumerate(wins):
         f = work / f"bridge_{k:02d}.npz"
         if not f.exists():
             lst = work / f"bridge_{k:02d}.txt"
             lst.write_text("\n".join(str((frames_dir / f"{n}.jpg").resolve()) for n in w))
-            p = subprocess.run([sys.executable, "-m", "scan2plan.learned.da3_worker", str(lst), str(f)],
-                               capture_output=True, text=True)
-            if p.returncode != 0:
-                log(f"[video] bridge {k} DA3 failed: {p.stderr[-300:]}")
-                out.append(None)
-                continue
+            jobs.append([str(lst), str(f)])
+    if jobs:
+        (work / "jobs.json").write_text(json.dumps(jobs))
+        p = subprocess.run([sys.executable, "-m", "scan2plan.learned.da3_worker", "multi", str(work / "jobs.json")],
+                           capture_output=True, text=True)
+        for line in p.stdout.splitlines():
+            if line.startswith("[da3]"):
+                log("[video] " + line)
+    out = []
+    for k in range(len(wins)):
+        f = work / f"bridge_{k:02d}.npz"
+        if not f.exists():
+            out.append(None)
+            continue
         z = np.load(f)
         out.append({"names": [Path(n).stem for n in z["names"]], "E": z["extrinsics"], "depth": z["depth"]})
     return out

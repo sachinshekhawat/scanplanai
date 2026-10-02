@@ -46,14 +46,7 @@ def metric_main(lst: str, out: str, res: int = 504):
     print(f"[da3] metric depth on {len(paths)} images in {time.time() - t:.0f} s ({dev})", flush=True)
 
 
-def main():
-    if sys.argv[1] == "metric":
-        os.environ.setdefault("HF_HOME", os.path.abspath("weights/hf"))
-        return metric_main(sys.argv[2], sys.argv[3])
-    lst, out = sys.argv[1], sys.argv[2]
-    model_id = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_MODEL
-    res = int(sys.argv[4]) if len(sys.argv) > 4 else 504
-    os.environ.setdefault("HF_HOME", os.path.abspath("weights/hf"))
+def _patch_attention():
     import torch
     import torch.nn.functional as F
 
@@ -73,6 +66,46 @@ def main():
         return torch.cat(outs, dim=-2)
 
     F.scaled_dot_product_attention = chunked_sdpa
+
+
+def multi_main(jobs_json: str, res: int = 504):
+    """Several pose/depth windows with one model load: jobs = [[list.txt, out.npz], ...]."""
+    import json
+
+    import torch
+    from depth_anything_3.api import DepthAnything3
+
+    dev = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
+    model = DepthAnything3.from_pretrained(DEFAULT_MODEL).to(device=dev)
+    t = time.time()
+    jobs = json.load(open(jobs_json))
+    for lst, out in jobs:
+        paths = [p.strip() for p in open(lst) if p.strip()]
+        try:
+            with torch.no_grad():
+                pred = model.inference(paths, process_res=res)
+        except Exception as e:  # one bad window must not kill the others
+            print(f"[da3] window {lst} failed: {e!r}", flush=True)
+            continue
+        np.savez(out, depth=pred.depth.astype(np.float16), conf=pred.conf.astype(np.float16),
+                 extrinsics=pred.extrinsics.astype(np.float32), intrinsics=pred.intrinsics.astype(np.float32),
+                 hw=np.array(pred.depth.shape[1:]), names=np.array([os.path.basename(p) for p in paths]))
+    print(f"[da3] {len(jobs)} windows in {time.time() - t:.0f} s ({dev})", flush=True)
+
+
+def main():
+    _patch_attention()
+    if sys.argv[1] == "multi":
+        os.environ.setdefault("HF_HOME", os.path.abspath("weights/hf"))
+        return multi_main(sys.argv[2])
+    if sys.argv[1] == "metric":
+        os.environ.setdefault("HF_HOME", os.path.abspath("weights/hf"))
+        return metric_main(sys.argv[2], sys.argv[3])
+    lst, out = sys.argv[1], sys.argv[2]
+    model_id = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_MODEL
+    res = int(sys.argv[4]) if len(sys.argv) > 4 else 504
+    os.environ.setdefault("HF_HOME", os.path.abspath("weights/hf"))
+    import torch
     from depth_anything_3.api import DepthAnything3
 
     dev = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")

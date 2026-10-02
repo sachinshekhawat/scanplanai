@@ -238,7 +238,7 @@ def _align_up(up: np.ndarray) -> np.ndarray:
     return np.eye(3) + vx + vx @ vx * ((1 - c) / s**2)
 
 
-def fragment_capture(rec: dict, da: dict[str, np.ndarray], log=print):
+def fragment_capture(rec: dict, da: dict[str, np.ndarray], log=print, min_frames: int = 5):
     """One SfM fragment -> metric, gravity-aligned PseudoCapture (yaw/translation arbitrary)."""
     w, h = rec["wh"]
     f, cx, cy = rec["params"][:3]
@@ -248,7 +248,7 @@ def fragment_capture(rec: dict, da: dict[str, np.ndarray], log=print):
     for im in sorted(rec["images"], key=lambda im: im["name"]):
         Rcw, tcw = im["R"], im["t"]
         uv, z = im["uv"], im["z"]
-        if len(z) < 20:
+        if len(z) < 20 or Path(im["name"]).stem not in da:
             continue
         d = da[Path(im["name"]).stem]
         u = np.clip((uv[:, 0] * sx).astype(int), 0, DEPTH_W - 1)
@@ -261,7 +261,7 @@ def fragment_capture(rec: dict, da: dict[str, np.ndarray], log=print):
         ts.append(-Rcw.T @ tcw)
         names.append(Path(im["name"]).stem)
         ratios.append(float(np.median(r)))  # DA metres per SfM unit, this frame
-    if len(names) < 5:
+    if len(names) < min_frames:
         return None, None
     ratios = np.array(ratios)
     s = float(np.median(ratios)) / DA_SCALE_BIAS  # metres per SfM unit
@@ -448,10 +448,14 @@ def chain_fragments(frags, work: Path, da: dict, log=print):
         T, q = (None, {"ok": False, "reason": "DA3 failed"}) if br is None else bridge_transform(br, prev, pc, da, orient)
         # score against the recent map only (last 3 placed fragments): O(n) instead of O(n^2)
         map_pc = _concat(placed[-3:])
+        da3_good = T is not None and q.get("gap_translation_m", 99) < 5 and q.get("anchor_rot_spread_deg", 99) < 5 \
+            and q.get("anchor_rot_spread_b_deg", 99) < 5
         if T is not None and q.get("gap_translation_m", 99) < 5:
             c = _apply(pc, *T)
-            cands.append((_overlap_score(map_pc, c), "da3_bridge", c))
-        stitched, rep = stitch_fragments([(prev, {"n": prev.n_frames}), (pc, st)], log=lambda m: None)
+            cands.append((_overlap_score(map_pc, c) if not da3_good else 1.0, "da3_bridge", c))
+        rep = [{}]
+        if not da3_good:  # wall correlation only as a fallback (expensive, ambiguous)
+            stitched, rep = stitch_fragments([(prev, {"n": prev.n_frames}), (pc, st)], log=lambda m: None)
         if rep[-1].get("placed", False):
             c = PseudoCapture(stitched.rotations[prev.n_frames:], stitched.positions[prev.n_frames:], pc.K_depth,
                               pc.depths, pc.confs, pc.timestamps, pc.names)
@@ -510,6 +514,31 @@ ROT = {
 UNROT = {0: None, 1: cv2.ROTATE_90_COUNTERCLOCKWISE, 2: cv2.ROTATE_180, 3: cv2.ROTATE_90_CLOCKWISE}
 
 
+def probe_orientation(recs: list[dict], frames: list[Path], work: Path, log=print, per_frag: int = 3) -> int:
+    """Decide the upright rotation BEFORE dense depth: metric depth on ~3 frames per SfM
+    fragment, gravity per fragment, vote. Replaces a second full depth pass."""
+    by_name = {p.stem: p for p in frames}
+    sub = []
+    for rec in recs:
+        ims = sorted(rec["images"], key=lambda im: im["name"])
+        for im in ims[:: max(len(ims) // per_frag, 1)][:per_frag]:
+            if Path(im["name"]).stem in by_name:
+                sub.append(by_name[Path(im["name"]).stem])
+    if not sub:
+        return 0
+    da = depth_cache(sub, work / "probe", log=lambda m: None, orient=0)
+    frags = []
+    for rec in recs:
+        keep = {**rec, "images": [im for im in rec["images"] if Path(im["name"]).stem in da]}
+        if len(keep["images"]) >= 2:
+            pc_f, st = fragment_capture(keep, da, min_frames=2)
+            if pc_f is not None:
+                frags.append((pc_f, st))
+    code = detect_orientation(frags) if frags else 0
+    log(f"[video] orientation probe on {len(sub)} frames: rotation code {code}")
+    return code
+
+
 def detect_orientation(frags) -> int:
     """Rotation code that makes frames upright, voted over fragments: world up expressed in
     camera coordinates should be -y (image up) after rotation."""
@@ -558,7 +587,8 @@ def run_video(src: Path, meta: dict, drift: bool = True, log=print):
     recs = run_sfm(work / "frames", work, log=log)
     T["sfm_s"] = time.time() - t1
     t1 = time.time()
-    da = depth_cache(frames, work, log=log)
+    orient = probe_orientation(recs, frames, work, log=log)
+    da = depth_cache(frames, work, log=log, orient=orient)
     T["depth_s"] = time.time() - t1
     def build(da_):
         out = []
@@ -569,14 +599,6 @@ def run_video(src: Path, meta: dict, drift: bool = True, log=print):
         return out
 
     frags = build(da)
-    orient = detect_orientation(frags) if frags else 0
-    if orient != 0:
-        # monocular depth models expect upright images: re-run on rotated frames
-        log(f"[video] frames are stored rotated (code {orient}); re-running depth on upright frames")
-        t1 = time.time()
-        da = depth_cache(frames, work, log=log, orient=orient)
-        T["depth_s"] += time.time() - t1
-        frags = build(da)
     if not frags:
         raise RuntimeError("video tier: no usable SfM fragment (too little texture / too fast motion)")
     chain_fragments.orient = orient
