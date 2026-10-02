@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scan2plan/schema/plan.schema.json",
+  "title": "scan2plan plan document",
+  "description": "Output contract shared by all tiers (photo, video, lidar). Every measurement carries a 95% interval.",
+  "type": "object",
+  "required": ["schema_version", "generator", "tier", "capture", "units", "frame", "property", "rooms",
+               "openings", "surfaces", "damage", "concealed_damage_flags", "scope", "calibration", "timing_s"],
+  "$defs": {
+    "measurement": {
+      "type": "object",
+      "required": ["value", "unit", "sigma", "ci95", "observed", "method"],
+      "properties": {
+        "value": {"type": "number"},
+        "unit": {"enum": ["m", "m2"]},
+        "sigma": {"type": "number", "minimum": 0},
+        "ci95": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "observed": {"type": "boolean", "description": "false = prior, not measured by this capture"},
+        "method": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "pt": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "id": {"type": "string", "pattern": "^[A-Z][A-Za-z0-9_-]*$"}
+  },
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generator": {"type": "object", "required": ["name", "version"]},
+    "tier": {"enum": ["photo", "video", "lidar"]},
+    "capture": {"type": "object", "required": ["name", "tier"]},
+    "units": {"type": "object"},
+    "frame": {"type": "object"},
+    "property": {
+      "type": "object",
+      "required": ["n_rooms", "floor_area_total", "adjacency", "overlaps", "drift_correction"],
+      "properties": {
+        "n_rooms": {"type": "integer", "minimum": 0},
+        "floor_area_total": {"$ref": "#/$defs/measurement"},
+        "adjacency": {"type": "array", "items": {
+          "type": "object", "required": ["rooms", "via", "shared_wall"],
+          "properties": {"rooms": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 2, "maxItems": 2},
+                         "via": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+                         "shared_wall": {"type": "boolean"}}}},
+        "overlaps": {"type": "array"},
+        "drift_correction": {"type": "object"}
+      }
+    },
+    "rooms": {"type": "array", "items": {
+      "type": "object",
+      "required": ["id", "type", "polygon", "floor_area", "perimeter", "ceiling_height", "walls"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "type": {"type": "string"},
+        "polygon": {"type": "array", "items": {"$ref": "#/$defs/pt"}, "minItems": 3},
+        "floor_area": {"$ref": "#/$defs/measurement"},
+        "perimeter": {"$ref": "#/$defs/measurement"},
+        "ceiling_height": {"oneOf": [{"$ref": "#/$defs/measurement"}, {"type": "null"}]},
+        "walls": {"type": "array", "items": {
+          "type": "object", "required": ["id", "start", "end", "length", "openings"],
+          "properties": {"id": {"$ref": "#/$defs/id"}, "start": {"$ref": "#/$defs/pt"}, "end": {"$ref": "#/$defs/pt"},
+                         "length": {"$ref": "#/$defs/measurement"},
+                         "openings": {"type": "array", "items": {"$ref": "#/$defs/id"}}}}}
+      }}},
+    "openings": {"type": "array", "items": {
+      "type": "object", "required": ["id", "type", "width", "start", "end", "rooms", "walls"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "type": {"enum": ["door", "open_passage", "window"]},
+                     "width": {"$ref": "#/$defs/measurement"},
+                     "rooms": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+                     "walls": {"type": "array", "items": {"$ref": "#/$defs/id"}}}}},
+    "surfaces": {"type": "array", "items": {
+      "type": "object", "required": ["id", "room", "kind", "area"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "room": {"$ref": "#/$defs/id"},
+                     "kind": {"enum": ["floor", "ceiling", "wall"]},
+                     "area": {"oneOf": [{"$ref": "#/$defs/measurement"}, {"type": "null"}]}}}},
+    "damage": {"type": "array", "items": {
+      "type": "object", "required": ["id", "surface", "class", "confidence", "extent"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "surface": {"$ref": "#/$defs/id"},
+                     "class": {"enum": ["water_stain", "mold", "crack", "hole", "peeling_paint", "other"]},
+                     "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+                     "extent": {"type": "object", "required": ["area"],
+                                "properties": {"area": {"$ref": "#/$defs/measurement"},
+                                               "width": {"$ref": "#/$defs/measurement"},
+                                               "height": {"$ref": "#/$defs/measurement"}}}}}},
+    "concealed_damage_flags": {"type": "array", "items": {
+      "type": "object", "required": ["id", "surface", "rule", "evidence", "severity"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "surface": {"$ref": "#/$defs/id"},
+                     "rule": {"type": "string"}, "evidence": {"type": "array"},
+                     "severity": {"enum": ["low", "medium", "high"]}}}},
+    "scope": {"type": "array", "items": {
+      "type": "object", "required": ["id", "surface", "action", "quantity", "unit"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "surface": {"$ref": "#/$defs/id"},
+                     "action": {"type": "string"}, "quantity": {"$ref": "#/$defs/measurement"},
+                     "unit": {"type": "string"}, "because": {"type": "array"}}}},
+    "calibration": {"type": "object"},
+    "timing_s": {"type": "object"},
+    "notes": {"type": "array"}
+  }
+}

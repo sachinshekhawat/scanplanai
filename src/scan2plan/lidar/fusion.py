@@ -64,16 +64,17 @@ def depth_normals(pc: np.ndarray) -> np.ndarray:
 
 
 def _voxel_mean(pts: np.ndarray, extra: np.ndarray | None, voxel: float):
-    keys = np.floor(pts / voxel).astype(np.int64)
-    _, inv, counts = np.unique(keys, axis=0, return_inverse=True, return_counts=True)
-    inv = inv.ravel()
-    out = np.zeros((len(counts), pts.shape[1]))
-    np.add.at(out, inv, pts)
+    # pack 3 x 21-bit voxel indices into one int64 key (+-10 km at 1 cm): 1D unique is
+    # ~10x faster and far lighter than np.unique(axis=0) on 10k-frame captures
+    q = np.floor(pts / voxel).astype(np.int64) + (1 << 20)
+    keys = (q[:, 0] << 42) | (q[:, 1] << 21) | q[:, 2]
+    _, inv, counts = np.unique(keys, return_inverse=True, return_counts=True)
+    n = len(counts)
+    out = np.stack([np.bincount(inv, weights=pts[:, d], minlength=n) for d in range(pts.shape[1])], 1)
     out /= counts[:, None]
     ex = None
     if extra is not None:
-        ex = np.zeros((len(counts), extra.shape[1]))
-        np.add.at(ex, inv, extra)
+        ex = np.stack([np.bincount(inv, weights=extra[:, d], minlength=n) for d in range(extra.shape[1])], 1)
         ex /= counts[:, None]
     return out, ex, counts
 
