@@ -163,6 +163,13 @@ def _rays(pts: np.ndarray, ph: Photo) -> np.ndarray:
     return r / np.linalg.norm(r, axis=1, keepdims=True)
 
 
+def _rot_fit(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """Uncentred Kabsch: R minimising |b - R a| for unit rays (pure rotation, no translation)."""
+    U, _, Vt = np.linalg.svd(b.T @ a)
+    D = np.diag([1, 1, np.sign(np.linalg.det(U @ Vt))])
+    return U @ D @ Vt
+
+
 def rotation_ransac(ri: np.ndarray, rj: np.ndarray, thr_deg: float = 1.0, iters: int = 300, rng=None):
     """Pure-rotation model (photos taken turning in place): ri ~ R rj. 2-point minimal sets."""
     rng = rng or np.random.default_rng(0)
@@ -172,12 +179,12 @@ def rotation_ransac(ri: np.ndarray, rj: np.ndarray, thr_deg: float = 1.0, iters:
     c = np.cos(np.deg2rad(thr_deg))
     for _ in range(iters):
         s = rng.choice(len(ri), 2, replace=False)
-        R, _ = _kabsch(rj[s], ri[s])
+        R = _rot_fit(rj[s], ri[s])
         inl = np.sum((rj @ R.T) * ri, 1) > c
         if inl.sum() > best[1].sum():
             best = (R, inl)
     if best[1].sum() >= 8:
-        R, _ = _kabsch(rj[best[1]], ri[best[1]])
+        R = _rot_fit(rj[best[1]], ri[best[1]])
         best = (R, np.sum((rj @ R.T) * ri, 1) > c)
     return best
 
