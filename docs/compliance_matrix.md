@@ -17,7 +17,7 @@ Status: ✅ done and evidenced · 🟡 partial (limitation stated) · ❌ not do
 | 11 | JSON to published schema | `schema/plan.schema.json`, `schema.py` | validated on every run | ✅ |
 | 12 | Rendered plan | `render.py` | `plan.png`, `plan.svg` | ✅ |
 | 13 | Drift accountability + on/off ablation | `lidar/drift.py`, `--no-drift` | `benchmark/results/*/metrics.json::drift_ablation` (cross-session IoU 0.836 on / 0.786 off) | ✅ |
-| 14 | Benchmark composition (multi-room, damage room, all tiers, repeat room, GT) | `benchmark/run.py`, `benchmark/ground_truth_template.csv` | sample data covers multi-room + a repeat pair at LiDAR tier | 🟡 no tape GT and no staged-damage room in the provided data; the harness reads `benchmark/ground_truth.csv` when supplied |
+| 14 | Benchmark composition (multi-room, damage room, all tiers, repeat room, GT) | `benchmark/run.py`, `benchmark/ground_truth_template.csv` | sample data covers multi-room + a repeat pair at LiDAR tier | 🟡 sample data has no GT → external laser GT on ARKitScenes (5 walks, 2 visits, `benchmark/arkitscenes/`); no staged-damage room |
 | 15 | Gates: openings, ceiling, repeatability, drift, photo stitch | `benchmark/run.py::metrics` | `benchmark/results/{baseline,after_fix,final}/report.md` | 🟡 computed; most fail on sample data (numbers in report) |
 | 16 | Calibration scored at every tier | `benchmark/run.py::coverage`, `scripts/calibrate_metric_depth.py` | coverage95 per tier; `benchmark/results/metric_depth_calibration.json` | ✅ |
 | 17 | Head-to-head vs consumer app | n/a | n/a | ❌ needs our own capture of 2 rooms with Polycam/magicplan; the sample data carries no app export |
@@ -30,3 +30,4 @@ Status: ✅ done and evidenced · 🟡 partial (limitation stated) · ❌ not do
 | 24 | Weights fetched by script, no own infrastructure | `scripts/install_learned.sh`, `.gitignore` | weights in `weights/` (ignored) | ✅ |
 | 25 | Run on the provided sample data (email) | `scripts/run_sample_data.sh` | `results/sample_data/*/plan.{json,png,svg}`, `benchmark/results/final/` | ✅ |
 | 26 | Tests | `tests/` | 9 tests: schema, intervals, geometry primitives, loader conventions | ✅ |
+| 27 | Laser ground truth (external) | `scripts/arkitscenes_gt.py`, `src/scan2plan/io/arkitscenes.py` | `benchmark/arkitscenes/report_{422382,422386}.md` (ceiling, walls, CI coverage) | ✅ |

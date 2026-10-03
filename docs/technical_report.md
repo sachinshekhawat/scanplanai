@@ -80,6 +80,22 @@ Lengths combine the two perpendicular bounding faces and the scale term in quadr
 
 The video and photo floor-area intervals do **not** cover the LiDAR reference. Their error model covers scale but not *unobserved extent*: the reconstruction misses rooms or parts of rooms that its registered views never saw. The photo tier now widens free-space-bounded edges by 0.3–0.9 m in sparsely registered rooms (`photo/stitch.py::SIGMA_UNOBSERVED_EDGE`). That moves wall coverage to 0.5–1.0, but not area coverage. Confident garbage on thin input is the risk the brief names. The video and photo tiers are not yet calibrated on multi-room walks. Their intervals cover scale error but not gross registration failures. §7 lists this as the top open item.
 
+## 5b. External ground truth (ARKitScenes, laser scanner)
+The sample data has no ground truth, so we scored the unchanged LiDAR pipeline on **ARKitScenes** (`scripts/arkitscenes_gt.py`, `benchmark/arkitscenes/`). It contains iPad Pro LiDAR walks with Faro laser scans of the same space. We used visit 422382 (3 walks) for development and visit 422386 (2 walks) as held-out.
+- **Laser-to-world convention:** `p_world = (p − T[3,:3])·T[:3,:3]ᵀ`. Of four candidate conventions, only this one brings the scan within 0.3 m of the iPad cloud.
+- **Registration:** point-to-plane ICP of the iPad cloud onto the laser scan, 1.2 cm RMSE per walk.
+
+| metric | result | gate |
+|---|---|---|
+| ceiling height, 5 rooms (one room excluded: its GT slab is a shelf, not the ceiling) | −2.3, −1.5, −1.8, −0.6 (dev); −3.7, −2.2 (held-out) cm; median −2.0 cm | ≤ 1.5 cm: 2/5 pass. **Repeatable but biased** (−0.9%, scale-like) |
+| ceiling spread across 3 walks of one room | 2.302–2.334 m (3.2 cm) | ≤ 1 cm: fail |
+| wall lengths, 14 walls with laser faces on both ends | median abs err 7.2 cm (walk 536), 19.0 cm (walk 535) | ≤ 1 cm / 0.5%: 7% |
+| 95% CI coverage of wall GT | 79% | target 95% |
+
+The wall errors come from the room polygon, not depth noise. In these 2–6 m² bathrooms, the shower curtain, basin and shelving cut the observed free space and create false jogs. Cloud-to-laser agreement is 1.2 cm, and the ceiling (an unobstructed plane) is within about 2 cm.
+
+Scale: before this benchmark the LiDAR scale term was 0.2%. It is now **0.7%**, the dev-visit bias, entered as 1-σ uncertainty (`measure.py::SCALE_REL`). We did not subtract it, because one visit is not enough to trust a correction. The held-out visit shows the same sign and size (−0.9 to −1.6%).
+
 ## 6. Fix loop (`docs/fix_loop.md`)
 - **Worst LiDAR gate:** repeatability. 25% of walls pass, median 13.8 cm.
 - **Hypothesis:** walls bounded only by free space. This was tested and is **incomplete**: 16 of 20 walls were face-bounded and still disagreed. The dominant cause is that each session partitions the open plan into rooms differently.
@@ -103,4 +119,5 @@ The video and photo floor-area intervals do **not** cover the LiDAR reference. T
    - the protocol asks for sticky notes on mirrors and glass.
 
    Low light lowers RGB sharpness, so blurred views are skipped by damage detection.
-7. **Not delivered**: the head-to-head against a consumer app, and tape ground truth. Both need our own captures (the protocol and GT template are ready).
+7. **Not delivered**: the head-to-head against a consumer app (needs our own capture). Ground truth is covered externally by ARKitScenes (§5b), not on the sample flat itself.
+8. **Clutter-bounded rooms** (ARKitScenes bathrooms): the polygon follows furniture and curtains. Wall errors reach 7–19 cm there, while the measured planes are accurate to about 1–2 cm.

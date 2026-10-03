@@ -1,0 +1,87 @@
+{
+ "dataset": "ARKitScenes raw (Validation), visit 422386",
+ "license": "CC BY-NC-SA 4.0",
+ "walks": {
+  "42446527": {
+   "registration": {
+    "icp_rmse_m": 0.012194768964457987,
+    "ipad_to_laser_median_m": 1.192107018914775,
+    "frac_within_2cm": 0.042465611913257
+   },
+   "walls": [],
+   "ceiling": [
+    {
+     "room": "R2",
+     "gt_m": 2.3299999999999503,
+     "pred_m": 2.2926,
+     "sigma": 0.0166,
+     "observed": true,
+     "err_m": -0.03739999999995014
+    }
+   ],
+   "summary": {
+    "n_walls": 0,
+    "median_abs_err_m": null,
+    "within_1cm_or_0.5pct": null,
+    "within_3pct": null,
+    "ci95_coverage": null,
+    "face_bounded_median_abs_err_m": null
+   },
+   "n_rooms": 2,
+   "floor_area_m2": 5.4656
+  },
+  "42446532": {
+   "registration": {
+    "icp_rmse_m": 0.0123406981297542,
+    "ipad_to_laser_median_m": 0.31424608558701034,
+    "frac_within_2cm": 0.06784143383713123
+   },
+   "walls": [
+    {
+     "room": "R1",
+     "wall": "R1-W2",
+     "gt_m": 1.425010790719764,
+     "pred_m": 1.29,
+     "sigma": 0.4281,
+     "err_m": -0.13501079071976396,
+     "bounded_by_wall_face": false
+    }
+   ],
+   "ceiling": [
+    {
+     "room": "R1",
+     "gt_m": 2.335000000000002,
+     "pred_m": 2.3127,
+     "sigma": 0.0168,
+     "observed": true,
+     "err_m": -0.022300000000002207
+    },
+    {
+     "room": "R2",
+     "gt_m": 1.6749999999999643,
+     "pred_m": 2.3164,
+     "sigma": 0.0168,
+     "observed": true,
+     "err_m": 0.6414000000000355
+    }
+   ],
+   "summary": {
+    "n_walls": 1,
+    "median_abs_err_m": 0.13501079071976396,
+    "within_1cm_or_0.5pct": 0.0,
+    "within_3pct": 0.0,
+    "ci95_coverage": 1.0,
+    "face_bounded_median_abs_err_m": null
+   },
+   "n_rooms": 2,
+   "floor_area_m2": 7.5196
+  }
+ },
+ "repeatability": {
+  "floor_area_m2_per_walk": [
+   5.4656,
+   7.5196
+  ],
+  "ceiling_pred_spread_m": 0.0237999999999996
+ }
+}

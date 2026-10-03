@@ -4,8 +4,8 @@
  "walks": {
   "42446533": {
    "registration": {
-    "icp_rmse_m": 0.012481907591009188,
-    "ipad_to_laser_median_m": 0.026459001606260645,
+    "icp_rmse_m": 0.012481907591009218,
+    "ipad_to_laser_median_m": 0.026459001606260867,
     "frac_within_2cm": 0.4223850551574201
    },
    "walls": [],
@@ -14,7 +14,7 @@
      "room": "R1",
      "gt_m": 2.3249999999999504,
      "pred_m": 2.302,
-     "sigma": 0.0064,
+     "sigma": 0.0167,
      "observed": true,
      "err_m": -0.022999999999950393
     },
@@ -22,7 +22,7 @@
      "room": "R2",
      "gt_m": 2.3249999999999504,
      "pred_m": 2.3098,
-     "sigma": 0.0063,
+     "sigma": 0.0167,
      "observed": true,
      "err_m": -0.015199999999950364
     }
@@ -40,8 +40,8 @@
   },
   "42446535": {
    "registration": {
-    "icp_rmse_m": 0.012325575643770029,
-    "ipad_to_laser_median_m": 0.01725538731700802,
+    "icp_rmse_m": 0.012325575643770027,
+    "ipad_to_laser_median_m": 0.017255387317008396,
     "frac_within_2cm": 0.5637230879806593
    },
    "walls": [
@@ -50,44 +50,44 @@
      "wall": "R1-W1",
      "gt_m": 1.7545176238648286,
      "pred_m": 1.6425,
-     "sigma": 0.2329,
+     "sigma": 0.2331,
      "err_m": -0.1120176238648285,
      "bounded_by_wall_face": false
     },
     {
      "room": "R1",
      "wall": "R1-W2",
-     "gt_m": 1.0840472163658021,
+     "gt_m": 1.084047216365803,
      "pred_m": 0.6835,
      "sigma": 0.4116,
-     "err_m": -0.40054721636580215,
+     "err_m": -0.40054721636580304,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W7",
-     "gt_m": 1.8729671234939214,
+     "gt_m": 1.8729671234939207,
      "pred_m": 1.683,
-     "sigma": 0.2387,
-     "err_m": -0.1899671234939213,
+     "sigma": 0.2389,
+     "err_m": -0.18996712349392064,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W8",
-     "gt_m": 0.520717281711907,
+     "gt_m": 0.5207172817119073,
      "pred_m": 0.6222,
-     "sigma": 0.0059,
-     "err_m": 0.10148271828809297,
+     "sigma": 0.0073,
+     "err_m": 0.10148271828809263,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W12",
-     "gt_m": 0.4597935663588004,
+     "gt_m": 0.4597935663588002,
      "pred_m": 0.6635,
      "sigma": 0.3027,
-     "err_m": 0.20370643364119956,
+     "err_m": 0.20370643364119978,
      "bounded_by_wall_face": true
     }
    ],
@@ -96,36 +96,36 @@
      "room": "R1",
      "gt_m": 2.34499999999995,
      "pred_m": 2.3268,
-     "sigma": 0.0063,
+     "sigma": 0.0168,
      "observed": true,
      "err_m": -0.018199999999950034
     }
    ],
    "summary": {
     "n_walls": 5,
-    "median_abs_err_m": 0.1899671234939213,
+    "median_abs_err_m": 0.18996712349392064,
     "within_1cm_or_0.5pct": 0.0,
     "within_3pct": 0.0,
     "ci95_coverage": 0.8,
-    "face_bounded_median_abs_err_m": 0.19683677856756043
+    "face_bounded_median_abs_err_m": 0.1968367785675602
    },
    "n_rooms": 1,
    "floor_area_m2": 4.4691
   },
   "42446536": {
    "registration": {
-    "icp_rmse_m": 0.012246002965873557,
-    "ipad_to_laser_median_m": 0.014701620057579192,
+    "icp_rmse_m": 0.012246002965873597,
+    "ipad_to_laser_median_m": 0.014701620057578905,
     "frac_within_2cm": 0.651849000203809
    },
    "walls": [
     {
      "room": "R1",
      "wall": "R1-W1",
-     "gt_m": 0.5337101099427446,
+     "gt_m": 0.533710109942744,
      "pred_m": 0.5403,
-     "sigma": 0.0062,
-     "err_m": 0.00658989005725541,
+     "sigma": 0.0072,
+     "err_m": 0.006589890057255965,
      "bounded_by_wall_face": false
     },
     {
@@ -133,62 +133,62 @@
      "wall": "R1-W2",
      "gt_m": 0.9797055632980607,
      "pred_m": 0.9428,
-     "sigma": 0.3027,
+     "sigma": 0.3028,
      "err_m": -0.03690556329806072,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W3",
-     "gt_m": 0.5854406237312506,
+     "gt_m": 0.585440623731251,
      "pred_m": 0.5157,
-     "sigma": 0.0283,
-     "err_m": -0.06974062373125056,
+     "sigma": 0.0285,
+     "err_m": -0.069740623731251,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W4",
-     "gt_m": 1.8900323552111526,
+     "gt_m": 1.8900323552111524,
      "pred_m": 1.878,
-     "sigma": 0.065,
-     "err_m": -0.012032355211152757,
+     "sigma": 0.0662,
+     "err_m": -0.012032355211152534,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W5",
-     "gt_m": 0.4906838955269388,
+     "gt_m": 0.49068389552693925,
      "pred_m": 0.5656,
-     "sigma": 0.0282,
-     "err_m": 0.07491610447306118,
+     "sigma": 0.0284,
+     "err_m": 0.07491610447306074,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W6",
-     "gt_m": 3.17140710480426,
+     "gt_m": 3.171407104804259,
      "pred_m": 2.9449,
-     "sigma": 0.1882,
-     "err_m": -0.22650710480425973,
+     "sigma": 0.1892,
+     "err_m": -0.22650710480425884,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W7",
-     "gt_m": 0.6580711480023254,
+     "gt_m": 0.6580711480023249,
      "pred_m": 0.8391,
      "sigma": 0.3027,
-     "err_m": 0.1810288519976746,
+     "err_m": 0.18102885199767504,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W12",
-     "gt_m": 4.273900722707677,
+     "gt_m": 4.273900722707676,
      "pred_m": 4.0383,
-     "sigma": 0.3174,
-     "err_m": -0.2356007227076775,
+     "sigma": 0.3185,
+     "err_m": -0.23560072270767662,
      "bounded_by_wall_face": true
     }
    ],
@@ -197,7 +197,7 @@
      "room": "R1",
      "gt_m": 2.33999999999995,
      "pred_m": 2.3342,
-     "sigma": 0.0063,
+     "sigma": 0.0169,
      "observed": true,
      "err_m": -0.005799999999950067
     }
@@ -208,7 +208,7 @@
     "within_1cm_or_0.5pct": 0.125,
     "within_3pct": 0.25,
     "ci95_coverage": 0.75,
-    "face_bounded_median_abs_err_m": 0.07491610447306118
+    "face_bounded_median_abs_err_m": 0.07491610447306074
    },
    "n_rooms": 1,
    "floor_area_m2": 6.8222
