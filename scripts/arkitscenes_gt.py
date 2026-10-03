@@ -24,6 +24,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 BASE = ROOT / "data" / "arkitscenes"
+GT_MIN_COVER = 0.4  # laser must cover >= 40% of a wall to serve as its ground truth
 
 
 def read_ply_xyz(path: Path, stride: int = 40) -> np.ndarray:
@@ -85,6 +86,11 @@ def gt_face(xy, axis, c, lo, hi):
     sel = (np.abs(xy[:, axis] - c) < 0.25) & (xy[:, 1 - axis] > lo + m) & (xy[:, 1 - axis] < hi - m)
     v = xy[sel, axis]
     if len(v) < 50:
+        return None
+    # the laser must actually cover this wall: points along >= 70% of its (shrunk) extent
+    along = xy[sel, 1 - axis]
+    occ = np.unique(np.floor((along - (lo + m)) / 0.05).astype(int))
+    if len(occ) < GT_MIN_COVER * max((hi - lo - 2 * m) / 0.05, 1):
         return None
     h, e = np.histogram(v, bins=np.arange(c - 0.25, c + 0.255, 0.005))
     pk = e[np.argmax(np.convolve(h, np.ones(3), "same"))] + 0.0025

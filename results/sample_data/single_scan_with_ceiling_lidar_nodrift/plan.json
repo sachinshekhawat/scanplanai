@@ -3660,11 +3660,11 @@
   "tier_sigma_multiplier": 1.0
  },
  "timing_s": {
-  "fusion_s": 29.73,
-  "layout_s": 3.79,
-  "total_s": 33.59,
-  "damage_s": 104.13,
-  "wall_clock_s": 137.92
+  "fusion_s": 32.92,
+  "layout_s": 4.01,
+  "total_s": 36.99,
+  "damage_s": 101.81,
+  "wall_clock_s": 139.01
  },
  "notes": [
   "LiDAR scale calibrated x1.0067 (laser GT, benchmark/arkitscenes/calibration.md).",

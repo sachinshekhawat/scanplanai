@@ -37,7 +37,7 @@ SIGMA_LEVEL_SYS = 0.003
 # structural face (clutter, partial observation). Fitted on ARKitScenes dev visit 422382 only
 # (smallest value giving >= 95% coverage of laser GT); validated on held-out visit 422386 and on
 # the sample-data cross-session pair (benchmark/arkitscenes/calibration.md).
-SIGMA_LAYOUT = 0.0475
+SIGMA_LAYOUT = 0.035
 
 # Per-tier calibration multipliers on sigma (updated by benchmark/calibrate.py)
 TIER_K = {"lidar": 1.0, "video": 1.0, "photo": 1.0}

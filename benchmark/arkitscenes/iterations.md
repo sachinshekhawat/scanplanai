@@ -1,35 +1,42 @@
-# Five tuning iterations (train / validation split)
+# Tuning iterations (train / validation split): what happened
 
-`scripts/tune_layout.py` drives a model-training-style loop over the LiDAR layout stage: change one thing, score it on TRAIN, and keep it only if TRAIN improves. VALIDATION was scored once, at the end, for the starting and the final configuration. The full log is in `tuning_log.jsonl`.
+`scripts/tune_layout.py` drives the loop; every scored run is in `tuning_log.jsonl`.
+- **TRAIN:** ARKitScenes visits 422382, 422803, 422813, 422826. 9 iPad Pro LiDAR walks, each with a Faro laser scan.
+- **VALIDATION:** visit 422386 (never tuned on) and the sample-data cross-session pair.
 
-- **TRAIN:** ARKitScenes visits 422382, 422803, 422813, 422826. That is 9 iPad Pro LiDAR walks with Faro laser GT, giving 35–42 laser-matched walls and 8–9 ceilings.
-- **VALIDATION:** ARKitScenes visit 422386 (2 walks, never tuned on) and the sample-data cross-session pair (`single_scan_with_ceiling` vs `single_scan_floor_only`).
-- **Score:** median |wall-length error| vs laser. It is reported with the share of walls ≤ 3%, interval coverage, and the number of matched walls, so a change cannot win by producing fewer, easier walls.
-
-| it | change (root cause it targets) | TRAIN walls | median err | ≤ 3% | CI95 cov | decision |
-|---|---|---|---|---|---|---|
-| 0 | baseline (submitted version) | 35 | 15.6 cm | 26% | 80% | – |
-| 1 | **see over furniture**: rays to wall points above ≈1.1 m also carve the floor under basins and shelves (`fusion.fan_high`, `rooms.USE_HIGH_FANS`) | 35 | **11.2 cm** | 31% | 80% | keep |
-| 2 | merge "rooms" joined by an opening spanning ≥ 70% of a side (alcoves) | 35 | 11.2 cm | 31% | 80% | reject (no wall changed, lost a ceiling match) |
-| 3 | prefer **full-height** faces (≥ 1.8 m) over clutter fronts when snapping (`PREFER_TALL`, 3 cm penalty; 3 values tried) | 35 | **10.9 cm** | 31% | 80% | keep |
-| 4 | structural-wall threshold × jog threshold grid (11 settings): `WALL_MIN_COV` 0.6→**0.7**, `MIN_EDGE` 0.40→**0.25** | 41 | **7.2 cm** | **32%** | 93% | keep (best median with the most walls; 0.8 gave 5.5 cm but on 30 walls) |
-| 5 | recalibrate room-boundary σ on TRAIN (smallest giving ≥ 95%): `SIGMA_LAYOUT` 3.5→**4.75 cm** | 41 | 7.2 cm | 32% | **95%** | keep |
-
-TRAIN total: median wall error **15.6 → 7.2 cm** (−54%), walls within 3% **26 → 32%**, coverage **80 → 95%**. Ceilings: median 0.6–0.8 cm on 8–9 rooms.
-
-## Validation: scored once, baseline vs final
-| set | metric | baseline | final |
+## Iterations
+| it | change | TRAIN result | decision |
 |---|---|---|---|
-| ARKitScenes held-out 422386 | laser-matched walls | 1 | **7** |
-| | median wall error | 23.8 cm | **16.7 cm** |
-| | wall CI95 coverage | 100% (n = 1) | **100%** (n = 7) |
-| | ceiling median error / coverage | 1.4 cm / 50% | **0.5 cm / 100%** |
-| sample-data cross-session pair | median wall difference | 10.3 cm | **7.2 cm** |
-| | CI95 coverage of differences | 91% | **100%** |
-| | walls matched / within 1 cm | 22 / 23% | 16 / 12% |
-| | footprint IoU | 0.848 | 0.804 |
+| 1 | carve free space also from rays to points above 1.1 m ("see over furniture") | median wall err 15.6 → 11.2 cm | kept at first |
+| 2 | merge rooms joined by an opening spanning ≥ 70% of a side (alcoves) | no change | rejected |
+| 3 | prefer full-height faces when snapping room edges | 11.2 → 10.9 cm | kept at first |
+| 4 | stricter structural-wall coverage 0.6 → 0.7, finer jog threshold 0.4 → 0.25 m | 10.9 → **7.2 cm**, 41 walls | kept at first |
+| 5 | refit room-boundary σ on TRAIN | coverage 93 → 95% | kept at first |
+| 6 | **check on the sample flat (product surface):** iterations 1–5 merged rooms. single_room went from 3 rooms to 1, the multi-room scans from 6/7 to 5/5, and the drift ablation flipped (on 0.804 vs off 0.817) | — | regression found |
+| 7 | root cause: coverage 0.7 drops door-jamb wall pixels, so doorways stop sealing. Tried separate thresholds for sealing (0.6) vs boundaries (0.7/0.8); rooms come back but the TRAIN gain disappears (15.6 cm) | 15.6 cm | rejected |
+| 8 | **scoring audit:** the 6 worst TRAIN "errors" (±34–39 cm) were walls the laser scan does not cover. `gt_face` latched onto unrelated points. Added a coverage gate (laser must span ≥ 40% of the wall) | 24 valid walls | scoring fix kept |
 
-Reading:
-- **Held-out lab data improves on every metric.** The test is small (7 walls), but it is real laser ground truth.
-- **On the sample flat:** errors shrink and the intervals now always contain the truth. But fewer walls are matched across sessions, so the strict 1 cm repeatability gate looks worse (12% vs 23%). We shipped the train-selected configuration anyway; choosing per validation result would turn validation into a second train set.
-- **Remaining gap to the gates:** 1 cm / 3% wall accuracy needs a layout model that is not driven by free space (e.g. explicit wall-plane graph optimisation). Noise in the measured planes (1–2 cm vs laser) is not the bottleneck.
+With valid ground truth and the partition preserved, **none of the layout changes measurably improves wall accuracy**:
+
+| config (TRAIN, 24 GT-valid walls) | median wall err | ≤ 3% | CI95 cov |
+|---|---|---|---|
+| submitted layout | 10.6 cm | 25% | 83% |
+| + see-over-furniture | 10.6 cm | 25% | 83% |
+| + prefer full-height faces | 10.9 cm | 25% | 83% |
+| + jog 0.25 m | 10.9 cm | 22% | 85% |
+
+**Shipped:** the submitted layout, unchanged. The new code paths stay behind flags set to off (`USE_HIGH_FANS`, `PREFER_TALL`, `ALCOVE_FRAC = 1.0`), and the GT coverage gate is kept in the scorer.
+
+## Final scores (submitted layout + laser-fitted scale + 3.5 cm boundary σ)
+| set | walls / rooms | wall median err | wall CI95 cov | ceiling median err | ceiling CI95 cov |
+|---|---|---|---|---|---|
+| TRAIN (9 walks) | 24 walls | 10.6 cm | 83% | 0.75 cm (7 of 9 rooms ≤ 1.8 cm) | 78% |
+| VAL ARKitScenes 422386 | 1 wall, 2 rooms | 23.8 cm | 100% | 1.4 cm | 50% |
+| VAL sample pair (2 sessions) | 22 walls | 10.3 cm difference | **91%** | – | – |
+
+The two ceiling misses on TRAIN (+12.9 and −10.7 cm) are rooms where the laser "ceiling" slab picked a shelf or soffit; the other 7 are within 1.8 cm. Inflating σ to 12 cm per face would reach 95% wall coverage, but intervals that wide are useless, so we did not.
+
+## Lessons
+1. **A train-split gain is not enough; a product-level guard is required.** The 15.6 → 7.2 cm improvement came from merging rooms (fewer, larger polygons whose outer walls happen to be laser-covered) and from invalid GT walls. Room count on the sample flat is now part of the acceptance check (`/tmp/roomcount.py` equivalent in `tune_layout.py val`).
+2. **The ground-truth extractor needs as much scrutiny as the method.** Six of the "worst errors" were scoring bugs.
+3. **Wall accuracy (≈ 10 cm) is limited by layout, not sensing.** The measured planes agree with the laser to 1–2 cm. The next real step is a different layout model, such as wall-plane graph optimisation with per-room closure constraints, not more threshold tuning.

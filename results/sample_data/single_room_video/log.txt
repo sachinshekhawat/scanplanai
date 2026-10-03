@@ -1,15 +1,15 @@
-[00:11:29] capture=data/raw/single_room tier=video drift=True
-[00:11:29] [video] 223 frames from rgb.mp4 -> data/cache/video/rgb_da7771927e
-[00:11:29] [video] orientation probe on 18 frames: rotation code 1
-[00:11:29] [video] depth cache hit (223 frames)
-[00:12:13] [video] [da3] 5 windows in 37 s (mps)
-[00:12:18] [video] fragment {'fragment': 0, 'n': 27, 'placed': True, 'via': 'reference'}
-[00:12:18] [video] fragment {'fragment': 1, 'n': 37, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3319292068481445, 'anchor_rot_spread_deg': 0.4158923611056136, 'anchor_rot_spread_b_deg': 2.2134762488156228, 'gap_translation_m': 0.8496905216428714}, 'alternatives': {'da3_bridge': 1.0}}
-[00:12:18] [video] fragment {'fragment': 2, 'n': 51, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3872699737548828, 'anchor_rot_spread_deg': 0.4447488588102365, 'anchor_rot_spread_b_deg': 1.20340210802718, 'gap_translation_m': 0.5323793107840221}, 'alternatives': {'da3_bridge': 1.0}}
-[00:12:18] [video] fragment {'fragment': 3, 'n': 21, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 2.142916679382324, 'anchor_rot_spread_deg': 0.1262042556637406, 'anchor_rot_spread_b_deg': 0.5840198031876823, 'gap_translation_m': 0.18875589176056945}, 'alternatives': {'da3_bridge': 1.0}}
-[00:12:18] [video] fragment {'fragment': 4, 'n': 26, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3543870449066162, 'anchor_rot_spread_deg': 0.8879384219584915, 'anchor_rot_spread_b_deg': 1.2832382448486566, 'gap_translation_m': 0.3406641869012603}, 'alternatives': {'da3_bridge': 1.0}}
-[00:12:18] [video] fragment {'fragment': 5, 'n': 24, 'placed': True, 'via': 'wall_correlation', 'overlap': 0.784, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3270673751831055, 'anchor_rot_spread_deg': 1.5363118168372376, 'anchor_rot_spread_b_deg': 8.860109856825346, 'gap_translation_m': 0.5054023823718423}, 'alternatives': {'da3_bridge': 0.296, 'wall_correlation': 0.784}}
-[00:12:22] [video] 2 rooms, 0 openings in 53 s
-[00:12:39] [damage] 120 views, 251 candidates -> CLIP
-[00:12:52] [damage] 3 accepted detections -> 3 regions
-[00:12:52] wrote runs/bench_final/single_room_video/plan.json (2 rooms, 0 openings, 3 damage regions) in 82.9 s
+[16:51:24] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_room tier=video drift=True
+[16:51:24] [video] 223 frames from rgb.mp4 -> data/cache/video/rgb_da7771927e
+[16:51:24] [video] orientation probe on 18 frames: rotation code 1
+[16:51:24] [video] depth cache hit (223 frames)
+[16:52:18] [video] [da3] 5 windows in 46 s (mps)
+[16:52:22] [video] fragment {'fragment': 0, 'n': 27, 'placed': True, 'via': 'reference'}
+[16:52:22] [video] fragment {'fragment': 1, 'n': 37, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3319292068481445, 'anchor_rot_spread_deg': 0.4158923611056136, 'anchor_rot_spread_b_deg': 2.2134762488156228, 'gap_translation_m': 0.8496905216428714}, 'alternatives': {'da3_bridge': 1.0}}
+[16:52:22] [video] fragment {'fragment': 2, 'n': 51, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3872699737548828, 'anchor_rot_spread_deg': 0.4447488588102365, 'anchor_rot_spread_b_deg': 1.20340210802718, 'gap_translation_m': 0.5323793107840221}, 'alternatives': {'da3_bridge': 1.0}}
+[16:52:22] [video] fragment {'fragment': 3, 'n': 21, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 2.142916679382324, 'anchor_rot_spread_deg': 0.1262042556637406, 'anchor_rot_spread_b_deg': 0.5840198031876823, 'gap_translation_m': 0.18875589176056945}, 'alternatives': {'da3_bridge': 1.0}}
+[16:52:22] [video] fragment {'fragment': 4, 'n': 26, 'placed': True, 'via': 'da3_bridge', 'overlap': 1.0, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3543870449066162, 'anchor_rot_spread_deg': 0.8879384219584915, 'anchor_rot_spread_b_deg': 1.2832382448486566, 'gap_translation_m': 0.3406641869012603}, 'alternatives': {'da3_bridge': 1.0}}
+[16:52:22] [video] fragment {'fragment': 5, 'n': 24, 'placed': True, 'via': 'wall_correlation', 'overlap': 0.784, 'bridge': {'ok': True, 'scale_m_per_unit': 1.3270673751831055, 'anchor_rot_spread_deg': 1.5363118168372376, 'anchor_rot_spread_b_deg': 8.860109856825346, 'gap_translation_m': 0.5054023823718423}, 'alternatives': {'da3_bridge': 0.296, 'wall_correlation': 0.784}}
+[16:52:27] [video] 2 rooms, 0 openings in 63 s
+[16:52:41] [damage] 120 views, 210 candidates -> CLIP
+[16:52:53] [damage] 3 accepted detections -> 3 regions
+[16:52:53] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_room_video/plan.json (2 rooms, 0 openings, 3 damage regions) in 88.9 s

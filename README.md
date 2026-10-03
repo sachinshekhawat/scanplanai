@@ -54,7 +54,7 @@ Learned-model outputs are cached under `data/cache/` in deterministic npz files.
 - **Video and photo** reconstruct a reduced part of the flat from these LiDAR-style sweeps (close range, fast turns). Their areas are under-estimates against the LiDAR reference, which is reported, not hidden.
 - **No ground truth in the sample data.** For absolute accuracy we added an **external laser-scanner benchmark**: ARKitScenes, Apple's dataset of iPad Pro LiDAR walks with Faro laser scans of the same rooms (CC BY-NC-SA). We used 5 walks over 2 visits, with no parameters tuned on the held-out visit. Run it with `python scripts/arkitscenes_gt.py <visit> <videos...>`; the reports are `benchmark/arkitscenes/report_*.md`.
   - **Ceiling height:** after a depth-scale correction fitted on the dev visit only, errors are −0.7, 0.0, −0.2 and +0.5 cm on the dev rooms, all within the 1.5 cm gate. On the held-out rooms they are −2.2 and −0.7 cm (`benchmark/arkitscenes/calibration.md`).
-  - **Wall lengths:** 95% intervals now hold the laser GT 92% of the time on dev and 100% on held-out, up from 79%. Accuracy is still layout-limited in cluttered bathrooms (median about 11 cm).
+  - **Wall lengths:** median error about 10 cm vs laser (24 GT-valid walls over 9 walks); 83% of 95% intervals contain the GT. Five tuning iterations on a train split found no layout change that improves this without merging rooms, so the layout ships unchanged. See `benchmark/arkitscenes/iterations.md` for the post-mortem, including a scoring bug we found in our own GT extractor.
 
 ## Docs
 - `docs/capture_protocol.md`: the one-page protocol a non-engineer follows. `docs/device_matrix.md`: which tier runs on which hardware, and the accuracy each tier delivers.

@@ -7,10 +7,10 @@
  "tier": "video",
  "capture": {
   "name": "single_scan_floor_only",
-  "source": "data/raw/single_scan_floor_only",
+  "source": "/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_floor_only",
   "tier": "video",
   "n_frames_used": 595,
-  "video": "data/raw/single_scan_floor_only/1a8384c3f6/rgb.mp4",
+  "video": "/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_floor_only/1a8384c3f6/rgb.mp4",
   "sfm": {
    "fragments": [
     {
@@ -421,21 +421,21 @@
  "frame": {
   "description": "plan frame: gravity-aligned, x/y on the dominant wall axes, origin arbitrary",
   "bounds": [
-   -4.299,
+   -5.609,
    -0.801,
-   3.647,
-   11.069
+   3.853,
+   11.409
   ]
  },
  "property": {
-  "n_rooms": 3,
+  "n_rooms": 4,
   "floor_area_total": {
-   "value": 30.7925,
+   "value": 42.2491,
    "unit": "m2",
-   "sigma": 2.994,
+   "sigma": 3.5197,
    "ci95": [
-    24.9244,
-    36.6607
+    35.3507,
+    49.1475
    ],
    "observed": true,
    "method": "video:sum-room-areas"
@@ -492,10 +492,10 @@
    "floor_area": {
     "value": 4.503,
     "unit": "m2",
-    "sigma": 1.3519,
+    "sigma": 1.3672,
     "ci95": [
-     1.8534,
-     7.1526
+     1.8234,
+     7.1826
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -503,10 +503,10 @@
    "perimeter": {
     "value": 8.54,
     "unit": "m",
-    "sigma": 0.8579,
+    "sigma": 0.8684,
     "ci95": [
-     6.8585,
-     10.2215
+     6.838,
+     10.242
     ],
     "observed": true,
     "method": "video:perimeter"
@@ -536,15 +536,15 @@
      "length": {
       "value": 2.37,
       "unit": "m",
-      "sigma": 0.4393,
+      "sigma": 0.4445,
       "ci95": [
-       1.5089,
-       3.2311
+       1.4988,
+       3.2412
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
@@ -561,15 +561,15 @@
      "length": {
       "value": 1.9,
       "unit": "m",
-      "sigma": 0.4356,
+      "sigma": 0.4408,
       "ci95": [
-       1.0461,
-       2.7539
+       1.036,
+       2.764
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
@@ -586,15 +586,15 @@
      "length": {
       "value": 2.37,
       "unit": "m",
-      "sigma": 0.4393,
+      "sigma": 0.4445,
       "ci95": [
-       1.5089,
-       3.2311
+       1.4988,
+       3.2412
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
@@ -611,15 +611,15 @@
      "length": {
       "value": 1.9,
       "unit": "m",
-      "sigma": 0.4356,
+      "sigma": 0.4408,
       "ci95": [
-       1.0461,
-       2.7539
+       1.036,
+       2.764
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     }
@@ -630,39 +630,75 @@
    "type": "room",
    "polygon": [
     [
-     -1.7891,
-     4.079
+     -2.5491,
+     1.629
     ],
     [
-     -0.6391,
-     4.079
+     -2.5491,
+     2.669
     ],
     [
-     -0.6391,
+     -2.892,
+     2.669
+    ],
+    [
+     -2.892,
+     4.769
+    ],
+    [
+     -2.7091,
+     4.769
+    ],
+    [
+     -2.7091,
+     4.219
+    ],
+    [
+     -1.1991,
+     4.219
+    ],
+    [
+     -1.1991,
      5.5691
     ],
     [
-     -0.0191,
+     1.7945,
      5.5691
     ],
     [
-     -0.0191,
-     5.5691
+     1.7945,
+     4.369
     ],
     [
-     1.7509,
-     5.5691
+     1.9809,
+     4.369
     ],
     [
-     1.7509,
-     6.249
+     1.9809,
+     5.619
     ],
     [
-     3.6469,
-     6.249
+     1.3709,
+     5.619
     ],
     [
-     3.6469,
+     1.3709,
+     6.309
+    ],
+    [
+     3.4909,
+     6.309
+    ],
+    [
+     3.4909,
+     6.099
+    ],
+    [
+     3.8525,
+     6.099
+    ],
+    [
+     3.8525,
      3.539
     ],
     [
@@ -682,28 +718,32 @@
      0.899
     ],
     [
-     -1.7891,
+     -1.5491,
      0.899
+    ],
+    [
+     -1.5491,
+     1.629
     ]
    ],
    "floor_area": {
-    "value": 18.0283,
+    "value": 22.0052,
     "unit": "m2",
-    "sigma": 2.1704,
+    "sigma": 2.6023,
     "ci95": [
-     13.7744,
-     22.2823
+     16.9048,
+     27.1055
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 21.572,
+    "value": 29.0293,
     "unit": "m",
-    "sigma": 1.366,
+    "sigma": 1.9903,
     "ci95": [
-     18.8947,
-     24.2492
+     25.1283,
+     32.9303
     ],
     "observed": true,
     "method": "video:perimeter"
@@ -723,207 +763,432 @@
     {
      "id": "R2-W1",
      "start": [
-      -1.7891,
-      4.079
+      -2.5491,
+      1.629
      ],
      "end": [
-      -0.6391,
-      4.079
+      -2.5491,
+      2.669
      ],
      "length": {
-      "value": 1.15,
+      "value": 1.04,
       "unit": "m",
-      "sigma": 0.3409,
+      "sigma": 0.4362,
       "ci95": [
-       0.4819,
-       1.8181
+       0.1851,
+       1.8949
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W2",
      "start": [
-      -0.6391,
-      4.079
+      -2.5491,
+      2.669
      ],
      "end": [
-      -0.6391,
-      5.5691
+      -2.892,
+      2.669
      ],
      "length": {
-      "value": 1.4901,
+      "value": 0.3429,
       "unit": "m",
-      "sigma": 0.386,
+      "sigma": 0.3118,
       "ci95": [
-       0.7335,
-       2.2468
+       -0.2682,
+       0.954
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.1486,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W3",
      "start": [
-      -0.6391,
-      5.5691
+      -2.892,
+      2.669
      ],
      "end": [
-      -0.0191,
-      5.5691
+      -2.892,
+      4.769
      ],
      "length": {
-      "value": 0.62,
+      "value": 2.1,
       "unit": "m",
-      "sigma": 0.276,
+      "sigma": 0.4423,
       "ci95": [
-       0.0791,
-       1.1609
+       1.2331,
+       2.9669
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.2312,
+     "face_sigma_m": 0.0525,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W4",
      "start": [
-      -0.0191,
-      5.5691
+      -2.892,
+      4.769
      ],
      "end": [
-      -0.0191,
-      5.5691
+      -2.7091,
+      4.769
      ],
      "length": {
-      "value": 0.0,
+      "value": 0.1829,
       "unit": "m",
-      "sigma": 0.327,
+      "sigma": 0.3116,
       "ci95": [
-       -0.6409,
-       0.6409
+       -0.4278,
+       0.7935
       ],
       "observed": true,
-      "method": "video:face-to-face"
+      "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.2312,
-     "bounded_by_wall_face": true,
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W5",
      "start": [
-      -0.0191,
-      5.5691
+      -2.7091,
+      4.769
      ],
      "end": [
-      1.7509,
-      5.5691
+      -2.7091,
+      4.219
      ],
      "length": {
-      "value": 1.77,
+      "value": 0.55,
       "unit": "m",
-      "sigma": 0.3879,
+      "sigma": 0.4347,
       "ci95": [
-       1.0097,
-       2.5303
+       -0.3021,
+       1.4021
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.2312,
-     "bounded_by_wall_face": true,
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W6",
      "start": [
-      1.7509,
-      5.5691
+      -2.7091,
+      4.219
      ],
      "end": [
-      1.7509,
-      6.249
+      -1.1991,
+      4.219
      ],
      "length": {
-      "value": 0.6799,
+      "value": 1.51,
       "unit": "m",
-      "sigma": 0.2612,
+      "sigma": 0.4384,
       "ci95": [
-       0.1679,
-       1.1918
+       0.6507,
+       2.3693
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W7",
      "start": [
-      1.7509,
-      6.249
+      -1.1991,
+      4.219
      ],
      "end": [
-      3.6469,
-      6.249
+      -1.1991,
+      5.5691
      ],
      "length": {
-      "value": 1.896,
+      "value": 1.3501,
       "unit": "m",
-      "sigma": 0.3133,
+      "sigma": 0.4934,
       "ci95": [
-       1.2818,
-       2.5101
+       0.3831,
+       2.3171
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.1184,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R2-W8",
      "start": [
-      3.6469,
-      6.249
+      -1.1991,
+      5.5691
      ],
      "end": [
-      3.6469,
-      3.539
+      1.7945,
+      5.5691
      ],
      "length": {
-      "value": 2.71,
+      "value": 2.9936,
       "unit": "m",
-      "sigma": 0.3432,
+      "sigma": 0.3509,
       "ci95": [
-       2.0373,
-       3.3827
+       2.3058,
+       3.6815
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.0205,
+     "face_sigma_m": 0.3824,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W9",
      "start": [
-      3.6469,
+      1.7945,
+      5.5691
+     ],
+     "end": [
+      1.7945,
+      4.369
+     ],
+     "length": {
+      "value": 1.2001,
+      "unit": "m",
+      "sigma": 0.4927,
+      "ci95": [
+       0.2344,
+       2.1659
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1201,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W10",
+     "start": [
+      1.7945,
+      4.369
+     ],
+     "end": [
+      1.9809,
+      4.369
+     ],
+     "length": {
+      "value": 0.1864,
+      "unit": "m",
+      "sigma": 0.3297,
+      "ci95": [
+       -0.4599,
+       0.8327
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W11",
+     "start": [
+      1.9809,
+      4.369
+     ],
+     "end": [
+      1.9809,
+      5.619
+     ],
+     "length": {
+      "value": 1.25,
+      "unit": "m",
+      "sigma": 0.4371,
+      "ci95": [
+       0.3933,
+       2.1067
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W12",
+     "start": [
+      1.9809,
+      5.619
+     ],
+     "end": [
+      1.3709,
+      5.619
+     ],
+     "length": {
+      "value": 0.61,
+      "unit": "m",
+      "sigma": 0.4349,
+      "ci95": [
+       -0.2423,
+       1.4623
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W13",
+     "start": [
+      1.3709,
+      5.619
+     ],
+     "end": [
+      1.3709,
+      6.309
+     ],
+     "length": {
+      "value": 0.69,
+      "unit": "m",
+      "sigma": 0.3446,
+      "ci95": [
+       0.0145,
+       1.3655
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W14",
+     "start": [
+      1.3709,
+      6.309
+     ],
+     "end": [
+      3.4909,
+      6.309
+     ],
+     "length": {
+      "value": 2.12,
+      "unit": "m",
+      "sigma": 0.4425,
+      "ci95": [
+       1.2528,
+       2.9872
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1541,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W15",
+     "start": [
+      3.4909,
+      6.309
+     ],
+     "end": [
+      3.4909,
+      6.099
+     ],
+     "length": {
+      "value": 0.21,
+      "unit": "m",
+      "sigma": 0.3436,
+      "ci95": [
+       -0.4635,
+       0.8835
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W16",
+     "start": [
+      3.4909,
+      6.099
+     ],
+     "end": [
+      3.8525,
+      6.099
+     ],
+     "length": {
+      "value": 0.3616,
+      "unit": "m",
+      "sigma": 0.3117,
+      "ci95": [
+       -0.2494,
+       0.9726
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W17",
+     "start": [
+      3.8525,
+      6.099
+     ],
+     "end": [
+      3.8525,
+      3.539
+     ],
+     "length": {
+      "value": 2.56,
+      "unit": "m",
+      "sigma": 0.4462,
+      "ci95": [
+       1.6854,
+       3.4346
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.0521,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R2-W18",
+     "start": [
+      3.8525,
       3.539
      ],
      "end": [
@@ -931,22 +1196,22 @@
       3.539
      ],
      "length": {
-      "value": 1.796,
+      "value": 2.0016,
       "unit": "m",
-      "sigma": 0.3124,
+      "sigma": 0.3216,
       "ci95": [
-       1.1837,
-       2.4083
+       1.3713,
+       2.632
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R2-W10",
+     "id": "R2-W19",
      "start": [
       1.8509,
       3.539
@@ -958,20 +1223,20 @@
      "length": {
       "value": 1.56,
       "unit": "m",
-      "sigma": 0.4335,
+      "sigma": 0.4387,
       "ci95": [
-       0.7104,
-       2.4096
+       0.7002,
+       2.4198
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R2-W11",
+     "id": "R2-W20",
      "start": [
       1.8509,
       1.979
@@ -983,20 +1248,20 @@
      "length": {
       "value": 2.03,
       "unit": "m",
-      "sigma": 0.4366,
+      "sigma": 0.4418,
       "ci95": [
-       1.1743,
-       2.8857
+       1.1641,
+       2.8959
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R2-W12",
+     "id": "R2-W21",
      "start": [
       -0.1791,
       1.979
@@ -1008,65 +1273,90 @@
      "length": {
       "value": 1.08,
       "unit": "m",
-      "sigma": 0.4311,
+      "sigma": 0.4363,
       "ci95": [
-       0.235,
-       1.925
+       0.2248,
+       1.9352
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R2-W13",
+     "id": "R2-W22",
      "start": [
       -0.1791,
       0.899
      ],
      "end": [
-      -1.7891,
+      -1.5491,
       0.899
      ],
      "length": {
-      "value": 1.61,
+      "value": 1.37,
       "unit": "m",
-      "sigma": 0.4338,
+      "sigma": 0.4377,
       "ci95": [
-       0.7598,
-       2.4602
+       0.5122,
+       2.2278
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R2-W14",
+     "id": "R2-W23",
      "start": [
-      -1.7891,
+      -1.5491,
       0.899
      ],
      "end": [
-      -1.7891,
-      4.079
+      -1.5491,
+      1.629
      ],
      "length": {
-      "value": 3.18,
+      "value": 0.73,
       "unit": "m",
-      "sigma": 0.4475,
+      "sigma": 0.4352,
       "ci95": [
-       2.303,
-       4.057
+       -0.1229,
+       1.5829
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R2-W24",
+     "start": [
+      -1.5491,
+      1.629
+     ],
+     "end": [
+      -2.5491,
+      1.629
+     ],
+     "length": {
+      "value": 1.0,
+      "unit": "m",
+      "sigma": 0.436,
+      "ci95": [
+       0.1454,
+       1.8546
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     }
@@ -1074,75 +1364,43 @@
   },
   {
    "id": "R3",
-   "type": "room",
+   "type": "closet_or_wc",
    "polygon": [
     [
-     -4.2991,
-     11.069
+     -2.7291,
+     6.059
     ],
     [
-     -3.1591,
-     11.069
+     -2.7291,
+     7.159
     ],
     [
-     -3.1591,
-     10.409
+     -1.1991,
+     7.159
     ],
     [
-     -2.2891,
-     10.409
-    ],
-    [
-     -2.2891,
-     9.539
-    ],
-    [
-     -0.1891,
-     9.539
-    ],
-    [
-     -0.1891,
-     7.789
-    ],
-    [
-     -0.5091,
-     7.789
-    ],
-    [
-     -0.5091,
-     8.229
-    ],
-    [
-     -2.6191,
-     8.229
-    ],
-    [
-     -2.6191,
-     8.089
-    ],
-    [
-     -4.2991,
-     8.089
+     -1.1991,
+     6.059
     ]
    ],
    "floor_area": {
-    "value": 8.2612,
+    "value": 1.683,
     "unit": "m2",
-    "sigma": 1.5575,
+    "sigma": 0.7659,
     "ci95": [
-     5.2085,
-     11.3139
+     0.1818,
+     3.1842
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 15.06,
+    "value": 5.26,
     "unit": "m",
-    "sigma": 1.3905,
+    "sigma": 0.7664,
     "ci95": [
-     12.3348,
-     17.7852
+     3.758,
+     6.762
     ],
     "observed": true,
     "method": "video:perimeter"
@@ -1162,300 +1420,1069 @@
     {
      "id": "R3-W1",
      "start": [
-      -4.2991,
-      11.069
+      -2.7291,
+      6.059
      ],
      "end": [
-      -3.1591,
-      11.069
+      -2.7291,
+      7.159
      ],
      "length": {
-      "value": 1.14,
+      "value": 1.1,
       "unit": "m",
-      "sigma": 0.4314,
+      "sigma": 0.4364,
       "ci95": [
-       0.2945,
-       1.9855
+       0.2446,
+       1.9554
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.1044,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R3-W2",
      "start": [
-      -3.1591,
-      11.069
+      -2.7291,
+      7.159
      ],
      "end": [
-      -3.1591,
-      10.409
+      -1.1991,
+      7.159
      ],
      "length": {
-      "value": 0.66,
+      "value": 1.53,
       "unit": "m",
-      "sigma": 0.4298,
+      "sigma": 0.33,
       "ci95": [
-       -0.1823,
-       1.5023
+       0.8831,
+       2.1769
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R3-W3",
      "start": [
-      -3.1591,
-      10.409
+      -1.1991,
+      7.159
      ],
      "end": [
-      -2.2891,
-      10.409
+      -1.1991,
+      6.059
      ],
      "length": {
-      "value": 0.87,
+      "value": 1.1,
       "unit": "m",
-      "sigma": 0.4304,
+      "sigma": 0.4364,
       "ci95": [
-       0.0265,
-       1.7135
+       0.2446,
+       1.9554
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R3-W4",
      "start": [
+      -1.1991,
+      6.059
+     ],
+     "end": [
+      -2.7291,
+      6.059
+     ],
+     "length": {
+      "value": 1.53,
+      "unit": "m",
+      "sigma": 0.33,
+      "ci95": [
+       0.8831,
+       2.1769
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    }
+   ]
+  },
+  {
+   "id": "R4",
+   "type": "room",
+   "polygon": [
+    [
+     -0.0191,
+     6.269
+    ],
+    [
+     -0.5091,
+     6.269
+    ],
+    [
+     -0.5091,
+     7.7463
+    ],
+    [
+     -1.6591,
+     7.7463
+    ],
+    [
+     -1.6591,
+     8.619
+    ],
+    [
+     -2.2791,
+     8.619
+    ],
+    [
+     -2.2791,
+     8.119
+    ],
+    [
+     -3.6091,
+     8.119
+    ],
+    [
+     -3.6091,
+     7.959
+    ],
+    [
+     -5.4591,
+     7.959
+    ],
+    [
+     -5.4591,
+     9.719
+    ],
+    [
+     -5.6091,
+     9.719
+    ],
+    [
+     -5.6091,
+     10.639
+    ],
+    [
+     -5.3191,
+     10.639
+    ],
+    [
+     -5.3191,
+     11.409
+    ],
+    [
+     -4.4291,
+     11.409
+    ],
+    [
+     -4.4291,
+     11.069
+    ],
+    [
+     -3.4291,
+     11.069
+    ],
+    [
+     -3.4291,
+     10.609
+    ],
+    [
+     -2.8491,
+     10.609
+    ],
+    [
+     -2.8491,
+     10.409
+    ],
+    [
+     -2.2891,
+     10.409
+    ],
+    [
+     -2.2891,
+     10.129
+    ],
+    [
+     -1.0291,
+     10.129
+    ],
+    [
+     -1.0291,
+     9.719
+    ],
+    [
+     -0.8891,
+     9.719
+    ],
+    [
+     -0.8891,
+     9.0186
+    ],
+    [
+     -0.1891,
+     9.0186
+    ],
+    [
+     -0.1891,
+     8.379
+    ],
+    [
+     0.1709,
+     8.379
+    ],
+    [
+     0.1709,
+     7.269
+    ],
+    [
+     -0.0191,
+     7.269
+    ]
+   ],
+   "floor_area": {
+    "value": 14.058,
+    "unit": "m2",
+    "sigma": 1.7777,
+    "ci95": [
+     10.5737,
+     17.5422
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   },
+   "perimeter": {
+    "value": 23.16,
+    "unit": "m",
+    "sigma": 2.335,
+    "ci95": [
+     18.5835,
+     27.7365
+    ],
+    "observed": true,
+    "method": "video:perimeter"
+   },
+   "ceiling_height": {
+    "value": 2.6,
+    "unit": "m",
+    "sigma": 0.6089,
+    "ci95": [
+     1.4065,
+     3.7935
+    ],
+    "observed": false,
+    "method": "prior: ceiling not observed in this capture (scan the ceiling to measure)"
+   },
+   "walls": [
+    {
+     "id": "R4-W1",
+     "start": [
+      -0.0191,
+      6.269
+     ],
+     "end": [
+      -0.5091,
+      6.269
+     ],
+     "length": {
+      "value": 0.49,
+      "unit": "m",
+      "sigma": 0.3685,
+      "ci95": [
+       -0.2322,
+       1.2122
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W2",
+     "start": [
+      -0.5091,
+      6.269
+     ],
+     "end": [
+      -0.5091,
+      7.7463
+     ],
+     "length": {
+      "value": 1.4774,
+      "unit": "m",
+      "sigma": 0.319,
+      "ci95": [
+       0.8521,
+       2.1027
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W3",
+     "start": [
+      -0.5091,
+      7.7463
+     ],
+     "end": [
+      -1.6591,
+      7.7463
+     ],
+     "length": {
+      "value": 1.15,
+      "unit": "m",
+      "sigma": 0.4366,
+      "ci95": [
+       0.2942,
+       2.0058
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.0632,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R4-W4",
+     "start": [
+      -1.6591,
+      7.7463
+     ],
+     "end": [
+      -1.6591,
+      8.619
+     ],
+     "length": {
+      "value": 0.8726,
+      "unit": "m",
+      "sigma": 0.3154,
+      "ci95": [
+       0.2544,
+       1.4908
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W5",
+     "start": [
+      -1.6591,
+      8.619
+     ],
+     "end": [
+      -2.2791,
+      8.619
+     ],
+     "length": {
+      "value": 0.62,
+      "unit": "m",
+      "sigma": 0.4349,
+      "ci95": [
+       -0.2324,
+       1.4724
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W6",
+     "start": [
+      -2.2791,
+      8.619
+     ],
+     "end": [
+      -2.2791,
+      8.119
+     ],
+     "length": {
+      "value": 0.5,
+      "unit": "m",
+      "sigma": 0.3656,
+      "ci95": [
+       -0.2165,
+       1.2165
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W7",
+     "start": [
+      -2.2791,
+      8.119
+     ],
+     "end": [
+      -3.6091,
+      8.119
+     ],
+     "length": {
+      "value": 1.33,
+      "unit": "m",
+      "sigma": 0.4375,
+      "ci95": [
+       0.4726,
+       2.1874
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.1974,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W8",
+     "start": [
+      -3.6091,
+      8.119
+     ],
+     "end": [
+      -3.6091,
+      7.959
+     ],
+     "length": {
+      "value": 0.16,
+      "unit": "m",
+      "sigma": 0.3651,
+      "ci95": [
+       -0.5555,
+       0.8755
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W9",
+     "start": [
+      -3.6091,
+      7.959
+     ],
+     "end": [
+      -5.4591,
+      7.959
+     ],
+     "length": {
+      "value": 1.85,
+      "unit": "m",
+      "sigma": 0.4405,
+      "ci95": [
+       0.9866,
+       2.7134
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W10",
+     "start": [
+      -5.4591,
+      7.959
+     ],
+     "end": [
+      -5.4591,
+      9.719
+     ],
+     "length": {
+      "value": 1.76,
+      "unit": "m",
+      "sigma": 0.4399,
+      "ci95": [
+       0.8978,
+       2.6222
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W11",
+     "start": [
+      -5.4591,
+      9.719
+     ],
+     "end": [
+      -5.6091,
+      9.719
+     ],
+     "length": {
+      "value": 0.15,
+      "unit": "m",
+      "sigma": 0.4342,
+      "ci95": [
+       -0.7011,
+       1.0011
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W12",
+     "start": [
+      -5.6091,
+      9.719
+     ],
+     "end": [
+      -5.6091,
+      10.639
+     ],
+     "length": {
+      "value": 0.92,
+      "unit": "m",
+      "sigma": 0.4358,
+      "ci95": [
+       0.0659,
+       1.7741
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W13",
+     "start": [
+      -5.6091,
+      10.639
+     ],
+     "end": [
+      -5.3191,
+      10.639
+     ],
+     "length": {
+      "value": 0.29,
+      "unit": "m",
+      "sigma": 0.4343,
+      "ci95": [
+       -0.5613,
+       1.1413
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W14",
+     "start": [
+      -5.3191,
+      10.639
+     ],
+     "end": [
+      -5.3191,
+      11.409
+     ],
+     "length": {
+      "value": 0.77,
+      "unit": "m",
+      "sigma": 0.4353,
+      "ci95": [
+       -0.0831,
+       1.6231
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W15",
+     "start": [
+      -5.3191,
+      11.409
+     ],
+     "end": [
+      -4.4291,
+      11.409
+     ],
+     "length": {
+      "value": 0.89,
+      "unit": "m",
+      "sigma": 0.4357,
+      "ci95": [
+       0.0361,
+       1.7439
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W16",
+     "start": [
+      -4.4291,
+      11.409
+     ],
+     "end": [
+      -4.4291,
+      11.069
+     ],
+     "length": {
+      "value": 0.34,
+      "unit": "m",
+      "sigma": 0.4344,
+      "ci95": [
+       -0.5114,
+       1.1914
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W17",
+     "start": [
+      -4.4291,
+      11.069
+     ],
+     "end": [
+      -3.4291,
+      11.069
+     ],
+     "length": {
+      "value": 1.0,
+      "unit": "m",
+      "sigma": 0.436,
+      "ci95": [
+       0.1454,
+       1.8546
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W18",
+     "start": [
+      -3.4291,
+      11.069
+     ],
+     "end": [
+      -3.4291,
+      10.609
+     ],
+     "length": {
+      "value": 0.46,
+      "unit": "m",
+      "sigma": 0.4346,
+      "ci95": [
+       -0.3917,
+       1.3117
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W19",
+     "start": [
+      -3.4291,
+      10.609
+     ],
+     "end": [
+      -2.8491,
+      10.609
+     ],
+     "length": {
+      "value": 0.58,
+      "unit": "m",
+      "sigma": 0.4348,
+      "ci95": [
+       -0.2722,
+       1.4322
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W20",
+     "start": [
+      -2.8491,
+      10.609
+     ],
+     "end": [
+      -2.8491,
+      10.409
+     ],
+     "length": {
+      "value": 0.2,
+      "unit": "m",
+      "sigma": 0.4343,
+      "ci95": [
+       -0.6511,
+       1.0511
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W21",
+     "start": [
+      -2.8491,
+      10.409
+     ],
+     "end": [
+      -2.2891,
+      10.409
+     ],
+     "length": {
+      "value": 0.56,
+      "unit": "m",
+      "sigma": 0.4348,
+      "ci95": [
+       -0.2921,
+       1.4121
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W22",
+     "start": [
       -2.2891,
       10.409
      ],
      "end": [
       -2.2891,
-      9.539
+      10.129
      ],
      "length": {
-      "value": 0.87,
+      "value": 0.28,
       "unit": "m",
-      "sigma": 0.4304,
+      "sigma": 0.4343,
       "ci95": [
-       0.0265,
-       1.7135
+       -0.5713,
+       1.1313
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R3-W5",
+     "id": "R4-W23",
      "start": [
       -2.2891,
-      9.539
+      10.129
      ],
      "end": [
-      -0.1891,
-      9.539
+      -1.0291,
+      10.129
      ],
      "length": {
-      "value": 2.1,
+      "value": 1.26,
       "unit": "m",
       "sigma": 0.4371,
       "ci95": [
-       1.2433,
-       2.9567
+       0.4033,
+       2.1167
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R3-W6",
+     "id": "R4-W24",
      "start": [
-      -0.1891,
-      9.539
+      -1.0291,
+      10.129
      ],
      "end": [
-      -0.1891,
-      7.789
+      -1.0291,
+      9.719
      ],
      "length": {
-      "value": 1.75,
+      "value": 0.41,
       "unit": "m",
-      "sigma": 0.4346,
+      "sigma": 0.4345,
       "ci95": [
-       0.8981,
-       2.6019
+       -0.4416,
+       1.2616
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R3-W7",
+     "id": "R4-W25",
      "start": [
-      -0.1891,
-      7.789
+      -1.0291,
+      9.719
      ],
      "end": [
-      -0.5091,
-      7.789
-     ],
-     "length": {
-      "value": 0.32,
-      "unit": "m",
-      "sigma": 0.4291,
-      "ci95": [
-       -0.5211,
-       1.1611
-      ],
-      "observed": true,
-      "method": "video:face-to-freespace"
-     },
-     "face_sigma_m": 0.3033,
-     "bounded_by_wall_face": false,
-     "openings": []
-    },
-    {
-     "id": "R3-W8",
-     "start": [
-      -0.5091,
-      7.789
-     ],
-     "end": [
-      -0.5091,
-      8.229
-     ],
-     "length": {
-      "value": 0.44,
-      "unit": "m",
-      "sigma": 0.3281,
-      "ci95": [
-       -0.2031,
-       1.0831
-      ],
-      "observed": true,
-      "method": "video:face-to-freespace"
-     },
-     "face_sigma_m": 0.3033,
-     "bounded_by_wall_face": false,
-     "openings": []
-    },
-    {
-     "id": "R3-W9",
-     "start": [
-      -0.5091,
-      8.229
-     ],
-     "end": [
-      -2.6191,
-      8.229
-     ],
-     "length": {
-      "value": 2.11,
-      "unit": "m",
-      "sigma": 0.4372,
-      "ci95": [
-       1.2531,
-       2.9669
-      ],
-      "observed": true,
-      "method": "video:face-to-freespace"
-     },
-     "face_sigma_m": 0.1238,
-     "bounded_by_wall_face": false,
-     "openings": []
-    },
-    {
-     "id": "R3-W10",
-     "start": [
-      -2.6191,
-      8.229
-     ],
-     "end": [
-      -2.6191,
-      8.089
+      -0.8891,
+      9.719
      ],
      "length": {
       "value": 0.14,
       "unit": "m",
-      "sigma": 0.2161,
-      "ci95": [
-       -0.2836,
-       0.5636
-      ],
-      "observed": true,
-      "method": "video:face-to-freespace"
-     },
-     "face_sigma_m": 0.3033,
-     "bounded_by_wall_face": false,
-     "openings": []
-    },
-    {
-     "id": "R3-W11",
-     "start": [
-      -2.6191,
-      8.089
-     ],
-     "end": [
-      -4.2991,
-      8.089
-     ],
-     "length": {
-      "value": 1.68,
-      "unit": "m",
       "sigma": 0.4342,
       "ci95": [
-       0.829,
-       2.531
+       -0.711,
+       0.991
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.1771,
+     "face_sigma_m": 0.307,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
-     "id": "R3-W12",
+     "id": "R4-W26",
      "start": [
-      -4.2991,
-      8.089
+      -0.8891,
+      9.719
      ],
      "end": [
-      -4.2991,
-      11.069
+      -0.8891,
+      9.0186
      ],
      "length": {
-      "value": 2.98,
+      "value": 0.7004,
       "unit": "m",
-      "sigma": 0.3709,
+      "sigma": 0.3127,
       "ci95": [
-       2.253,
-       3.707
+       0.0874,
+       1.3133
       ],
       "observed": true,
       "method": "video:face-to-freespace"
      },
-     "face_sigma_m": 0.3033,
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W27",
+     "start": [
+      -0.8891,
+      9.0186
+     ],
+     "end": [
+      -0.1891,
+      9.0186
+     ],
+     "length": {
+      "value": 0.7,
+      "unit": "m",
+      "sigma": 0.4351,
+      "ci95": [
+       -0.1528,
+       1.5528
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.0525,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R4-W28",
+     "start": [
+      -0.1891,
+      9.0186
+     ],
+     "end": [
+      -0.1891,
+      8.379
+     ],
+     "length": {
+      "value": 0.6396,
+      "unit": "m",
+      "sigma": 0.3125,
+      "ci95": [
+       0.0271,
+       1.2521
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W29",
+     "start": [
+      -0.1891,
+      8.379
+     ],
+     "end": [
+      0.1709,
+      8.379
+     ],
+     "length": {
+      "value": 0.36,
+      "unit": "m",
+      "sigma": 0.4344,
+      "ci95": [
+       -0.4915,
+       1.2115
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W30",
+     "start": [
+      0.1709,
+      8.379
+     ],
+     "end": [
+      0.1709,
+      7.269
+     ],
+     "length": {
+      "value": 1.11,
+      "unit": "m",
+      "sigma": 0.4365,
+      "ci95": [
+       0.2545,
+       1.9655
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W31",
+     "start": [
+      0.1709,
+      7.269
+     ],
+     "end": [
+      -0.0191,
+      7.269
+     ],
+     "length": {
+      "value": 0.19,
+      "unit": "m",
+      "sigma": 0.3681,
+      "ci95": [
+       -0.5314,
+       0.9114
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.307,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R4-W32",
+     "start": [
+      -0.0191,
+      7.269
+     ],
+     "end": [
+      -0.0191,
+      6.269
+     ],
+     "length": {
+      "value": 1.0,
+      "unit": "m",
+      "sigma": 0.436,
+      "ci95": [
+       0.1454,
+       1.8546
+      ],
+      "observed": true,
+      "method": "video:face-to-freespace"
+     },
+     "face_sigma_m": 0.2028,
      "bounded_by_wall_face": false,
      "openings": []
     }
@@ -1472,10 +2499,10 @@
    "area": {
     "value": 6.162,
     "unit": "m2",
-    "sigma": 1.8405,
+    "sigma": 1.8489,
     "ci95": [
-     2.5546,
-     9.7694
+     2.5382,
+     9.7858
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1489,10 +2516,10 @@
    "area": {
     "value": 4.94,
     "unit": "m2",
-    "sigma": 1.6191,
+    "sigma": 1.6286,
     "ci95": [
-     1.7665,
-     8.1135
+     1.7479,
+     8.1321
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1506,10 +2533,10 @@
    "area": {
     "value": 6.162,
     "unit": "m2",
-    "sigma": 1.8405,
+    "sigma": 1.8489,
     "ci95": [
-     2.5546,
-     9.7694
+     2.5382,
+     9.7858
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1523,10 +2550,10 @@
    "area": {
     "value": 4.94,
     "unit": "m2",
-    "sigma": 1.6191,
+    "sigma": 1.6286,
     "ci95": [
-     1.7665,
-     8.1135
+     1.7479,
+     8.1321
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1539,10 +2566,10 @@
    "area": {
     "value": 4.503,
     "unit": "m2",
-    "sigma": 1.3519,
+    "sigma": 1.3672,
     "ci95": [
-     1.8534,
-     7.1526
+     1.8234,
+     7.1826
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -1555,10 +2582,10 @@
    "area": {
     "value": 4.503,
     "unit": "m2",
-    "sigma": 1.3519,
+    "sigma": 1.3672,
     "ci95": [
-     1.8534,
-     7.1526
+     1.8234,
+     7.1826
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -1570,12 +2597,12 @@
    "kind": "wall",
    "wall": "R2-W1",
    "area": {
-    "value": 2.99,
+    "value": 2.704,
     "unit": "m2",
-    "sigma": 1.1296,
+    "sigma": 1.2989,
     "ci95": [
-     0.7761,
-     5.2039
+     0.1581,
+     5.2499
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1587,12 +2614,12 @@
    "kind": "wall",
    "wall": "R2-W2",
    "area": {
-    "value": 3.8743,
+    "value": 0.8915,
     "unit": "m2",
-    "sigma": 1.3531,
+    "sigma": 0.8371,
     "ci95": [
-     1.2223,
-     6.5263
+     -0.7491,
+     2.5321
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1604,12 +2631,12 @@
    "kind": "wall",
    "wall": "R2-W3",
    "area": {
-    "value": 1.612,
+    "value": 5.46,
     "unit": "m2",
-    "sigma": 0.8108,
+    "sigma": 1.7198,
     "ci95": [
-     0.0229,
-     3.2011
+     2.0892,
+     8.8308
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1621,12 +2648,12 @@
    "kind": "wall",
    "wall": "R2-W4",
    "area": {
-    "value": 0.0,
+    "value": 0.4755,
     "unit": "m2",
-    "sigma": 0.8502,
+    "sigma": 0.8177,
     "ci95": [
-     -1.6664,
-     1.6664
+     -1.1271,
+     2.0781
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1638,12 +2665,12 @@
    "kind": "wall",
    "wall": "R2-W5",
    "area": {
-    "value": 4.602,
+    "value": 1.43,
     "unit": "m2",
-    "sigma": 1.4762,
+    "sigma": 1.1789,
     "ci95": [
-     1.7088,
-     7.4952
+     -0.8806,
+     3.7406
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1655,12 +2682,12 @@
    "kind": "wall",
    "wall": "R2-W6",
    "area": {
-    "value": 1.7677,
+    "value": 3.926,
     "unit": "m2",
-    "sigma": 0.7954,
+    "sigma": 1.4645,
     "ci95": [
-     0.2088,
-     3.3265
+     1.0556,
+     6.7964
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1672,12 +2699,12 @@
    "kind": "wall",
    "wall": "R2-W7",
    "area": {
-    "value": 4.9295,
+    "value": 3.5103,
     "unit": "m2",
-    "sigma": 1.4131,
+    "sigma": 1.5236,
     "ci95": [
-     2.16,
-     7.6991
+     0.5241,
+     6.4966
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1689,12 +2716,12 @@
    "kind": "wall",
    "wall": "R2-W8",
    "area": {
-    "value": 7.046,
+    "value": 7.7834,
     "unit": "m2",
-    "sigma": 1.8761,
+    "sigma": 2.0386,
     "ci95": [
-     3.369,
-     10.723
+     3.7879,
+     11.7789
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1706,12 +2733,12 @@
    "kind": "wall",
    "wall": "R2-W9",
    "area": {
-    "value": 4.6695,
+    "value": 3.1203,
     "unit": "m2",
-    "sigma": 1.3623,
+    "sigma": 1.4749,
     "ci95": [
-     1.9995,
-     7.3396
+     0.2296,
+     6.0111
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1723,12 +2750,12 @@
    "kind": "wall",
    "wall": "R2-W10",
    "area": {
-    "value": 4.056,
+    "value": 0.4846,
     "unit": "m2",
-    "sigma": 1.474,
+    "sigma": 0.8648,
     "ci95": [
-     1.167,
-     6.945
+     -1.2104,
+     2.1796
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1740,12 +2767,12 @@
    "kind": "wall",
    "wall": "R2-W11",
    "area": {
-    "value": 5.278,
+    "value": 3.25,
     "unit": "m2",
-    "sigma": 1.6783,
+    "sigma": 1.3678,
     "ci95": [
-     1.9886,
-     8.5674
+     0.5692,
+     5.9308
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1757,12 +2784,12 @@
    "kind": "wall",
    "wall": "R2-W12",
    "area": {
-    "value": 2.808,
+    "value": 1.586,
     "unit": "m2",
-    "sigma": 1.2996,
+    "sigma": 1.1901,
     "ci95": [
-     0.2608,
-     5.3552
+     -0.7466,
+     3.9186
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1774,12 +2801,12 @@
    "kind": "wall",
    "wall": "R2-W13",
    "area": {
-    "value": 4.186,
+    "value": 1.794,
     "unit": "m2",
-    "sigma": 1.4944,
+    "sigma": 0.9897,
     "ci95": [
-     1.2571,
-     7.1149
+     -0.1457,
+     3.7337
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1791,12 +2818,182 @@
    "kind": "wall",
    "wall": "R2-W14",
    "area": {
-    "value": 8.268,
+    "value": 5.512,
     "unit": "m2",
-    "sigma": 2.2591,
+    "sigma": 1.7292,
     "ci95": [
-     3.8403,
-     12.6957
+     2.1229,
+     8.9011
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W15-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W15",
+   "area": {
+    "value": 0.546,
+    "unit": "m2",
+    "sigma": 0.9025,
+    "ci95": [
+     -1.2229,
+     2.3149
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W16-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W16",
+   "area": {
+    "value": 0.9402,
+    "unit": "m2",
+    "sigma": 0.8399,
+    "ci95": [
+     -0.7059,
+     2.5864
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W17-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W17",
+   "area": {
+    "value": 6.656,
+    "unit": "m2",
+    "sigma": 1.9432,
+    "ci95": [
+     2.8474,
+     10.4646
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W18-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W18",
+   "area": {
+    "value": 5.2042,
+    "unit": "m2",
+    "sigma": 1.4782,
+    "ci95": [
+     2.3071,
+     8.1013
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W19-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W19",
+   "area": {
+    "value": 4.056,
+    "unit": "m2",
+    "sigma": 1.4844,
+    "ci95": [
+     1.1467,
+     6.9653
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W20-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W20",
+   "area": {
+    "value": 5.278,
+    "unit": "m2",
+    "sigma": 1.6874,
+    "ci95": [
+     1.9707,
+     8.5853
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W21-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W21",
+   "area": {
+    "value": 2.808,
+    "unit": "m2",
+    "sigma": 1.3113,
+    "ci95": [
+     0.2378,
+     5.3782
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W22-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W22",
+   "area": {
+    "value": 3.562,
+    "unit": "m2",
+    "sigma": 1.411,
+    "ci95": [
+     0.7966,
+     6.3274
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W23-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W23",
+   "area": {
+    "value": 1.898,
+    "unit": "m2",
+    "sigma": 1.2156,
+    "ci95": [
+     -0.4846,
+     4.2806
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R2-W24-S",
+   "room": "R2",
+   "kind": "wall",
+   "wall": "R2-W24",
+   "area": {
+    "value": 2.6,
+    "unit": "m2",
+    "sigma": 1.2869,
+    "ci95": [
+     0.0777,
+     5.1223
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1807,12 +3004,12 @@
    "room": "R2",
    "kind": "floor",
    "area": {
-    "value": 18.0283,
+    "value": 22.0052,
     "unit": "m2",
-    "sigma": 2.1704,
+    "sigma": 2.6023,
     "ci95": [
-     13.7744,
-     22.2823
+     16.9048,
+     27.1055
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -1823,12 +3020,12 @@
    "room": "R2",
    "kind": "ceiling",
    "area": {
-    "value": 18.0283,
+    "value": 22.0052,
     "unit": "m2",
-    "sigma": 2.1704,
+    "sigma": 2.6023,
     "ci95": [
-     13.7744,
-     22.2823
+     16.9048,
+     27.1055
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -1840,12 +3037,12 @@
    "kind": "wall",
    "wall": "R3-W1",
    "area": {
-    "value": 2.964,
+    "value": 2.86,
     "unit": "m2",
-    "sigma": 1.319,
+    "sigma": 1.3177,
     "ci95": [
-     0.3787,
-     5.5493
+     0.2774,
+     5.4426
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1857,12 +3054,12 @@
    "kind": "wall",
    "wall": "R3-W2",
    "area": {
-    "value": 1.716,
+    "value": 3.978,
     "unit": "m2",
-    "sigma": 1.1875,
+    "sigma": 1.2666,
     "ci95": [
-     -0.6114,
-     4.0434
+     1.4954,
+     6.4606
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1874,12 +3071,12 @@
    "kind": "wall",
    "wall": "R3-W3",
    "area": {
-    "value": 2.262,
+    "value": 2.86,
     "unit": "m2",
-    "sigma": 1.238,
+    "sigma": 1.3177,
     "ci95": [
-     -0.1645,
-     4.6885
+     0.2774,
+     5.4426
     ],
     "observed": false,
     "method": "video:length*height"
@@ -1891,148 +3088,12 @@
    "kind": "wall",
    "wall": "R3-W4",
    "area": {
-    "value": 2.262,
+    "value": 3.978,
     "unit": "m2",
-    "sigma": 1.238,
+    "sigma": 1.2666,
     "ci95": [
-     -0.1645,
-     4.6885
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W5-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W5",
-   "area": {
-    "value": 5.46,
-    "unit": "m2",
-    "sigma": 1.7108,
-    "ci95": [
-     2.1068,
-     8.8132
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W6-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W6",
-   "area": {
-    "value": 4.55,
-    "unit": "m2",
-    "sigma": 1.5533,
-    "ci95": [
-     1.5056,
-     7.5944
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W7-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W7",
-   "area": {
-    "value": 0.832,
-    "unit": "m2",
-    "sigma": 1.1327,
-    "ci95": [
-     -1.388,
-     3.052
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W8-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W8",
-   "area": {
-    "value": 1.144,
-    "unit": "m2",
-    "sigma": 0.8941,
-    "ci95": [
-     -0.6085,
-     2.8965
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W9-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W9",
-   "area": {
-    "value": 5.486,
-    "unit": "m2",
-    "sigma": 1.7155,
-    "ci95": [
-     2.1236,
-     8.8484
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W10-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W10",
-   "area": {
-    "value": 0.364,
-    "unit": "m2",
-    "sigma": 0.5684,
-    "ci95": [
-     -0.75,
-     1.478
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W11-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W11",
-   "area": {
-    "value": 4.368,
-    "unit": "m2",
-    "sigma": 1.5235,
-    "ci95": [
-     1.382,
-     7.354
-    ],
-    "observed": false,
-    "method": "video:length*height"
-   }
-  },
-  {
-   "id": "R3-W12-S",
-   "room": "R3",
-   "kind": "wall",
-   "wall": "R3-W12",
-   "area": {
-    "value": 7.748,
-    "unit": "m2",
-    "sigma": 2.055,
-    "ci95": [
-     3.7202,
-     11.7758
+     1.4954,
+     6.4606
     ],
     "observed": false,
     "method": "video:length*height"
@@ -2043,12 +3104,12 @@
    "room": "R3",
    "kind": "floor",
    "area": {
-    "value": 8.2612,
+    "value": 1.683,
     "unit": "m2",
-    "sigma": 1.5575,
+    "sigma": 0.7659,
     "ci95": [
-     5.2085,
-     11.3139
+     0.1818,
+     3.1842
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -2059,12 +3120,588 @@
    "room": "R3",
    "kind": "ceiling",
    "area": {
-    "value": 8.2612,
+    "value": 1.683,
     "unit": "m2",
-    "sigma": 1.5575,
+    "sigma": 0.7659,
     "ci95": [
-     5.2085,
-     11.3139
+     0.1818,
+     3.1842
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  },
+  {
+   "id": "R4-W1-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W1",
+   "area": {
+    "value": 1.274,
+    "unit": "m2",
+    "sigma": 1.0035,
+    "ci95": [
+     -0.6928,
+     3.2408
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W2-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W2",
+   "area": {
+    "value": 3.8411,
+    "unit": "m2",
+    "sigma": 1.2237,
+    "ci95": [
+     1.4428,
+     6.2395
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W3-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W3",
+   "area": {
+    "value": 2.99,
+    "unit": "m2",
+    "sigma": 1.3339,
+    "ci95": [
+     0.3757,
+     5.6043
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W4-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W4",
+   "area": {
+    "value": 2.2689,
+    "unit": "m2",
+    "sigma": 0.9772,
+    "ci95": [
+     0.3536,
+     4.1841
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W5-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W5",
+   "area": {
+    "value": 1.612,
+    "unit": "m2",
+    "sigma": 1.1921,
+    "ci95": [
+     -0.7245,
+     3.9485
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W6-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W6",
+   "area": {
+    "value": 1.3,
+    "unit": "m2",
+    "sigma": 0.998,
+    "ci95": [
+     -0.6561,
+     3.2561
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W7-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W7",
+   "area": {
+    "value": 3.458,
+    "unit": "m2",
+    "sigma": 1.3963,
+    "ci95": [
+     0.7213,
+     6.1947
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W8-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W8",
+   "area": {
+    "value": 0.416,
+    "unit": "m2",
+    "sigma": 0.9541,
+    "ci95": [
+     -1.4541,
+     2.2861
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W9-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W9",
+   "area": {
+    "value": 4.81,
+    "unit": "m2",
+    "sigma": 1.6065,
+    "ci95": [
+     1.6613,
+     7.9587
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W10-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W10",
+   "area": {
+    "value": 4.576,
+    "unit": "m2",
+    "sigma": 1.5674,
+    "ci95": [
+     1.5039,
+     7.6481
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W11-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W11",
+   "area": {
+    "value": 0.39,
+    "unit": "m2",
+    "sigma": 1.1327,
+    "ci95": [
+     -1.83,
+     2.61
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W12-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W12",
+   "area": {
+    "value": 2.392,
+    "unit": "m2",
+    "sigma": 1.2639,
+    "ci95": [
+     -0.0852,
+     4.8692
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W13-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W13",
+   "area": {
+    "value": 0.754,
+    "unit": "m2",
+    "sigma": 1.143,
+    "ci95": [
+     -1.4862,
+     2.9942
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W14-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W14",
+   "area": {
+    "value": 2.002,
+    "unit": "m2",
+    "sigma": 1.225,
+    "ci95": [
+     -0.399,
+     4.403
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W15-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W15",
+   "area": {
+    "value": 2.314,
+    "unit": "m2",
+    "sigma": 1.2557,
+    "ci95": [
+     -0.1471,
+     4.7751
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W16-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W16",
+   "area": {
+    "value": 0.884,
+    "unit": "m2",
+    "sigma": 1.1482,
+    "ci95": [
+     -1.3665,
+     3.1345
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W17-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W17",
+   "area": {
+    "value": 2.6,
+    "unit": "m2",
+    "sigma": 1.2869,
+    "ci95": [
+     0.0777,
+     5.1223
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W18-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W18",
+   "area": {
+    "value": 1.196,
+    "unit": "m2",
+    "sigma": 1.1641,
+    "ci95": [
+     -1.0856,
+     3.4776
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W19-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W19",
+   "area": {
+    "value": 1.508,
+    "unit": "m2",
+    "sigma": 1.1844,
+    "ci95": [
+     -0.8133,
+     3.8293
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W20-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W20",
+   "area": {
+    "value": 0.52,
+    "unit": "m2",
+    "sigma": 1.1356,
+    "ci95": [
+     -1.7058,
+     2.7458
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W21-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W21",
+   "area": {
+    "value": 1.456,
+    "unit": "m2",
+    "sigma": 1.1807,
+    "ci95": [
+     -0.8581,
+     3.7701
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W22-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W22",
+   "area": {
+    "value": 0.728,
+    "unit": "m2",
+    "sigma": 1.142,
+    "ci95": [
+     -1.5104,
+     2.9664
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W23-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W23",
+   "area": {
+    "value": 3.276,
+    "unit": "m2",
+    "sigma": 1.3713,
+    "ci95": [
+     0.5884,
+     5.9636
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W24-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W24",
+   "area": {
+    "value": 1.066,
+    "unit": "m2",
+    "sigma": 1.1569,
+    "ci95": [
+     -1.2016,
+     3.3336
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W25-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W25",
+   "area": {
+    "value": 0.364,
+    "unit": "m2",
+    "sigma": 1.1322,
+    "ci95": [
+     -1.855,
+     2.583
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W26-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W26",
+   "area": {
+    "value": 1.821,
+    "unit": "m2",
+    "sigma": 0.9182,
+    "ci95": [
+     0.0214,
+     3.6206
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W27-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W27",
+   "area": {
+    "value": 1.82,
+    "unit": "m2",
+    "sigma": 1.2089,
+    "ci95": [
+     -0.5494,
+     4.1894
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W28-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W28",
+   "area": {
+    "value": 1.663,
+    "unit": "m2",
+    "sigma": 0.9011,
+    "ci95": [
+     -0.1031,
+     3.4291
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W29-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W29",
+   "area": {
+    "value": 0.936,
+    "unit": "m2",
+    "sigma": 1.1506,
+    "ci95": [
+     -1.3191,
+     3.1911
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W30-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W30",
+   "area": {
+    "value": 2.886,
+    "unit": "m2",
+    "sigma": 1.3209,
+    "ci95": [
+     0.2972,
+     5.4748
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W31-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W31",
+   "area": {
+    "value": 0.494,
+    "unit": "m2",
+    "sigma": 0.9639,
+    "ci95": [
+     -1.3952,
+     2.3832
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-W32-S",
+   "room": "R4",
+   "kind": "wall",
+   "wall": "R4-W32",
+   "area": {
+    "value": 2.6,
+    "unit": "m2",
+    "sigma": 1.2869,
+    "ci95": [
+     0.0777,
+     5.1223
+    ],
+    "observed": false,
+    "method": "video:length*height"
+   }
+  },
+  {
+   "id": "R4-FLOOR",
+   "room": "R4",
+   "kind": "floor",
+   "area": {
+    "value": 14.058,
+    "unit": "m2",
+    "sigma": 1.7777,
+    "ci95": [
+     10.5737,
+     17.5422
+    ],
+    "observed": true,
+    "method": "video:polygon-area-propagated"
+   }
+  },
+  {
+   "id": "R4-CEIL",
+   "room": "R4",
+   "kind": "ceiling",
+   "area": {
+    "value": 14.058,
+    "unit": "m2",
+    "sigma": 1.7777,
+    "ci95": [
+     10.5737,
+     17.5422
     ],
     "observed": true,
     "method": "video:polygon-area-propagated"
@@ -2074,133 +3711,67 @@
  "damage": [
   {
    "id": "D1",
-   "surface": "R2-W6-S",
+   "surface": "R2-W14-S",
    "class": "crack",
-   "confidence": 0.577,
+   "confidence": 0.828,
    "n_views": 1,
    "extent": {
     "area": {
      "value": 0.0006,
      "unit": "m2",
-     "sigma": 0.0075,
+     "sigma": 0.0031,
      "ci95": [
-      -0.0141,
-      0.0154
+      -0.0055,
+      0.0067
      ],
      "observed": true,
      "method": "damage:surface-cells"
     },
     "width": {
-     "value": 0.2154,
+     "value": 0.2076,
      "unit": "m",
-     "sigma": 0.067,
+     "sigma": 0.0658,
      "ci95": [
-      0.0842,
-      0.3467
+      0.0786,
+      0.3366
      ],
      "observed": true,
      "method": "damage:surface-u"
     },
     "height": {
-     "value": 0.1068,
+     "value": 0.0238,
      "unit": "m",
-     "sigma": 0.0365,
+     "sigma": 0.0224,
      "ci95": [
-      0.0352,
-      0.1784
+      -0.0202,
+      0.0677
      ],
      "observed": true,
      "method": "damage:surface-v"
     }
    },
    "position_on_surface_m": {
-    "u0": 0.036,
-    "v0": 0.784,
-    "u1": 0.252,
-    "v1": 0.89
+    "u0": 0.575,
+    "v0": 2.604,
+    "u1": 0.783,
+    "v1": 2.628
    },
    "plan_footprint": [
     [
-     1.6708999999999998,
-     5.605533301350057
+     1.9462040505000753,
+     6.229
     ],
     [
-     1.6708999999999998,
-     5.820946595263578
+     2.1538202019329544,
+     6.229
     ],
     [
-     1.8309,
-     5.820946595263578
+     2.1538202019329544,
+     6.389
     ],
     [
-     1.8309,
-     5.605533301350057
-    ]
-   ]
-  },
-  {
-   "id": "D2",
-   "surface": "R2-W8-S",
-   "class": "crack",
-   "confidence": 0.552,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.0005,
-     "unit": "m2",
-     "sigma": 0.0027,
-     "ci95": [
-      -0.0047,
-      0.0058
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.036,
-     "unit": "m",
-     "sigma": 0.0195,
-     "ci95": [
-      -0.0023,
-      0.0742
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.1741,
-     "unit": "m",
-     "sigma": 0.0547,
-     "ci95": [
-      0.0669,
-      0.2814
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 2.061,
-    "v0": 3.265,
-    "u1": 2.097,
-    "v1": 3.44
-   },
-   "plan_footprint": [
-    [
-     3.5669,
-     5.600332058971891
-    ],
-    [
-     3.5669,
-     5.6362835464688645
-    ],
-    [
-     3.7269,
-     5.6362835464688645
-    ],
-    [
-     3.7269,
-     5.600332058971891
+     1.9462040505000753,
+     6.389
     ]
    ]
   }
@@ -2209,15 +3780,15 @@
  "scope": [
   {
    "id": "S1",
-   "surface": "R2-W6-S",
+   "surface": "R2-W14-S",
    "action": "rake out and fill crack, sand flush",
    "quantity": {
-    "value": 0.2645,
+    "value": 0.2299,
     "unit": "m",
-    "sigma": 0.0839,
+    "sigma": 0.0765,
     "ci95": [
-     0.1,
-     0.4289
+     0.08,
+     0.3798
     ],
     "observed": true,
     "method": "damage:length+10%"
@@ -2229,15 +3800,15 @@
   },
   {
    "id": "S2",
-   "surface": "R2-W6-S",
+   "surface": "R2-W14-S",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 1.7677,
+    "value": 5.512,
     "unit": "m",
-    "sigma": 0.7954,
+    "sigma": 1.7292,
     "ci95": [
-     0.2087,
-     3.3267
+     2.1228,
+     8.9012
     ],
     "observed": true,
     "method": "surface:area"
@@ -2246,60 +3817,20 @@
    "because": [
     "D1"
    ]
-  },
-  {
-   "id": "S3",
-   "surface": "R2-W8-S",
-   "action": "rake out and fill crack, sand flush",
-   "quantity": {
-    "value": 0.1956,
-    "unit": "m",
-    "sigma": 0.0639,
-    "ci95": [
-     0.0703,
-     0.3208
-    ],
-    "observed": true,
-    "method": "damage:length+10%"
-   },
-   "unit": "m",
-   "because": [
-    "D2"
-   ]
-  },
-  {
-   "id": "S4",
-   "surface": "R2-W8-S",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 7.046,
-    "unit": "m",
-    "sigma": 1.8761,
-    "ci95": [
-     3.3689,
-     10.7231
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D2"
-   ]
   }
  ],
  "calibration": {
   "tier_sigma_multiplier": 1.0
  },
  "timing_s": {
-  "decode_s": 0.04,
-  "sfm_s": 0.03,
-  "depth_s": 39.17,
-  "drift_s": 0.42,
-  "layout_s": 8.13,
-  "total_s": 180.71,
-  "damage_s": 14.53,
-  "wall_clock_s": 195.64
+  "decode_s": 0.02,
+  "sfm_s": 0.02,
+  "depth_s": 0.25,
+  "drift_s": 0.44,
+  "layout_s": 9.2,
+  "total_s": 142.72,
+  "damage_s": 20.8,
+  "wall_clock_s": 163.67
  },
  "notes": [
   "Ceiling not observed: ceiling heights are priors (observed=false) with wide intervals.",

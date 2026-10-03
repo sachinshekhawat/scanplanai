@@ -56,15 +56,6 @@
     },
     {
      "room": "R1",
-     "wall": "R1-W2",
-     "gt_m": 1.0827134291993588,
-     "pred_m": 0.6881,
-     "sigma": 0.4146,
-     "err_m": -0.3946134291993587,
-     "bounded_by_wall_face": true
-    },
-    {
-     "room": "R1",
      "wall": "R1-W7",
      "gt_m": 1.8688310504648817,
      "pred_m": 1.6944,
@@ -80,15 +71,6 @@
      "sigma": 0.0499,
      "err_m": 0.11146680176576262,
      "bounded_by_wall_face": true
-    },
-    {
-     "room": "R1",
-     "wall": "R1-W12",
-     "gt_m": 0.46225693912631893,
-     "pred_m": 0.6679,
-     "sigma": 0.3067,
-     "err_m": 0.20564306087368112,
-     "bounded_by_wall_face": true
     }
    ],
    "ceiling": [
@@ -102,12 +84,12 @@
     }
    ],
    "summary": {
-    "n_walls": 5,
-    "median_abs_err_m": 0.17443105046488183,
+    "n_walls": 3,
+    "median_abs_err_m": 0.11146680176576262,
     "within_1cm_or_0.5pct": 0.0,
     "within_3pct": 0.0,
-    "ci95_coverage": 0.8,
-    "face_bounded_median_abs_err_m": 0.19003705566928147
+    "ci95_coverage": 0.6666666666666666,
+    "face_bounded_median_abs_err_m": 0.14294892611532223
    },
    "n_rooms": 1,
    "floor_area_m2": 4.5296

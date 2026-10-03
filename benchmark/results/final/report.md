@@ -9,8 +9,8 @@ No tape/laser ground truth in the provided sample data. LiDAR is the reference f
 | repeatability | |diff| <= max(1 cm, 0.5%) per wall | 0.227 | False |
 | drift_accountability | drift handling stated + on/off ablation | {"on": 0.8478581052291211, "off": 0.7911485870319735} | True |
 | ceiling_height | <= 1.5 cm vs GT; spread <= 1 cm | "no GT" | None |
-| video_tier | walls within +-3% (LiDAR-referenced) | 0.000 | False |
-| photo_tier | walls within +-8%, footprint +-8%, no overlaps | 0.000 | False |
+| video_tier | walls within +-3% (LiDAR-referenced) | 0.067 | False |
+| photo_tier | walls within +-8%, footprint +-8%, no overlaps | 0.056 | False |
 | opening_widths | <= 2 cm on >= 85% (miss & phantom count as fail); cross-session proxy | 0.125 | False |
 
 ## Repeatability (two sessions, LiDAR tier)
@@ -111,12 +111,12 @@ Footprint IoU after alignment 0.848; rooms [7, 6]; matched room pairs 6; wall pa
 
 | capture/tier | footprint IoU | rooms ref/tier | area rel err | area in CI | walls | wall pass | median rel | calib cov95 |
 |---|---|---|---|---|---|---|---|---|
-| single_room_video | 0.39 | [3, 2] | -24.9% | False | 6 | 0.0 | 0.3232268652855603 | 0.6666666666666666 |
-| single_room_photo | 0.18 | [3, 2] | -82.3% | False | 2 | 0.0 | 0.6114316054903473 | 0.0 |
-| single_scan_floor_only_video | 0.32 | [6, 3] | -36.0% | False | 5 | 0.0 | 0.1854508196721311 | 0.6 |
-| single_scan_floor_only_photo | 0.38 | [6, 5] | -44.1% | False | 2 | 0.0 | 1.4166113246001673 | 0.5 |
-| single_scan_with_ceiling_video | 0.43 | [7, 4] | -28.9% | False | 5 | 0.0 | 0.28168689285405446 | 0.4 |
-| single_scan_with_ceiling_photo | 0.22 | [7, 6] | -76.4% | False | 1 | 0.0 | 0.20851954950583548 | 1.0 |
+| single_room_video | 0.43 | [3, 2] | -10.3% | True | 3 | 0.0 | 0.24717935954869757 | 0.3333333333333333 |
+| single_room_photo | 0.17 | [3, 2] | -83.3% | False | 1 | 0.0 | 0.6411651578404239 | 0.0 |
+| single_scan_floor_only_video | 0.34 | [6, 4] | -12.1% | True | 5 | 0.0 | 0.810314659390848 | 0.0 |
+| single_scan_floor_only_photo | 0.40 | [6, 5] | -38.2% | False | 6 | 0.16666666666666666 | 0.4862700975233485 | 0.5 |
+| single_scan_with_ceiling_video | 0.37 | [7, 3] | +14.5% | True | 5 | 0.2 | 0.3242514647208943 | 0.4 |
+| single_scan_with_ceiling_photo | 0.25 | [7, 6] | -69.9% | False | 4 | 0.0 | 0.6694988892936153 | 0.75 |
 
 ## Openings (cross-session)
 
@@ -150,7 +150,8 @@ Only single_scan_with_ceiling observes the ceiling; the other session did not sc
  "single_room_video": {
   "n_regions": 3,
   "classes": [
-   "crack"
+   "crack",
+   "mold"
   ],
   "flags": [
    "R5_long_crack"
@@ -180,7 +181,7 @@ Only single_scan_with_ceiling observes the ceiling; the other session did not sc
   ]
  },
  "single_scan_floor_only_video": {
-  "n_regions": 2,
+  "n_regions": 1,
   "classes": [
    "crack"
   ],
@@ -224,7 +225,9 @@ Only single_scan_with_ceiling observes the ceiling; the other session did not sc
   "classes": [
    "mold"
   ],
-  "flags": []
+  "flags": [
+   "R1_ceiling_water"
+  ]
  },
  "single_scan_with_ceiling_photo": {
   "n_regions": 0,
@@ -238,15 +241,15 @@ Only single_scan_with_ceiling observes the ceiling; the other session did not sc
 
 | run | s |
 |---|---|
-| single_room_lidar | 43 |
-| single_room_lidar_nodrift | 39 |
-| single_room_video | 83 |
-| single_room_photo | 2 |
-| single_scan_floor_only_lidar | 123 |
-| single_scan_floor_only_lidar_nodrift | 109 |
-| single_scan_floor_only_video | 196 |
-| single_scan_floor_only_photo | 4 |
-| single_scan_with_ceiling_lidar | 152 |
-| single_scan_with_ceiling_lidar_nodrift | 138 |
-| single_scan_with_ceiling_video | 181 |
-| single_scan_with_ceiling_photo | 6 |
+| single_room_lidar | 40 |
+| single_room_lidar_nodrift | 37 |
+| single_room_video | 89 |
+| single_room_photo | 1 |
+| single_scan_floor_only_lidar | 115 |
+| single_scan_floor_only_lidar_nodrift | 110 |
+| single_scan_floor_only_video | 164 |
+| single_scan_floor_only_photo | 3 |
+| single_scan_with_ceiling_lidar | 158 |
+| single_scan_with_ceiling_lidar_nodrift | 139 |
+| single_scan_with_ceiling_video | 136 |
+| single_scan_with_ceiling_photo | 4 |

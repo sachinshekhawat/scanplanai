@@ -103,6 +103,11 @@ The wall errors come from the room polygon, not depth noise. In these 2–6 m² 
 
 Scale history: before this benchmark the LiDAR scale term was 0.2%. It is now **0.7%**, the dev-visit bias, entered as 1-σ uncertainty (`measure.py::SCALE_REL`). We did not subtract it, because one visit is not enough to trust a correction. The held-out visit shows the same sign and size (−0.9 to −1.6%).
 
+**Tuning iterations (`benchmark/arkitscenes/iterations.md`):** 8 iterations on a train split of 4 visits / 9 walks.
+- An apparent gain (median wall error 15.6 → 7.2 cm) turned out to come from **merging rooms** on the sample flat (3 → 1 rooms), plus six train "errors" that were really **walls the laser never covered**.
+- After fixing the GT extractor (laser must span ≥ 40% of a wall), no layout change improves wall accuracy (10.6 cm median) while keeping the partition.
+- **Shipped:** the original layout, the GT fix, and the room-count guard.
+
 ## 6. Fix loop (`docs/fix_loop.md`)
 - **Worst LiDAR gate:** repeatability. 25% of walls pass, median 13.8 cm.
 - **Hypothesis:** walls bounded only by free space. This was tested and is **incomplete**: 16 of 20 walls were face-bounded and still disagreed. The dominant cause is that each session partitions the open plan into rooms differently.

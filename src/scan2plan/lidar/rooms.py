@@ -115,12 +115,14 @@ def make_grid(xy: np.ndarray, pad: float = 0.5) -> Grid:
     return Grid(float(lo[0]), float(lo[1]), int(w), int(h))
 
 
-MIN_EDGE = 0.25
-WALL_MIN_COV = 0.7
-USE_HIGH_FANS = True
-PREFER_TALL = True
+MIN_EDGE = 0.40
+SEAL_MIN_COV = 0.6
+WALL_MIN_COV = 0.6
+USE_HIGH_FANS = False
+PREFER_TALL = False
 TALL_PENALTY = 0.03
 HIGH_EXTRA_VIEWS = 1
+HIGH_CLOSE_PX = 25
 FIXED_BAND = False  # fix loop: band must not depend on whether this session saw the ceiling
 
 
@@ -362,8 +364,12 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
     wall_img = structural_walls(grid, vxy, vy, band)
     carved = carve_free(grid, cam_xy, fans, R2, min_views=min_views)
     if USE_HIGH_FANS and fans_high is not None:
-        # rays to walls above furniture height prove the floor beneath them is free too
-        carved |= carve_free(grid, cam_xy, fans_high, R2, min_views=min_views + HIGH_EXTRA_VIEWS)
+        # rays to walls above furniture height prove the floor beneath them is free too, but only
+        # to fill holes INSIDE the region the low rays already enclose (never past a doorway or
+        # partition): fill holes of the low-carved region, then intersect with the high evidence
+        high = carve_free(grid, cam_xy, fans_high, R2, min_views=min_views + HIGH_EXTRA_VIEWS)
+        hull = ndi.binary_fill_holes(cv2.morphologyEx(carved.astype(np.uint8), cv2.MORPH_CLOSE, disk(HIGH_CLOSE_PX)))
+        carved |= high & hull
     ci, cj = grid.idx(cam_xy)
     cam = np.zeros((grid.h, grid.w), np.uint8)
     cam[cj, ci] = 1
@@ -371,7 +377,9 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
     free = ndi.binary_opening(free, structure=disk(2))
 
     runs = extract_runs(vxy, vn, vy, floor_y, band[1])
-    sealed = axis_close(wall_img, DOOR_MAX)
+    # partition walls (door jambs) use the original 0.6 coverage, room boundaries the stricter
+    # one: clutter fronts must not bound rooms, but thin jambs must still seal doorways
+    sealed = axis_close(np.maximum(wall_img, structural_walls(grid, vxy, vy, band, min_cov=SEAL_MIN_COV)), DOOR_MAX)
     rooms_free = free & (cv2.dilate(sealed, disk(1)) == 0)
     lab, n = ndi.label(rooms_free)
     labels = np.zeros_like(lab)

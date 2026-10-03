@@ -7,7 +7,7 @@
  "tier": "photo",
  "capture": {
   "name": "single_scan_with_ceiling",
-  "source": "data/photo_sets/single_scan_with_ceiling",
+  "source": "/Users/parv/Desktop/AppliedAIEnggProject/data/photo_sets/single_scan_with_ceiling",
   "tier": "photo",
   "rooms_in": [
    "01_room2",
@@ -25,21 +25,21 @@
  "frame": {
   "description": "plan frame: gravity-aligned, x/y on the dominant wall axes, origin arbitrary",
   "bounds": [
-   -0.709,
-   -5.514,
-   3.389,
+   -2.832,
+   -4.672,
+   1.827,
    0.367
   ]
  },
  "property": {
   "n_rooms": 6,
   "floor_area_total": {
-   "value": 11.751,
+   "value": 14.9965,
    "unit": "m2",
-   "sigma": 4.1242,
+   "sigma": 4.3695,
    "ci95": [
-    3.6677,
-    19.8343
+    6.4324,
+    23.5606
    ],
    "observed": true,
    "method": "photo:sum-room-areas"
@@ -63,8 +63,8 @@
    },
    {
     "rooms": [
-     "R1",
-     "R4"
+     "R2",
+     "R3"
     ],
     "via": [],
     "shared_wall": true
@@ -72,7 +72,7 @@
    {
     "rooms": [
      "R2",
-     "R3"
+     "R4"
     ],
     "via": [],
     "shared_wall": true
@@ -87,8 +87,24 @@
    },
    {
     "rooms": [
+     "R3",
+     "R5"
+    ],
+    "via": [],
+    "shared_wall": true
+   },
+   {
+    "rooms": [
      "R4",
      "R5"
+    ],
+    "via": [],
+    "shared_wall": true
+   },
+   {
+    "rooms": [
+     "R4",
+     "R6"
     ],
     "via": [],
     "shared_wall": true
@@ -133,10 +149,10 @@
    "floor_area": {
     "value": 2.0831,
     "unit": "m2",
-    "sigma": 1.7033,
+    "sigma": 1.7065,
     "ci95": [
-     -1.2552,
-     5.4214
+     -1.2616,
+     5.4278
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -144,10 +160,10 @@
    "perimeter": {
     "value": 6.0208,
     "unit": "m",
-    "sigma": 1.5165,
+    "sigma": 1.5194,
     "ci95": [
-     3.0486,
-     8.9931
+     3.0428,
+     8.9989
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -177,15 +193,15 @@
      "length": {
       "value": 1.0779,
       "unit": "m",
-      "sigma": 0.7647,
+      "sigma": 0.7662,
       "ci95": [
-       -0.4209,
-       2.5767
+       -0.4238,
+       2.5796
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.0707,
+     "face_sigma_m": 0.0851,
      "bounded_by_wall_face": true,
      "openings": []
     },
@@ -202,10 +218,10 @@
      "length": {
       "value": 1.9325,
       "unit": "m",
-      "sigma": 0.7654,
+      "sigma": 0.7669,
       "ci95": [
-       0.4324,
-       3.4326
+       0.4294,
+       3.4355
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -227,10 +243,10 @@
      "length": {
       "value": 1.0779,
       "unit": "m",
-      "sigma": 0.7647,
+      "sigma": 0.7662,
       "ci95": [
-       -0.4209,
-       2.5767
+       -0.4238,
+       2.5796
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -252,15 +268,15 @@
      "length": {
       "value": 1.9325,
       "unit": "m",
-      "sigma": 0.7654,
+      "sigma": 0.7669,
       "ci95": [
-       0.4324,
-       3.4326
+       0.4294,
+       3.4355
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.1219,
+     "face_sigma_m": 0.1308,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -290,10 +306,10 @@
    "floor_area": {
     "value": 0.9847,
     "unit": "m2",
-    "sigma": 1.2669,
+    "sigma": 1.268,
     "ci95": [
-     -1.4984,
-     3.4678
+     -1.5006,
+     3.47
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -301,10 +317,10 @@
    "perimeter": {
     "value": 3.9984,
     "unit": "m",
-    "sigma": 1.844,
+    "sigma": 1.8452,
     "ci95": [
-     0.3843,
-     7.6125
+     0.3819,
+     7.6149
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -334,10 +350,10 @@
      "length": {
       "value": 0.8792,
       "unit": "m",
-      "sigma": 0.7572,
+      "sigma": 0.7587,
       "ci95": [
-       -0.6049,
-       2.3633
+       -0.6079,
+       2.3663
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -367,7 +383,7 @@
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.0715,
+     "face_sigma_m": 0.0859,
      "bounded_by_wall_face": true,
      "openings": []
     },
@@ -384,10 +400,10 @@
      "length": {
       "value": 0.8792,
       "unit": "m",
-      "sigma": 0.7572,
+      "sigma": 0.7587,
       "ci95": [
-       -0.6049,
-       2.3633
+       -0.6079,
+       2.3663
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -425,43 +441,43 @@
   },
   {
    "id": "R3",
-   "type": "closet_or_wc",
+   "type": "room",
    "polygon": [
     [
-     0.3142,
-     -1.0356
+     1.8266,
+     -2.8764
     ],
     [
-     0.29,
-     -1.0356
+     -0.7092,
+     -2.8764
     ],
     [
-     0.29,
-     -1.5656
+     -0.7092,
+     -1.6856
     ],
     [
-     0.3142,
-     -1.5656
+     1.8266,
+     -1.6856
     ]
    ],
    "floor_area": {
-    "value": 0.0128,
+    "value": 3.0197,
     "unit": "m2",
-    "sigma": 0.3214,
+    "sigma": 1.7431,
     "ci95": [
-     -0.6171,
-     0.6428
+     -0.3967,
+     6.4361
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 1.1084,
+    "value": 7.4533,
     "unit": "m",
-    "sigma": 1.4773,
+    "sigma": 1.2131,
     "ci95": [
-     -1.787,
-     4.0039
+     5.0757,
+     9.8308
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -481,20 +497,45 @@
     {
      "id": "R3-W1",
      "start": [
-      0.3142,
-      -1.0356
+      1.8266,
+      -2.8764
      ],
      "end": [
-      0.29,
-      -1.0356
+      -0.7092,
+      -2.8764
      ],
      "length": {
-      "value": 0.0242,
+      "value": 2.5358,
       "unit": "m",
-      "sigma": 0.6052,
+      "sigma": 0.6291,
       "ci95": [
-       -1.1619,
-       1.2103
+       1.3028,
+       3.7688
+      ],
+      "observed": true,
+      "method": "photo:face-to-freespace"
+     },
+     "face_sigma_m": 0.0692,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R3-W2",
+     "start": [
+      -0.7092,
+      -2.8764
+     ],
+     "end": [
+      -0.7092,
+      -1.6856
+     ],
+     "length": {
+      "value": 1.1908,
+      "unit": "m",
+      "sigma": 0.611,
+      "ci95": [
+       -0.0067,
+       2.3884
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -504,47 +545,22 @@
      "openings": []
     },
     {
-     "id": "R3-W2",
-     "start": [
-      0.29,
-      -1.0356
-     ],
-     "end": [
-      0.29,
-      -1.5656
-     ],
-     "length": {
-      "value": 0.53,
-      "unit": "m",
-      "sigma": 0.8522,
-      "ci95": [
-       -1.1402,
-       2.2002
-      ],
-      "observed": true,
-      "method": "photo:face-to-freespace"
-     },
-     "face_sigma_m": 0.0611,
-     "bounded_by_wall_face": true,
-     "openings": []
-    },
-    {
      "id": "R3-W3",
      "start": [
-      0.29,
-      -1.5656
+      -0.7092,
+      -1.6856
      ],
      "end": [
-      0.3142,
-      -1.5656
+      1.8266,
+      -1.6856
      ],
      "length": {
-      "value": 0.0242,
+      "value": 2.5358,
       "unit": "m",
-      "sigma": 0.6052,
+      "sigma": 0.6291,
       "ci95": [
-       -1.1619,
-       1.2103
+       1.3028,
+       3.7688
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -556,26 +572,26 @@
     {
      "id": "R3-W4",
      "start": [
-      0.3142,
-      -1.5656
+      1.8266,
+      -1.6856
      ],
      "end": [
-      0.3142,
-      -1.0356
+      1.8266,
+      -2.8764
      ],
      "length": {
-      "value": 0.53,
+      "value": 1.1908,
       "unit": "m",
-      "sigma": 0.8522,
+      "sigma": 0.611,
       "ci95": [
-       -1.1402,
-       2.2002
+       -0.0067,
+       2.3884
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.6021,
-     "bounded_by_wall_face": false,
+     "face_sigma_m": 0.0774,
+     "bounded_by_wall_face": true,
      "openings": []
     }
    ]
@@ -585,29 +601,29 @@
    "type": "closet_or_wc",
    "polygon": [
     [
-     2.11,
-     -2.3629
+     -1.5065,
+     -2.8764
     ],
     [
-     0.29,
-     -2.3629
+     -1.5065,
+     -1.0564
     ],
     [
-     0.29,
-     -1.6856
+     -0.8292,
+     -1.0564
     ],
     [
-     2.11,
-     -1.6856
+     -0.8292,
+     -2.8764
     ]
    ],
    "floor_area": {
     "value": 1.2327,
     "unit": "m2",
-    "sigma": 1.2533,
+    "sigma": 1.2563,
     "ci95": [
-     -1.2238,
-     3.6891
+     -1.2296,
+     3.6949
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -615,10 +631,10 @@
    "perimeter": {
     "value": 4.9946,
     "unit": "m",
-    "sigma": 1.4772,
+    "sigma": 1.4787,
     "ci95": [
-     2.0993,
-     7.8898
+     2.0963,
+     7.8928
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -638,12 +654,12 @@
     {
      "id": "R4-W1",
      "start": [
-      2.11,
-      -2.3629
+      -1.5065,
+      -2.8764
      ],
      "end": [
-      0.29,
-      -2.3629
+      -1.5065,
+      -1.0564
      ],
      "length": {
       "value": 1.82,
@@ -663,20 +679,20 @@
     {
      "id": "R4-W2",
      "start": [
-      0.29,
-      -2.3629
+      -1.5065,
+      -1.0564
      ],
      "end": [
-      0.29,
-      -1.6856
+      -0.8292,
+      -1.0564
      ],
      "length": {
       "value": 0.6773,
       "unit": "m",
-      "sigma": 0.6066,
+      "sigma": 0.6085,
       "ci95": [
-       -0.5117,
-       1.8662
+       -0.5153,
+       1.8699
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -688,12 +704,12 @@
     {
      "id": "R4-W3",
      "start": [
-      0.29,
-      -1.6856
+      -0.8292,
+      -1.0564
      ],
      "end": [
-      2.11,
-      -1.6856
+      -0.8292,
+      -2.8764
      ],
      "length": {
       "value": 1.82,
@@ -706,27 +722,27 @@
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.0596,
+     "face_sigma_m": 0.0762,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R4-W4",
      "start": [
-      2.11,
-      -1.6856
+      -0.8292,
+      -2.8764
      ],
      "end": [
-      2.11,
-      -2.3629
+      -1.5065,
+      -2.8764
      ],
      "length": {
       "value": 0.6773,
       "unit": "m",
-      "sigma": 0.6066,
+      "sigma": 0.6085,
       "ci95": [
-       -0.5117,
-       1.8662
+       -0.5153,
+       1.8699
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -742,37 +758,45 @@
    "type": "room",
    "polygon": [
     [
-     3.18,
-     -2.4829
+     1.3835,
+     -2.9964
     ],
     [
-     3.18,
-     -3.2229
+     1.3835,
+     -3.4764
     ],
     [
-     1.86,
-     -3.2229
+     1.3335,
+     -3.4764
     ],
     [
-     1.86,
-     -4.1585
+     1.3335,
+     -4.0078
     ],
     [
-     0.29,
-     -4.1585
+     0.0635,
+     -4.0078
     ],
     [
-     0.29,
-     -2.4829
+     0.0635,
+     -4.6721
+    ],
+    [
+     -1.5065,
+     -4.6721
+    ],
+    [
+     -1.5065,
+     -2.9964
     ]
    ],
    "floor_area": {
-    "value": 3.6075,
+    "value": 3.9391,
     "unit": "m2",
-    "sigma": 2.5256,
+    "sigma": 2.3495,
     "ci95": [
-     -1.3426,
-     8.5577
+     -0.6658,
+     8.544
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -780,10 +804,10 @@
    "perimeter": {
     "value": 9.1313,
     "unit": "m",
-    "sigma": 2.079,
+    "sigma": 2.2744,
     "ci95": [
-     5.0564,
-     13.2061
+     4.6735,
+     13.589
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -803,20 +827,20 @@
     {
      "id": "R5-W1",
      "start": [
-      3.18,
-      -2.4829
+      1.3835,
+      -2.9964
      ],
      "end": [
-      3.18,
-      -3.2229
+      1.3835,
+      -3.4764
      ],
      "length": {
-      "value": 0.74,
+      "value": 0.48,
       "unit": "m",
-      "sigma": 0.9132,
+      "sigma": 0.9124,
       "ci95": [
-       -1.0497,
-       2.5297
+       -1.3083,
+       2.2683
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -828,20 +852,20 @@
     {
      "id": "R5-W2",
      "start": [
-      3.18,
-      -3.2229
+      1.3835,
+      -3.4764
      ],
      "end": [
-      1.86,
-      -3.2229
+      1.3335,
+      -3.4764
      ],
      "length": {
-      "value": 1.32,
+      "value": 0.05,
       "unit": "m",
-      "sigma": 0.9159,
+      "sigma": 0.9119,
       "ci95": [
-       -0.4752,
-       3.1152
+       -1.7373,
+       1.8373
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -853,20 +877,20 @@
     {
      "id": "R5-W3",
      "start": [
-      1.86,
-      -3.2229
+      1.3335,
+      -3.4764
      ],
      "end": [
-      1.86,
-      -4.1585
+      1.3335,
+      -4.0078
      ],
      "length": {
-      "value": 0.9356,
+      "value": 0.5313,
       "unit": "m",
-      "sigma": 0.7084,
+      "sigma": 0.6513,
       "ci95": [
-       -0.4528,
-       2.3241
+       -0.7452,
+       1.8079
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -878,45 +902,95 @@
     {
      "id": "R5-W4",
      "start": [
-      1.86,
-      -4.1585
+      1.3335,
+      -4.0078
      ],
      "end": [
-      0.29,
-      -4.1585
+      0.0635,
+      -4.0078
      ],
      "length": {
-      "value": 1.57,
+      "value": 1.27,
       "unit": "m",
-      "sigma": 0.9176,
+      "sigma": 0.9156,
       "ci95": [
-       -0.2284,
-       3.3684
+       -0.5246,
+       3.0646
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.287,
+     "face_sigma_m": 0.0851,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R5-W5",
      "start": [
-      0.29,
-      -4.1585
+      0.0635,
+      -4.0078
      ],
      "end": [
-      0.29,
-      -2.4829
+      0.0635,
+      -4.6721
+     ],
+     "length": {
+      "value": 0.6643,
+      "unit": "m",
+      "sigma": 0.3061,
+      "ci95": [
+       0.0643,
+       1.2643
+      ],
+      "observed": true,
+      "method": "photo:face-to-face"
+     },
+     "face_sigma_m": 0.6448,
+     "bounded_by_wall_face": false,
+     "openings": []
+    },
+    {
+     "id": "R5-W6",
+     "start": [
+      0.0635,
+      -4.6721
+     ],
+     "end": [
+      -1.5065,
+      -4.6721
+     ],
+     "length": {
+      "value": 1.57,
+      "unit": "m",
+      "sigma": 0.9176,
+      "ci95": [
+       -0.2285,
+       3.3685
+      ],
+      "observed": true,
+      "method": "photo:face-to-freespace"
+     },
+     "face_sigma_m": 0.2909,
+     "bounded_by_wall_face": true,
+     "openings": []
+    },
+    {
+     "id": "R5-W7",
+     "start": [
+      -1.5065,
+      -4.6721
+     ],
+     "end": [
+      -1.5065,
+      -2.9964
      ],
      "length": {
       "value": 1.6756,
       "unit": "m",
-      "sigma": 0.7141,
+      "sigma": 0.7157,
       "ci95": [
-       0.2759,
-       3.0753
+       0.2728,
+       3.0785
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -926,22 +1000,22 @@
      "openings": []
     },
     {
-     "id": "R5-W6",
+     "id": "R5-W8",
      "start": [
-      0.29,
-      -2.4829
+      -1.5065,
+      -2.9964
      ],
      "end": [
-      3.18,
-      -2.4829
+      1.3835,
+      -2.9964
      ],
      "length": {
       "value": 2.89,
       "unit": "m",
-      "sigma": 0.931,
+      "sigma": 0.9311,
       "ci95": [
-       1.0652,
-       4.7148
+       1.0651,
+       4.7149
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -957,40 +1031,40 @@
    "type": "connector",
    "polygon": [
     [
-     3.3892,
-     -5.5144
+     -1.6265,
+     -1.5729
     ],
     [
-     0.29,
-     -5.5144
+     -1.6265,
+     -4.6721
     ],
     [
-     0.29,
-     -4.2785
+     -2.8324,
+     -4.6721
     ],
     [
-     3.3892,
-     -4.2785
+     -2.8324,
+     -1.5729
     ]
    ],
    "floor_area": {
-    "value": 3.8302,
+    "value": 3.7372,
     "unit": "m2",
-    "sigma": 2.1095,
+    "sigma": 2.1062,
     "ci95": [
-     -0.3043,
-     7.9647
+     -0.3909,
+     7.8653
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 8.6701,
+    "value": 8.6101,
     "unit": "m",
-    "sigma": 1.2215,
+    "sigma": 1.2252,
     "ci95": [
-     6.276,
-     11.0642
+     6.2088,
+     11.0114
     ],
     "observed": true,
     "method": "photo:perimeter"
@@ -1010,20 +1084,20 @@
     {
      "id": "R6-W1",
      "start": [
-      3.3892,
-      -5.5144
+      -1.6265,
+      -1.5729
      ],
      "end": [
-      0.29,
-      -5.5144
+      -1.6265,
+      -4.6721
      ],
      "length": {
       "value": 3.0992,
       "unit": "m",
-      "sigma": 0.6384,
+      "sigma": 0.6402,
       "ci95": [
-       1.848,
-       4.3503
+       1.8444,
+       4.354
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -1035,20 +1109,20 @@
     {
      "id": "R6-W2",
      "start": [
-      0.29,
-      -5.5144
+      -1.6265,
+      -4.6721
      ],
      "end": [
-      0.29,
-      -4.2785
+      -2.8324,
+      -4.6721
      ],
      "length": {
-      "value": 1.2359,
+      "value": 1.2059,
       "unit": "m",
-      "sigma": 0.621,
+      "sigma": 0.6225,
       "ci95": [
-       0.0188,
-       2.453
+       -0.0143,
+       2.426
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
@@ -1060,25 +1134,25 @@
     {
      "id": "R6-W3",
      "start": [
-      0.29,
-      -4.2785
+      -2.8324,
+      -4.6721
      ],
      "end": [
-      3.3892,
-      -4.2785
+      -2.8324,
+      -1.5729
      ],
      "length": {
       "value": 3.0992,
       "unit": "m",
-      "sigma": 0.6384,
+      "sigma": 0.6402,
       "ci95": [
-       1.848,
-       4.3503
+       1.8444,
+       4.354
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.129,
+     "face_sigma_m": 0.1375,
      "bounded_by_wall_face": true,
      "openings": [
       "O1"
@@ -1087,25 +1161,25 @@
     {
      "id": "R6-W4",
      "start": [
-      3.3892,
-      -4.2785
+      -2.8324,
+      -1.5729
      ],
      "end": [
-      3.3892,
-      -5.5144
+      -1.6265,
+      -1.5729
      ],
      "length": {
-      "value": 1.2359,
+      "value": 1.2059,
       "unit": "m",
-      "sigma": 0.621,
+      "sigma": 0.6225,
       "ci95": [
-       0.0188,
-       2.453
+       -0.0143,
+       2.426
       ],
       "observed": true,
       "method": "photo:face-to-freespace"
      },
-     "face_sigma_m": 0.0662,
+     "face_sigma_m": 0.0815,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -1117,23 +1191,23 @@
    "id": "O1",
    "type": "door",
    "width": {
-    "value": 0.46,
+    "value": 0.8,
     "unit": "m",
-    "sigma": 0.0499,
+    "sigma": 0.0656,
     "ci95": [
-     0.3621,
-     0.5579
+     0.6714,
+     0.9286
     ],
     "observed": true,
     "method": "photo:wall-gap (exterior/unmatched)"
    },
    "start": [
-    2.83,
-    -4.2785
+    -2.8324,
+    -2.4721
    ],
    "end": [
-    3.29,
-    -4.2785
+    -2.8324,
+    -1.6721
    ],
    "rooms": [
     "R6"
@@ -1152,10 +1226,10 @@
    "area": {
     "value": 2.8026,
     "unit": "m2",
-    "sigma": 2.0144,
+    "sigma": 2.0182,
     "ci95": [
-     -1.1454,
-     6.7507
+     -1.1529,
+     6.7582
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1169,10 +1243,10 @@
    "area": {
     "value": 5.0244,
     "unit": "m2",
-    "sigma": 2.0727,
+    "sigma": 2.0764,
     "ci95": [
-     0.962,
-     9.0868
+     0.9547,
+     9.0942
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1186,10 +1260,10 @@
    "area": {
     "value": 2.8026,
     "unit": "m2",
-    "sigma": 2.0144,
+    "sigma": 2.0182,
     "ci95": [
-     -1.1454,
-     6.7507
+     -1.1529,
+     6.7582
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1203,10 +1277,10 @@
    "area": {
     "value": 5.0244,
     "unit": "m2",
-    "sigma": 2.0727,
+    "sigma": 2.0764,
     "ci95": [
-     0.962,
-     9.0868
+     0.9547,
+     9.0942
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1219,10 +1293,10 @@
    "area": {
     "value": 2.0831,
     "unit": "m2",
-    "sigma": 1.7033,
+    "sigma": 1.7065,
     "ci95": [
-     -1.2552,
-     5.4214
+     -1.2616,
+     5.4278
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1235,10 +1309,10 @@
    "area": {
     "value": 2.0831,
     "unit": "m2",
-    "sigma": 1.7033,
+    "sigma": 1.7065,
     "ci95": [
-     -1.2552,
-     5.4214
+     -1.2616,
+     5.4278
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1252,10 +1326,10 @@
    "area": {
     "value": 2.2859,
     "unit": "m2",
-    "sigma": 1.9864,
+    "sigma": 1.9902,
     "ci95": [
-     -1.6073,
-     6.1791
+     -1.6148,
+     6.1867
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1286,10 +1360,10 @@
    "area": {
     "value": 2.2859,
     "unit": "m2",
-    "sigma": 1.9864,
+    "sigma": 1.9902,
     "ci95": [
-     -1.6073,
-     6.1791
+     -1.6148,
+     6.1867
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1319,10 +1393,10 @@
    "area": {
     "value": 0.9847,
     "unit": "m2",
-    "sigma": 1.2669,
+    "sigma": 1.268,
     "ci95": [
-     -1.4984,
-     3.4678
+     -1.5006,
+     3.47
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1335,10 +1409,10 @@
    "area": {
     "value": 0.9847,
     "unit": "m2",
-    "sigma": 1.2669,
+    "sigma": 1.268,
     "ci95": [
-     -1.4984,
-     3.4678
+     -1.5006,
+     3.47
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1350,12 +1424,12 @@
    "kind": "wall",
    "wall": "R3-W1",
    "area": {
-    "value": 0.063,
+    "value": 6.593,
     "unit": "m2",
-    "sigma": 1.5735,
+    "sigma": 1.8039,
     "ci95": [
-     -3.0209,
-     3.1469
+     3.0575,
+     10.1286
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1367,12 +1441,12 @@
    "kind": "wall",
    "wall": "R3-W2",
    "area": {
-    "value": 1.378,
+    "value": 3.0962,
     "unit": "m2",
-    "sigma": 2.2213,
+    "sigma": 1.6282,
     "ci95": [
-     -2.9757,
-     5.7317
+     -0.0951,
+     6.2875
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1384,12 +1458,12 @@
    "kind": "wall",
    "wall": "R3-W3",
    "area": {
-    "value": 0.063,
+    "value": 6.593,
     "unit": "m2",
-    "sigma": 1.5735,
+    "sigma": 1.8039,
     "ci95": [
-     -3.0209,
-     3.1469
+     3.0575,
+     10.1286
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1401,12 +1475,12 @@
    "kind": "wall",
    "wall": "R3-W4",
    "area": {
-    "value": 1.378,
+    "value": 3.0962,
     "unit": "m2",
-    "sigma": 2.2213,
+    "sigma": 1.6282,
     "ci95": [
-     -2.9757,
-     5.7317
+     -0.0951,
+     6.2875
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1417,12 +1491,12 @@
    "room": "R3",
    "kind": "floor",
    "area": {
-    "value": 0.0128,
+    "value": 3.0197,
     "unit": "m2",
-    "sigma": 0.3214,
+    "sigma": 1.7431,
     "ci95": [
-     -0.6171,
-     0.6428
+     -0.3967,
+     6.4361
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1433,12 +1507,12 @@
    "room": "R3",
    "kind": "ceiling",
    "area": {
-    "value": 0.0128,
+    "value": 3.0197,
     "unit": "m2",
-    "sigma": 0.3214,
+    "sigma": 1.7431,
     "ci95": [
-     -0.6171,
-     0.6428
+     -0.3967,
+     6.4361
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1452,10 +1526,10 @@
    "area": {
     "value": 4.732,
     "unit": "m2",
-    "sigma": 2.3008,
+    "sigma": 2.3009,
     "ci95": [
-     0.2225,
-     9.2415
+     0.2223,
+     9.2417
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1469,10 +1543,10 @@
    "area": {
     "value": 1.7609,
     "unit": "m2",
-    "sigma": 1.5902,
+    "sigma": 1.595,
     "ci95": [
-     -1.3559,
-     4.8778
+     -1.3653,
+     4.8872
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1486,10 +1560,10 @@
    "area": {
     "value": 4.732,
     "unit": "m2",
-    "sigma": 2.3008,
+    "sigma": 2.3009,
     "ci95": [
-     0.2225,
-     9.2415
+     0.2223,
+     9.2417
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1503,10 +1577,10 @@
    "area": {
     "value": 1.7609,
     "unit": "m2",
-    "sigma": 1.5902,
+    "sigma": 1.595,
     "ci95": [
-     -1.3559,
-     4.8778
+     -1.3653,
+     4.8872
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1519,10 +1593,10 @@
    "area": {
     "value": 1.2327,
     "unit": "m2",
-    "sigma": 1.2533,
+    "sigma": 1.2563,
     "ci95": [
-     -1.2238,
-     3.6891
+     -1.2296,
+     3.6949
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1535,10 +1609,10 @@
    "area": {
     "value": 1.2327,
     "unit": "m2",
-    "sigma": 1.2533,
+    "sigma": 1.2563,
     "ci95": [
-     -1.2238,
-     3.6891
+     -1.2296,
+     3.6949
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1550,12 +1624,12 @@
    "kind": "wall",
    "wall": "R5-W1",
    "area": {
-    "value": 1.924,
+    "value": 1.248,
     "unit": "m2",
-    "sigma": 2.3846,
+    "sigma": 2.3767,
     "ci95": [
-     -2.7496,
-     6.5976
+     -3.4102,
+     5.9062
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1567,12 +1641,12 @@
    "kind": "wall",
    "wall": "R5-W2",
    "area": {
-    "value": 3.432,
+    "value": 0.13,
     "unit": "m2",
-    "sigma": 2.4141,
+    "sigma": 2.371,
     "ci95": [
-     -1.2995,
-     8.1635
+     -4.517,
+     4.777
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1584,12 +1658,12 @@
    "kind": "wall",
    "wall": "R5-W3",
    "area": {
-    "value": 2.4326,
+    "value": 1.3814,
     "unit": "m2",
-    "sigma": 1.8631,
+    "sigma": 1.7009,
     "ci95": [
-     -1.219,
-     6.0843
+     -1.9522,
+     4.7151
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1600,6 +1674,40 @@
    "room": "R5",
    "kind": "wall",
    "wall": "R5-W4",
+   "area": {
+    "value": 3.302,
+    "unit": "m2",
+    "sigma": 2.4109,
+    "ci95": [
+     -1.4233,
+     8.0273
+    ],
+    "observed": false,
+    "method": "photo:length*height"
+   }
+  },
+  {
+   "id": "R5-W5-S",
+   "room": "R5",
+   "kind": "wall",
+   "wall": "R5-W5",
+   "area": {
+    "value": 1.7272,
+    "unit": "m2",
+    "sigma": 0.8206,
+    "ci95": [
+     0.1189,
+     3.3355
+    ],
+    "observed": false,
+    "method": "photo:length*height"
+   }
+  },
+  {
+   "id": "R5-W6-S",
+   "room": "R5",
+   "kind": "wall",
+   "wall": "R5-W6",
    "area": {
     "value": 4.082,
     "unit": "m2",
@@ -1613,34 +1721,34 @@
    }
   },
   {
-   "id": "R5-W5-S",
+   "id": "R5-W7-S",
    "room": "R5",
    "kind": "wall",
-   "wall": "R5-W5",
+   "wall": "R5-W7",
    "area": {
     "value": 4.3566,
     "unit": "m2",
-    "sigma": 1.9236,
+    "sigma": 1.9276,
     "ci95": [
-     0.5864,
-     8.1269
+     0.5785,
+     8.1347
     ],
     "observed": false,
     "method": "photo:length*height"
    }
   },
   {
-   "id": "R5-W6-S",
+   "id": "R5-W8-S",
    "room": "R5",
    "kind": "wall",
-   "wall": "R5-W6",
+   "wall": "R5-W8",
    "area": {
     "value": 7.514,
     "unit": "m2",
-    "sigma": 2.5713,
+    "sigma": 2.5714,
     "ci95": [
-     2.4743,
-     12.5537
+     2.4741,
+     12.5539
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1651,12 +1759,12 @@
    "room": "R5",
    "kind": "floor",
    "area": {
-    "value": 3.6075,
+    "value": 3.9391,
     "unit": "m2",
-    "sigma": 2.5256,
+    "sigma": 2.3495,
     "ci95": [
-     -1.3426,
-     8.5577
+     -0.6658,
+     8.544
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1667,12 +1775,12 @@
    "room": "R5",
    "kind": "ceiling",
    "area": {
-    "value": 3.6075,
+    "value": 3.9391,
     "unit": "m2",
-    "sigma": 2.5256,
+    "sigma": 2.3495,
     "ci95": [
-     -1.3426,
-     8.5577
+     -0.6658,
+     8.544
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1686,10 +1794,10 @@
    "area": {
     "value": 8.0578,
     "unit": "m2",
-    "sigma": 1.9024,
+    "sigma": 1.9066,
     "ci95": [
-     4.3292,
-     11.7865
+     4.3209,
+     11.7947
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1701,12 +1809,12 @@
    "kind": "wall",
    "wall": "R6-W2",
    "area": {
-    "value": 3.2133,
+    "value": 3.1353,
     "unit": "m2",
-    "sigma": 1.6565,
+    "sigma": 1.6586,
     "ci95": [
-     -0.0335,
-     6.46
+     -0.1154,
+     6.386
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1720,10 +1828,10 @@
    "area": {
     "value": 8.0578,
     "unit": "m2",
-    "sigma": 1.9024,
+    "sigma": 1.9066,
     "ci95": [
-     4.3292,
-     11.7865
+     4.3209,
+     11.7947
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1735,12 +1843,12 @@
    "kind": "wall",
    "wall": "R6-W4",
    "area": {
-    "value": 3.2133,
+    "value": 3.1353,
     "unit": "m2",
-    "sigma": 1.6565,
+    "sigma": 1.6586,
     "ci95": [
-     -0.0335,
-     6.46
+     -0.1154,
+     6.386
     ],
     "observed": false,
     "method": "photo:length*height"
@@ -1751,12 +1859,12 @@
    "room": "R6",
    "kind": "floor",
    "area": {
-    "value": 3.8302,
+    "value": 3.7372,
     "unit": "m2",
-    "sigma": 2.1095,
+    "sigma": 2.1062,
     "ci95": [
-     -0.3043,
-     7.9647
+     -0.3909,
+     7.8653
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1767,12 +1875,12 @@
    "room": "R6",
    "kind": "ceiling",
    "area": {
-    "value": 3.8302,
+    "value": 3.7372,
     "unit": "m2",
-    "sigma": 2.1095,
+    "sigma": 2.1062,
     "ci95": [
-     -0.3043,
-     7.9647
+     -0.3909,
+     7.8653
     ],
     "observed": true,
     "method": "photo:polygon-area-propagated"
@@ -1786,11 +1894,11 @@
   "tier_sigma_multiplier": 1.0
  },
  "timing_s": {
-  "per_room_s": 4.97,
-  "stitch_s": 0.36,
-  "total_s": 5.33,
+  "per_room_s": 3.43,
+  "stitch_s": 0.37,
+  "total_s": 3.79,
   "damage_s": 0.0,
-  "wall_clock_s": 6.1
+  "wall_clock_s": 3.8
  },
  "notes": [
   "Photo registration covered < 50% of the photos in ['01_room2', '02_room5', '05_room1']: room extents there are lower bounds with widened intervals.",
