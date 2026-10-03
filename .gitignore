@@ -13,3 +13,4 @@ weights/
 runs/*/cache/
 *.npy
 *.ply
+data/arkitscenes/

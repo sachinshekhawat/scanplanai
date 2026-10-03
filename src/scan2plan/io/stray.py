@@ -91,6 +91,10 @@ def find_capture_dir(path: str | Path) -> Path:
 
 
 def load_stray(path: str | Path) -> StrayCapture:
+    from scan2plan.io.arkitscenes import is_arkitscenes, load_arkitscenes
+
+    if is_arkitscenes(Path(path)):
+        return load_arkitscenes(path)
     root = find_capture_dir(path)
     od = np.genfromtxt(root / "odometry.csv", delimiter=",", skip_header=1)
     K = np.loadtxt(root / "camera_matrix.csv", delimiter=",")

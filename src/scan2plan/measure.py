@@ -24,7 +24,10 @@ Z95 = 1.959964
 
 # LiDAR-tier constants (metres / relative); see docstring
 SIGMA_FACE_SYS = 0.004
-SCALE_REL = 0.002
+# iPhone/iPad LiDAR depth scale: 0.7% short vs laser on ARKitScenes visit 422382 (ceiling
+# pred/GT 0.990-0.997, benchmark/arkitscenes/report_422382.md); one visit is not enough to
+# correct the bias, so it enters as 1-sigma uncertainty. Held-out check: visit 422386.
+SCALE_REL = 0.007
 SIGMA_UNSNAPPED = 0.04
 SIGMA_JAMB = 0.006
 SIGMA_JAMB_RAW = 0.03

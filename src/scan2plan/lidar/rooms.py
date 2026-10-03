@@ -339,6 +339,16 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
             continue  # too small, or seen through a doorway but never entered
         k += 1
         labels[m] = k
+    # rooms narrower than DOOR_MAX can be sealed away entirely (both long walls look like door
+    # jambs to the axis closure): keep any walked-through free component that lost all its area
+    flab, fn = ndi.label(free)
+    for i in range(1, fn + 1):
+        m = flab == i
+        if m.sum() * RES**2 < min_room_area or (m & cam_d).sum() < min_cam_px:
+            continue
+        if (labels[m] > 0).sum() * RES**2 < 0.5 * min_room_area:
+            k += 1
+            labels[m & (labels == 0)] = k
     openings = find_openings(wall_img, sealed, labels, free, grid, runs)
     seg = RoomSeg(grid, wall_img, sealed, free, labels, runs, openings)
     for k in range(1, labels.max() + 1):

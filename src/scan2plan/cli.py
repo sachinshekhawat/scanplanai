@@ -27,6 +27,8 @@ def _unzip_if_needed(p: Path) -> Path:
 
 
 def detect_tier(p: Path) -> str:
+    if (p / "lowres_wide.traj").exists():
+        return "lidar"  # ARKitScenes raw capture
     if list(p.rglob("odometry.csv")):
         has_depth = any(d.is_dir() and any(d.iterdir()) for d in p.rglob("depth"))
         return "lidar" if has_depth else "video"
@@ -63,7 +65,8 @@ def run(capture: str, tier: str = "auto", out: str | None = None, drift: bool = 
         res = run_lidar(src, drift=drift, log=log)
         meta.update({"n_frames": int(res.cap.n_frames),
                      "duration_s": round(float(res.cap.timestamps[-1] - res.cap.timestamps[0]), 1),
-                     "device_class": "iPhone/iPad Pro with LiDAR (Stray Scanner)"})
+                     "device_class": "iPad Pro LiDAR (ARKitScenes)" if hasattr(res.cap, "rgb")
+                     else "iPhone/iPad Pro with LiDAR (Stray Scanner)"})
         plan = lidar_to_plan(res, meta)
         ctx = {"lidar": res}
     elif tier == "video":
