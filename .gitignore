@@ -14,3 +14,8 @@ runs/*/cache/
 *.npy
 *.ply
 data/arkitscenes/
+
+# Local-only: sample photo picks, dev/benchmark scratch runs, the brief
+data/
+runs/
+*.pdf

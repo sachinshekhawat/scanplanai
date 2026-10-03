@@ -40,18 +40,24 @@ Learned-model outputs are cached under `data/cache/` in deterministic npz files.
 ## Results on the provided sample data
 `scripts/run_sample_data.sh SampleDataTotest final` runs everything below in about 25 min on an M1 with warm caches. Committed outputs (JSON/PNG/SVG/log per run) are in `results/sample_data/`, and the report is `benchmark/results/final/report.md`.
 
-| capture | tier | rooms | floor area (95% CI) | wall clock |
-|---|---|---|---|---|
-| single_room | LiDAR | 3 | 19.2 ± 1.7 m² | 39 s |
-| single_scan_floor_only | LiDAR | 6 | 47.4 ± 2.9 m² | 124 s |
-| single_scan_with_ceiling | LiDAR | 7 | 49.1 ± 3.3 m² | 154 s |
-| (same 3) | video | 2 / 3 / 4 | 14.6 / 30.8 / 35.4 m² | 83–196 s (cached SfM+depth; cold about 15–20 min) |
-| (same 3) | photo | 2 / 5 / 6 | 3.4 / 26.9 / 11.8 m² | 2–6 s (cached; cold about 1 min/room) |
+| capture | tier | rooms | floor area (95% CI) | area vs LiDAR | wall clock |
+|---|---|---|---|---|---|
+| single_room | LiDAR | 3 | 19.4 ± 1.8 m² | reference | 40 s |
+| single_scan_floor_only | LiDAR | 6 | 48.1 ± 3.1 m² | reference | 115 s |
+| single_scan_with_ceiling | LiDAR | 7 | 49.8 ± 3.4 m² | reference | 158 s |
+| single_room | video | 2 | 17.4 ± 4.1 m² | −10% | 89 s |
+| single_scan_floor_only | video | 4 | 42.2 ± 6.9 m² | −12% | 164 s |
+| single_scan_with_ceiling | video | 3 | 57.0 ± 8.5 m² | +15% | 136 s |
+| single_room | photo | 2 | 3.2 ± 3.1 m² | −83% | 1 s |
+| single_scan_floor_only | photo | 5 | 29.7 ± 10.5 m² | −38% | 3 s |
+| single_scan_with_ceiling | photo | 6 | 15.0 ± 8.6 m² | −70% | 4 s |
 
-- **Same flat, two LiDAR sessions:** stitched footprint IoU **0.848** with drift correction vs 0.791 without. The two areas, 47.4 and 49.1 m², are mutually consistent within their intervals.
+Video timings use cached SfM and depth; a cold run takes about 15–20 min. Photo timings are cached; a cold run takes about 1 min per room. LiDAR includes the scale correction fitted on laser ground truth (below).
+
+- **Same flat, two LiDAR sessions:** stitched footprint IoU **0.848** with drift correction vs 0.791 without. The two areas, 48.1 and 49.8 m², are mutually consistent within their intervals.
 - **Repeatability gate:** fails (23% of walls within 1 cm). The cause is that each walk divides the open-plan area into rooms differently (`docs/fix_loop.md`). The fully observed room agrees within 1.4 cm.
 - **Calibration:** intervals cover the cross-session differences 91% of the time (target 95%).
-- **Video and photo** reconstruct a reduced part of the flat from these LiDAR-style sweeps (close range, fast turns). Their areas are under-estimates against the LiDAR reference, which is reported, not hidden.
+- **Video and photo** reconstruct a reduced part of the flat from these LiDAR-style sweeps (close range, fast turns). Video areas land within 10–15% of LiDAR and inside their intervals. Photo areas are large under-estimates, and two of three miss their intervals. All of this is reported, not hidden (`benchmark/results/final/report.md`, cross-tier table).
 - **No ground truth in the sample data.** For absolute accuracy we added an **external laser-scanner benchmark**: ARKitScenes, Apple's dataset of iPad Pro LiDAR walks with Faro laser scans of the same rooms (CC BY-NC-SA). We used 5 walks over 2 visits, with no parameters tuned on the held-out visit. Run it with `python scripts/arkitscenes_gt.py <visit> <videos...>`; the reports are `benchmark/arkitscenes/report_*.md`.
   - **Ceiling height:** after a depth-scale correction fitted on the dev visit only, errors are −0.7, 0.0, −0.2 and +0.5 cm on the dev rooms, all within the 1.5 cm gate. On the held-out rooms they are −2.2 and −0.7 cm (`benchmark/arkitscenes/calibration.md`).
   - **Wall lengths:** median error about 10 cm vs laser (24 GT-valid walls over 9 walks); 83% of 95% intervals contain the GT. Five tuning iterations on a train split found no layout change that improves this without merging rooms, so the layout ships unchanged. See `benchmark/arkitscenes/iterations.md` for the post-mortem, including a scoring bug we found in our own GT extractor.
