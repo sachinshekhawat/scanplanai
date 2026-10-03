@@ -21,6 +21,7 @@ from scan2plan.io.stray import DEPTH_H, DEPTH_W, StrayCapture
 COS15 = np.cos(np.deg2rad(15))
 SIN15 = np.sin(np.deg2rad(15))
 N_BEARING = 720  # 0.5 deg bins for plan-view ray carving
+HIGH_BAND = 0.25  # 'high' points: above (camera height - 0.25 m) ~ 1.1 m over the floor
 
 
 @dataclass
@@ -34,6 +35,7 @@ class FusedCloud:
     cam_xz: np.ndarray  # (K,2) camera positions of keyframes
     cam_y: np.ndarray  # (K,) camera heights
     meta: dict = field(default_factory=dict)
+    fan_high: np.ndarray = None  # like fan_range, from points above the camera-height band (sees over furniture)
 
 
 def select_keyframes(cap: StrayCapture, min_trans: float = 0.05, min_rot_deg: float = 4.0,
@@ -92,6 +94,7 @@ def fuse(cap: StrayCapture, rotations: np.ndarray | None = None, positions: np.n
 
     H, V, Vn, Vf = [], [], [], []
     fans = np.full((len(kf), N_BEARING), np.nan)
+    fans_hi = np.full((len(kf), N_BEARING), np.nan)
     chunk_h, chunk_v, chunk_vn, chunk_vf = [], [], [], []
 
     def flush():
@@ -128,6 +131,14 @@ def fuse(cap: StrayCapture, rotations: np.ndarray | None = None, positions: np.n
         dxz = pw[:, [0, 2]] - ts[i][[0, 2]]
         rng = np.hypot(dxz[:, 0], dxz[:, 1])
         b = (np.floor((np.arctan2(dxz[:, 1], dxz[:, 0]) + np.pi) / (2 * np.pi) * N_BEARING).astype(int)) % N_BEARING
+        hi = pw[:, 1] > ts[i][1] - HIGH_BAND
+        if hi.sum() > 10:
+            bh, rh = b[hi], rng[hi]
+            o2 = np.lexsort((rh, bh))
+            bs2, rs2 = bh[o2], rh[o2]
+            l2 = np.r_[np.nonzero(np.diff(bs2))[0], len(bs2) - 1]
+            f2 = np.r_[0, l2[:-1] + 1]
+            fans_hi[j, bs2[l2]] = rs2[f2 + ((l2 - f2) * 0.9).astype(int)]
         if len(b):
             order = np.lexsort((rng, b))
             bs, rs = b[order], rng[order]
@@ -154,7 +165,7 @@ def fuse(cap: StrayCapture, rotations: np.ndarray | None = None, positions: np.n
     vn = vex[:, :2]
     vn /= np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-9)
     return FusedCloud(
-        horiz=horiz, vert=vert, vert_n=vn, vert_frame=vex[:, 2].astype(int), keyframes=kf, fan_range=fans,
+        horiz=horiz, vert=vert, vert_n=vn, vert_frame=vex[:, 2].astype(int), keyframes=kf, fan_range=fans, fan_high=fans_hi,
         cam_xz=ts[kf][:, [0, 2]], cam_y=ts[kf][:, 1],
         meta={"voxel": voxel, "zmax": zmax, "min_conf": min_conf, "n_keyframes": int(len(kf))},
     )

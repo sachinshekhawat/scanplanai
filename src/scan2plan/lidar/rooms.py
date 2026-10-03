@@ -115,6 +115,12 @@ def make_grid(xy: np.ndarray, pad: float = 0.5) -> Grid:
     return Grid(float(lo[0]), float(lo[1]), int(w), int(h))
 
 
+MIN_EDGE = 0.25
+WALL_MIN_COV = 0.7
+USE_HIGH_FANS = True
+PREFER_TALL = True
+TALL_PENALTY = 0.03
+HIGH_EXTRA_VIEWS = 1
 FIXED_BAND = False  # fix loop: band must not depend on whether this session saw the ceiling
 
 
@@ -152,9 +158,10 @@ def carve_free(grid: Grid, cam_xy: np.ndarray, fans: np.ndarray, R2: np.ndarray,
 
 
 def structural_walls(grid: Grid, vxy: np.ndarray, vy: np.ndarray, band: tuple[float, float],
-                     slab: float = 0.1, min_cov: float = 0.6) -> np.ndarray:
+                     slab: float = 0.1, min_cov: float | None = None) -> np.ndarray:
     """Cells whose vertical evidence covers >= min_cov of the band's height slabs.
     Furniture fronts cover only the lower part and are rejected."""
+    min_cov = WALL_MIN_COV if min_cov is None else min_cov
     nsl = max(int((band[1] - band[0]) / slab), 1)
     inb = (vy > band[0]) & (vy < band[1])
     ix, iy = grid.idx(vxy[inb])
@@ -318,13 +325,45 @@ def find_openings(wall_img: np.ndarray, sealed: np.ndarray, labels: np.ndarray, 
     return dedup
 
 
+ALCOVE_FRAC = 1.0  # opening spanning >= this fraction of the smaller room's side => same room
+
+
+def _merge_alcoves(labels: np.ndarray, openings: list, grid: Grid):
+    """Merge rooms joined by an 'opening' that spans most of the smaller room's side: that is an
+    alcove / open-plan bay, not a doorway (doors are narrow relative to the wall they sit in)."""
+    merged = 0
+    for o in sorted(openings, key=lambda o: -o.width):
+        a, b = o.rooms
+        if a == b or not (labels == a).any() or not (labels == b).any():
+            continue
+        ext = []
+        for r in (a, b):
+            ys, xs = np.nonzero(labels == r)
+            ext.append(((xs.max() - xs.min() + 1) if o.axis == 1 else (ys.max() - ys.min() + 1)) * grid.res)
+        if o.width >= ALCOVE_FRAC * min(ext):
+            labels = np.where(labels == b, a, labels)
+            openings = [type(q)(q.axis, q.c, q.lo, q.hi, q.kind, tuple(a if x == b else x for x in q.rooms), q.jamb_refined)
+                        for q in openings]
+            merged += 1
+    if merged:  # compact relabel 1..n
+        u = np.unique(labels[labels > 0])
+        lut = np.zeros(labels.max() + 1, labels.dtype)
+        lut[u] = np.arange(1, len(u) + 1)
+        labels = lut[labels]
+    return labels, merged
+
+
 def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.ndarray,
                   fans: np.ndarray, R2: np.ndarray, floor_y: float, ceil_y: float | None,
-                  min_room_area: float = 1.0, min_cam_px: int = 15, min_views: int = 2) -> RoomSeg:
+                  min_room_area: float = 1.0, min_cam_px: int = 15, min_views: int = 2,
+                  fans_high: np.ndarray | None = None) -> RoomSeg:
     band = wall_band(floor_y, ceil_y)
     grid = make_grid(np.concatenate([vxy[::10], cam_xy]))
     wall_img = structural_walls(grid, vxy, vy, band)
     carved = carve_free(grid, cam_xy, fans, R2, min_views=min_views)
+    if USE_HIGH_FANS and fans_high is not None:
+        # rays to walls above furniture height prove the floor beneath them is free too
+        carved |= carve_free(grid, cam_xy, fans_high, R2, min_views=min_views + HIGH_EXTRA_VIEWS)
     ci, cj = grid.idx(cam_xy)
     cam = np.zeros((grid.h, grid.w), np.uint8)
     cam[cj, ci] = 1
@@ -355,6 +394,10 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
             k += 1
             labels[m & (labels == 0)] = k
     openings = find_openings(wall_img, sealed, labels, free, grid, runs)
+    if ALCOVE_FRAC < 1.0:
+        labels, merged = _merge_alcoves(labels, openings, grid)
+        if merged:
+            openings = find_openings(wall_img, sealed, labels, free, grid, runs)
     seg = RoomSeg(grid, wall_img, sealed, free, labels, runs, openings)
     for k in range(1, labels.max() + 1):
         poly, edges = room_polygon(labels == k, grid, runs)
@@ -430,9 +473,10 @@ def _snap_outward(edges: list[dict], runs: list[WallRun]) -> list[dict]:
 
 
 def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float = 0.15,  # noqa: E501
-                 min_edge: float = 0.40) -> tuple[Polygon, list[dict]]:  # 0.4: sweep in technical_report §6
+                 min_edge: float | None = None) -> tuple[Polygon, list[dict]]:
     """Rectilinear polygon of a room mask with edges snapped to bounding wall faces.
     Returns the polygon and per-edge metadata (snapped run, sigma) for uncertainty."""
+    min_edge = MIN_EDGE if min_edge is None else min_edge
     m = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, disk(4))
     m = ndi.binary_fill_holes(m).astype(np.uint8)
     cs, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -499,6 +543,8 @@ def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float 
             if ov < 0.3 * min(hi - lo, r.hi - r.lo) and ov < 0.25:
                 continue
             dist = abs(r.c - c_raw)
+            if PREFER_TALL and r.top < TALL_MIN:
+                dist += TALL_PENALTY  # clutter fronts lose to a structural face at similar distance
             if dist < bd:
                 best, bd = r, dist
         edges.append({"axis": ax, "c": best.c if best else c_raw, "lo": lo, "hi": hi,

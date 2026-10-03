@@ -56,7 +56,7 @@ def run_lidar(path, drift: bool = True, log=print) -> LidarResult:
     R2 = rot2(theta)
     v = cloud.vert
     seg = segment_rooms(v[:, [0, 2]] @ R2.T, cloud.vert_n @ R2.T, v[:, 1], cloud.cam_xz @ R2.T,
-                        cloud.fan_range, R2, level.floor_y, level.ceiling_y)
+                        cloud.fan_range, R2, level.floor_y, level.ceiling_y, fans_high=cloud.fan_high)
     T["layout_s"] = time.time() - t1
     T["total_s"] = time.time() - t0
     log(f"[lidar] {len(seg.polygons)} rooms, {len(seg.openings)} openings, "
