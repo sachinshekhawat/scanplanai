@@ -4,7 +4,7 @@
  "walks": {
   "42446527": {
    "registration": {
-    "icp_rmse_m": 0.012194768964457987,
+    "icp_rmse_m": 0.012194768964458001,
     "ipad_to_laser_median_m": 1.192107018914775,
     "frac_within_2cm": 0.042465611913257
    },
@@ -13,10 +13,10 @@
     {
      "room": "R2",
      "gt_m": 2.3299999999999503,
-     "pred_m": 2.2926,
-     "sigma": 0.0166,
+     "pred_m": 2.3081,
+     "sigma": 0.0101,
      "observed": true,
-     "err_m": -0.03739999999995014
+     "err_m": -0.021899999999950293
     }
    ],
    "summary": {
@@ -28,22 +28,22 @@
     "face_bounded_median_abs_err_m": null
    },
    "n_rooms": 2,
-   "floor_area_m2": 5.4656
+   "floor_area_m2": 5.5395
   },
   "42446532": {
    "registration": {
     "icp_rmse_m": 0.0123406981297542,
-    "ipad_to_laser_median_m": 0.31424608558701034,
+    "ipad_to_laser_median_m": 0.3142460855870103,
     "frac_within_2cm": 0.06784143383713123
    },
    "walls": [
     {
      "room": "R1",
      "wall": "R1-W2",
-     "gt_m": 1.425010790719764,
-     "pred_m": 1.29,
-     "sigma": 0.4281,
-     "err_m": -0.13501079071976396,
+     "gt_m": 1.5369467953639289,
+     "pred_m": 1.2987,
+     "sigma": 0.4309,
+     "err_m": -0.2382467953639289,
      "bounded_by_wall_face": false
     }
    ],
@@ -51,37 +51,37 @@
     {
      "room": "R1",
      "gt_m": 2.335000000000002,
-     "pred_m": 2.3127,
-     "sigma": 0.0168,
+     "pred_m": 2.3283,
+     "sigma": 0.0102,
      "observed": true,
-     "err_m": -0.022300000000002207
+     "err_m": -0.006700000000002149
     },
     {
      "room": "R2",
      "gt_m": 1.6749999999999643,
-     "pred_m": 2.3164,
-     "sigma": 0.0168,
+     "pred_m": 2.3321,
+     "sigma": 0.0102,
      "observed": true,
-     "err_m": 0.6414000000000355
+     "err_m": 0.6571000000000358
     }
    ],
    "summary": {
     "n_walls": 1,
-    "median_abs_err_m": 0.13501079071976396,
+    "median_abs_err_m": 0.2382467953639289,
     "within_1cm_or_0.5pct": 0.0,
     "within_3pct": 0.0,
     "ci95_coverage": 1.0,
     "face_bounded_median_abs_err_m": null
    },
    "n_rooms": 2,
-   "floor_area_m2": 7.5196
+   "floor_area_m2": 7.6214
   }
  },
  "repeatability": {
   "floor_area_m2_per_walk": [
-   5.4656,
-   7.5196
+   5.5395,
+   7.6214
   ],
-  "ceiling_pred_spread_m": 0.0237999999999996
+  "ceiling_pred_spread_m": 0.02400000000000002
  }
 }

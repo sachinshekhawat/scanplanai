@@ -4,8 +4,8 @@
  "walks": {
   "42446533": {
    "registration": {
-    "icp_rmse_m": 0.012481907591009218,
-    "ipad_to_laser_median_m": 0.026459001606260867,
+    "icp_rmse_m": 0.012481907591009226,
+    "ipad_to_laser_median_m": 0.0264590016062611,
     "frac_within_2cm": 0.4223850551574201
    },
    "walls": [],
@@ -13,18 +13,18 @@
     {
      "room": "R1",
      "gt_m": 2.3249999999999504,
-     "pred_m": 2.302,
-     "sigma": 0.0167,
+     "pred_m": 2.3175,
+     "sigma": 0.0102,
      "observed": true,
-     "err_m": -0.022999999999950393
+     "err_m": -0.007499999999950546
     },
     {
      "room": "R2",
      "gt_m": 2.3249999999999504,
-     "pred_m": 2.3098,
-     "sigma": 0.0167,
+     "pred_m": 2.3254,
+     "sigma": 0.0102,
      "observed": true,
-     "err_m": -0.015199999999950364
+     "err_m": 0.00040000000004969394
     }
    ],
    "summary": {
@@ -36,11 +36,11 @@
     "face_bounded_median_abs_err_m": null
    },
    "n_rooms": 2,
-   "floor_area_m2": 2.1203
+   "floor_area_m2": 2.149
   },
   "42446535": {
    "registration": {
-    "icp_rmse_m": 0.012325575643770027,
+    "icp_rmse_m": 0.012325575643770051,
     "ipad_to_laser_median_m": 0.017255387317008396,
     "frac_within_2cm": 0.5637230879806593
    },
@@ -48,46 +48,46 @@
     {
      "room": "R1",
      "wall": "R1-W1",
-     "gt_m": 1.7545176238648286,
-     "pred_m": 1.6425,
-     "sigma": 0.2331,
-     "err_m": -0.1120176238648285,
+     "gt_m": 1.754736683537828,
+     "pred_m": 1.6536,
+     "sigma": 0.2381,
+     "err_m": -0.10113668353782801,
      "bounded_by_wall_face": false
     },
     {
      "room": "R1",
      "wall": "R1-W2",
-     "gt_m": 1.084047216365803,
-     "pred_m": 0.6835,
-     "sigma": 0.4116,
-     "err_m": -0.40054721636580304,
+     "gt_m": 1.0827134291993588,
+     "pred_m": 0.6881,
+     "sigma": 0.4146,
+     "err_m": -0.3946134291993587,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W7",
-     "gt_m": 1.8729671234939207,
-     "pred_m": 1.683,
-     "sigma": 0.2389,
-     "err_m": -0.18996712349392064,
+     "gt_m": 1.8688310504648817,
+     "pred_m": 1.6944,
+     "sigma": 0.2438,
+     "err_m": -0.17443105046488183,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W8",
-     "gt_m": 0.5207172817119073,
-     "pred_m": 0.6222,
-     "sigma": 0.0073,
-     "err_m": 0.10148271828809263,
+     "gt_m": 0.5149331982342373,
+     "pred_m": 0.6264,
+     "sigma": 0.0499,
+     "err_m": 0.11146680176576262,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W12",
-     "gt_m": 0.4597935663588002,
-     "pred_m": 0.6635,
-     "sigma": 0.3027,
-     "err_m": 0.20370643364119978,
+     "gt_m": 0.46225693912631893,
+     "pred_m": 0.6679,
+     "sigma": 0.3067,
+     "err_m": 0.20564306087368112,
      "bounded_by_wall_face": true
     }
    ],
@@ -95,131 +95,131 @@
     {
      "room": "R1",
      "gt_m": 2.34499999999995,
-     "pred_m": 2.3268,
-     "sigma": 0.0168,
+     "pred_m": 2.3425,
+     "sigma": 0.0102,
      "observed": true,
-     "err_m": -0.018199999999950034
+     "err_m": -0.0024999999999502087
     }
    ],
    "summary": {
     "n_walls": 5,
-    "median_abs_err_m": 0.18996712349392064,
+    "median_abs_err_m": 0.17443105046488183,
     "within_1cm_or_0.5pct": 0.0,
     "within_3pct": 0.0,
     "ci95_coverage": 0.8,
-    "face_bounded_median_abs_err_m": 0.1968367785675602
+    "face_bounded_median_abs_err_m": 0.19003705566928147
    },
    "n_rooms": 1,
-   "floor_area_m2": 4.4691
+   "floor_area_m2": 4.5296
   },
   "42446536": {
    "registration": {
-    "icp_rmse_m": 0.012246002965873597,
-    "ipad_to_laser_median_m": 0.014701620057578905,
+    "icp_rmse_m": 0.012246002965873587,
+    "ipad_to_laser_median_m": 0.014701620057578977,
     "frac_within_2cm": 0.651849000203809
    },
    "walls": [
     {
      "room": "R1",
      "wall": "R1-W1",
-     "gt_m": 0.533710109942744,
-     "pred_m": 0.5403,
-     "sigma": 0.0072,
-     "err_m": 0.006589890057255965,
+     "gt_m": 0.5338588657426286,
+     "pred_m": 0.5439,
+     "sigma": 0.0499,
+     "err_m": 0.010041134257371409,
      "bounded_by_wall_face": false
     },
     {
      "room": "R1",
      "wall": "R1-W2",
-     "gt_m": 0.9797055632980607,
-     "pred_m": 0.9428,
-     "sigma": 0.3028,
-     "err_m": -0.03690556329806072,
+     "gt_m": 0.9797712855815512,
+     "pred_m": 0.9492,
+     "sigma": 0.3067,
+     "err_m": -0.0305712855815512,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W3",
-     "gt_m": 0.585440623731251,
-     "pred_m": 0.5157,
-     "sigma": 0.0285,
-     "err_m": -0.069740623731251,
+     "gt_m": 0.5843615148981164,
+     "pred_m": 0.5191,
+     "sigma": 0.057,
+     "err_m": -0.06526151489811638,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W4",
-     "gt_m": 1.8900323552111524,
-     "pred_m": 1.878,
-     "sigma": 0.0662,
-     "err_m": -0.012032355211152534,
+     "gt_m": 1.8870212302407752,
+     "pred_m": 1.8907,
+     "sigma": 0.082,
+     "err_m": 0.003678769759224876,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W5",
-     "gt_m": 0.49068389552693925,
-     "pred_m": 0.5656,
-     "sigma": 0.0284,
-     "err_m": 0.07491610447306074,
+     "gt_m": 0.4904668985467171,
+     "pred_m": 0.5694,
+     "sigma": 0.057,
+     "err_m": 0.07893310145328292,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W6",
-     "gt_m": 3.171407104804259,
-     "pred_m": 2.9449,
-     "sigma": 0.1892,
-     "err_m": -0.22650710480425884,
+     "gt_m": 3.1746349527190505,
+     "pred_m": 2.9648,
+     "sigma": 0.1949,
+     "err_m": -0.20983495271905062,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W7",
-     "gt_m": 0.6580711480023249,
-     "pred_m": 0.8391,
-     "sigma": 0.3027,
-     "err_m": 0.18102885199767504,
+     "gt_m": 0.6580332536852727,
+     "pred_m": 0.8448,
+     "sigma": 0.3067,
+     "err_m": 0.18676674631472734,
      "bounded_by_wall_face": true
     },
     {
      "room": "R1",
      "wall": "R1-W12",
-     "gt_m": 4.273900722707676,
-     "pred_m": 4.0383,
-     "sigma": 0.3185,
-     "err_m": -0.23560072270767662,
+     "gt_m": 4.2738985886273735,
+     "pred_m": 4.0655,
+     "sigma": 0.3215,
+     "err_m": -0.20839858862737337,
      "bounded_by_wall_face": true
     }
    ],
    "ceiling": [
     {
      "room": "R1",
-     "gt_m": 2.33999999999995,
-     "pred_m": 2.3342,
-     "sigma": 0.0169,
+     "gt_m": 2.34499999999995,
+     "pred_m": 2.35,
+     "sigma": 0.0103,
      "observed": true,
-     "err_m": -0.005799999999950067
+     "err_m": 0.0050000000000500755
     }
    ],
    "summary": {
     "n_walls": 8,
-    "median_abs_err_m": 0.07232836410215587,
+    "median_abs_err_m": 0.07209730817569965,
     "within_1cm_or_0.5pct": 0.125,
     "within_3pct": 0.25,
-    "ci95_coverage": 0.75,
-    "face_bounded_median_abs_err_m": 0.07491610447306074
+    "ci95_coverage": 1.0,
+    "face_bounded_median_abs_err_m": 0.07893310145328292
    },
    "n_rooms": 1,
-   "floor_area_m2": 6.8222
+   "floor_area_m2": 6.9146
   }
  },
  "repeatability": {
   "floor_area_m2_per_walk": [
-   2.1203,
-   4.4691,
-   6.8222
+   2.149,
+   4.5296,
+   6.9146
   ],
-  "ceiling_pred_spread_m": 0.032200000000000006
+  "ceiling_pred_spread_m": 0.032500000000000195
  }
 }

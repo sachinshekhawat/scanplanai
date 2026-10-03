@@ -20,21 +20,21 @@
  "frame": {
   "description": "plan frame: gravity-aligned, x/y on the dominant wall axes, origin arbitrary",
   "bounds": [
-   -0.738,
-   -1.075,
-   8.852,
-   8.667
+   -0.743,
+   -1.082,
+   8.912,
+   8.725
   ]
  },
  "property": {
   "n_rooms": 7,
   "floor_area_total": {
-   "value": 49.0899,
+   "value": 49.7544,
    "unit": "m2",
-   "sigma": 1.6614,
+   "sigma": 1.7389,
    "ci95": [
-    45.8336,
-    52.3462
+    46.3462,
+    53.1625
    ],
    "observed": true,
    "method": "lidar:sum-room-areas"
@@ -122,51 +122,51 @@
    "type": "room",
    "polygon": [
     [
-     -0.5875,
-     -1.0751
+     -0.5914,
+     -1.0823
     ],
     [
-     -0.5875,
-     1.9954
+     -0.5914,
+     2.0088
     ],
     [
-     2.2569,
-     1.9954
+     2.2721,
+     2.0088
     ],
     [
-     2.2569,
-     -1.0751
+     2.2721,
+     -1.0823
     ]
    ],
    "floor_area": {
-    "value": 8.7336,
+    "value": 8.8518,
     "unit": "m2",
-    "sigma": 0.3632,
+    "sigma": 0.421,
     "ci95": [
-     8.0217,
-     9.4456
+     8.0267,
+     9.677
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 11.8297,
+    "value": 11.9095,
     "unit": "m",
-    "sigma": 0.1679,
+    "sigma": 0.1949,
     "ci95": [
-     11.5007,
-     12.1587
+     11.5276,
+     12.2915
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.9566,
+    "value": 2.9765,
     "unit": "m",
-    "sigma": 0.0073,
+    "sigma": 0.0126,
     "ci95": [
-     2.9423,
-     2.9708
+     2.9519,
+     3.0011
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 159%)"
@@ -175,100 +175,100 @@
     {
      "id": "R1-W1",
      "start": [
-      -0.5875,
-      -1.0751
+      -0.5914,
+      -1.0823
      ],
      "end": [
-      -0.5875,
-      1.9954
+      -0.5914,
+      2.0088
      ],
      "length": {
-      "value": 3.0704,
+      "value": 3.0912,
       "unit": "m",
-      "sigma": 0.0263,
+      "sigma": 0.0571,
       "ci95": [
-       3.0188,
-       3.1221
+       2.9793,
+       3.203
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.1158,
+     "face_sigma_m": 0.121,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R1-W2",
      "start": [
-      -0.5875,
-      1.9954
+      -0.5914,
+      2.0088
      ],
      "end": [
-      2.2569,
-      1.9954
+      2.2721,
+      2.0088
      ],
      "length": {
-      "value": 2.8444,
+      "value": 2.8636,
       "unit": "m",
-      "sigma": 0.116,
+      "sigma": 0.1265,
       "ci95": [
-       2.617,
-       3.0718
+       2.6156,
+       3.1116
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0253,
+     "face_sigma_m": 0.0432,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R1-W3",
      "start": [
-      2.2569,
-      1.9954
+      2.2721,
+      2.0088
      ],
      "end": [
-      2.2569,
-      -1.0751
+      2.2721,
+      -1.0823
      ],
      "length": {
-      "value": 3.0704,
+      "value": 3.0912,
       "unit": "m",
-      "sigma": 0.0263,
+      "sigma": 0.0571,
       "ci95": [
-       3.0188,
-       3.1221
+       2.9793,
+       3.203
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R1-W4",
      "start": [
-      2.2569,
-      -1.0751
+      2.2721,
+      -1.0823
      ],
      "end": [
-      -0.5875,
-      -1.0751
+      -0.5914,
+      -1.0823
      ],
      "length": {
-      "value": 2.8444,
+      "value": 2.8636,
       "unit": "m",
-      "sigma": 0.116,
+      "sigma": 0.1265,
       "ci95": [
-       2.617,
-       3.0718
+       2.6156,
+       3.1116
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0041,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -279,59 +279,59 @@
    "type": "room",
    "polygon": [
     [
-     5.4061,
-     0.815
+     5.4426,
+     0.8204
     ],
     [
-     5.4061,
-     3.0115
+     5.4426,
+     3.0319
     ],
     [
-     8.852,
-     3.0115
+     8.9117,
+     3.0319
     ],
     [
-     8.852,
-     0.2523
+     8.9117,
+     0.254
     ],
     [
-     6.0885,
-     0.2523
+     6.1296,
+     0.254
     ],
     [
-     6.0885,
-     0.815
+     6.1296,
+     0.8204
     ]
    ],
    "floor_area": {
-    "value": 9.1239,
+    "value": 9.2474,
     "unit": "m2",
-    "sigma": 0.4962,
+    "sigma": 0.5387,
     "ci95": [
-     8.1513,
-     10.0965
+     8.1915,
+     10.3033
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 12.4101,
+    "value": 12.4938,
     "unit": "m",
-    "sigma": 0.3174,
+    "sigma": 0.3397,
     "ci95": [
-     11.7881,
-     13.0321
+     11.828,
+     13.1597
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 3.0764,
+    "value": 3.0971,
     "unit": "m",
-    "sigma": 0.0075,
+    "sigma": 0.013,
     "ci95": [
-     3.0617,
-     3.091
+     3.0716,
+     3.1226
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 180%)"
@@ -340,125 +340,125 @@
     {
      "id": "R2-W1",
      "start": [
-      5.4061,
-      0.815
+      5.4426,
+      0.8204
      ],
      "end": [
-      5.4061,
-      3.0115
+      5.4426,
+      3.0319
      ],
      "length": {
-      "value": 2.1966,
+      "value": 2.2114,
       "unit": "m",
-      "sigma": 0.0072,
+      "sigma": 0.0506,
       "ci95": [
-       2.1825,
-       2.2107
+       2.1122,
+       2.3106
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.2216,
+     "face_sigma_m": 0.2244,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W2",
      "start": [
-      5.4061,
-      3.0115
+      5.4426,
+      3.0319
      ],
      "end": [
-      8.852,
-      3.0115
+      8.9117,
+      3.0319
      ],
      "length": {
-      "value": 3.4458,
+      "value": 3.4691,
       "unit": "m",
-      "sigma": 0.2218,
+      "sigma": 0.2276,
       "ci95": [
-       3.0111,
-       3.8805
+       3.023,
+       3.9151
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W3",
      "start": [
-      8.852,
-      3.0115
+      8.9117,
+      3.0319
      ],
      "end": [
-      8.852,
-      0.2523
+      8.9117,
+      0.254
      ],
      "length": {
-      "value": 2.7592,
+      "value": 2.7778,
       "unit": "m",
-      "sigma": 0.0348,
+      "sigma": 0.0613,
       "ci95": [
-       2.691,
-       2.8274
+       2.6578,
+       2.8979
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W4",
      "start": [
-      8.852,
-      0.2523
+      8.9117,
+      0.254
      ],
      "end": [
-      6.0885,
-      0.2523
+      6.1296,
+      0.254
      ],
      "length": {
-      "value": 2.7635,
+      "value": 2.7821,
       "unit": "m",
-      "sigma": 0.0079,
+      "sigma": 0.0511,
       "ci95": [
-       2.7479,
-       2.779
+       2.682,
+       2.8822
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0341,
+     "face_sigma_m": 0.0489,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R2-W5",
      "start": [
-      6.0885,
-      0.2523
+      6.1296,
+      0.254
      ],
      "end": [
-      6.0885,
-      0.815
+      6.1296,
+      0.8204
      ],
      "length": {
-      "value": 0.5626,
+      "value": 0.5664,
       "unit": "m",
-      "sigma": 0.0344,
+      "sigma": 0.0603,
       "ci95": [
-       0.4953,
-       0.63
+       0.4483,
+       0.6846
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": [
       "O3"
@@ -467,25 +467,25 @@
     {
      "id": "R2-W6",
      "start": [
-      6.0885,
-      0.815
+      6.1296,
+      0.8204
      ],
      "end": [
-      5.4061,
-      0.815
+      5.4426,
+      0.8204
      ],
      "length": {
-      "value": 0.6824,
+      "value": 0.687,
       "unit": "m",
-      "sigma": 0.2217,
+      "sigma": 0.2272,
       "ci95": [
-       0.2478,
-       1.1169
+       0.2417,
+       1.1322
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -496,67 +496,67 @@
    "type": "room",
    "polygon": [
     [
-     5.1655,
-     0.815
+     5.2003,
+     0.8204
     ],
     [
-     2.4186,
-     0.815
+     2.4349,
+     0.8204
     ],
     [
-     2.4186,
-     3.894
+     2.4349,
+     3.9203
     ],
     [
-     2.1211,
-     3.894
+     2.1354,
+     3.9203
     ],
     [
-     2.1211,
-     5.2308
+     2.1354,
+     5.2661
     ],
     [
-     3.1512,
-     5.2308
+     3.1724,
+     5.2661
     ],
     [
-     3.1512,
-     4.8485
+     3.1724,
+     4.8812
     ],
     [
-     5.1655,
-     4.8485
+     5.2003,
+     4.8812
     ]
    ],
    "floor_area": {
-    "value": 11.7575,
+    "value": 11.9166,
     "unit": "m2",
-    "sigma": 0.5179,
+    "sigma": 0.5675,
     "ci95": [
-     10.7424,
-     12.7725
+     10.8043,
+     13.0289
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 14.9205,
+    "value": 15.0211,
     "unit": "m",
-    "sigma": 0.6123,
+    "sigma": 0.6281,
     "ci95": [
-     13.7204,
-     16.1205
+     13.7901,
+     16.2521
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.4427,
+    "value": 2.4592,
     "unit": "m",
-    "sigma": 0.0065,
+    "sigma": 0.0107,
     "ci95": [
-     2.43,
-     2.4554
+     2.4383,
+     2.4801
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 81%)"
@@ -565,100 +565,100 @@
     {
      "id": "R3-W1",
      "start": [
-      5.1655,
-      0.815
+      5.2003,
+      0.8204
      ],
      "end": [
-      2.4186,
-      0.815
+      2.4349,
+      0.8204
      ],
      "length": {
-      "value": 2.7469,
+      "value": 2.7654,
       "unit": "m",
-      "sigma": 0.0115,
+      "sigma": 0.0517,
       "ci95": [
-       2.7243,
-       2.7694
+       2.664,
+       2.8668
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0065,
+     "face_sigma_m": 0.0356,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R3-W2",
      "start": [
-      2.4186,
-      0.815
+      2.4349,
+      0.8204
      ],
      "end": [
-      2.4186,
-      3.894
+      2.4349,
+      3.9203
      ],
      "length": {
-      "value": 3.0791,
+      "value": 3.0998,
       "unit": "m",
-      "sigma": 0.0536,
+      "sigma": 0.0738,
       "ci95": [
-       2.9739,
-       3.1842
+       2.9552,
+       3.2444
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R3-W3",
      "start": [
-      2.4186,
-      3.894
+      2.4349,
+      3.9203
      ],
      "end": [
-      2.1211,
-      3.894
+      2.1354,
+      3.9203
      ],
      "length": {
-      "value": 0.2975,
+      "value": 0.2995,
       "unit": "m",
-      "sigma": 0.3027,
+      "sigma": 0.3067,
       "ci95": [
-       -0.2958,
-       0.8907
+       -0.3016,
+       0.9006
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.0529,
+     "face_sigma_m": 0.0634,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R3-W4",
      "start": [
-      2.1211,
-      3.894
+      2.1354,
+      3.9203
      ],
      "end": [
-      2.1211,
-      5.2308
+      2.1354,
+      5.2661
      ],
      "length": {
-      "value": 1.3368,
+      "value": 1.3458,
       "unit": "m",
-      "sigma": 0.3073,
+      "sigma": 0.3112,
       "ci95": [
-       0.7346,
-       1.939
+       0.7358,
+       1.9559
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.3027,
+     "face_sigma_m": 0.3047,
      "bounded_by_wall_face": false,
      "openings": [
       "O1"
@@ -667,25 +667,25 @@
     {
      "id": "R3-W5",
      "start": [
-      2.1211,
-      5.2308
+      2.1354,
+      5.2661
      ],
      "end": [
-      3.1512,
-      5.2308
+      3.1724,
+      5.2661
      ],
      "length": {
-      "value": 1.03,
+      "value": 1.037,
       "unit": "m",
-      "sigma": 0.3027,
+      "sigma": 0.3067,
       "ci95": [
-       0.4368,
-       1.6233
+       0.4358,
+       1.6382
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.3027,
+     "face_sigma_m": 0.3047,
      "bounded_by_wall_face": false,
      "openings": [
       "O4"
@@ -694,75 +694,75 @@
     {
      "id": "R3-W6",
      "start": [
-      3.1512,
-      5.2308
+      3.1724,
+      5.2661
      ],
      "end": [
-      3.1512,
-      4.8485
+      3.1724,
+      4.8812
      ],
      "length": {
-      "value": 0.3823,
+      "value": 0.3849,
       "unit": "m",
-      "sigma": 0.3048,
+      "sigma": 0.3088,
       "ci95": [
-       -0.2151,
-       0.9796
+       -0.2203,
+       0.9901
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R3-W7",
      "start": [
-      3.1512,
-      4.8485
+      3.1724,
+      4.8812
      ],
      "end": [
-      5.1655,
-      4.8485
+      5.2003,
+      4.8812
      ],
      "length": {
-      "value": 2.0143,
+      "value": 2.0279,
       "unit": "m",
-      "sigma": 0.0109,
+      "sigma": 0.0512,
       "ci95": [
-       1.993,
-       2.0357
+       1.9277,
+       2.1282
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0359,
+     "face_sigma_m": 0.0501,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R3-W8",
      "start": [
-      5.1655,
-      4.8485
+      5.2003,
+      4.8812
      ],
      "end": [
-      5.1655,
-      0.815
+      5.2003,
+      0.8204
      ],
      "length": {
-      "value": 4.0336,
+      "value": 4.0608,
       "unit": "m",
-      "sigma": 0.0374,
+      "sigma": 0.0636,
       "ci95": [
-       3.9604,
-       4.1068
+       3.9361,
+       4.1854
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0093,
+     "face_sigma_m": 0.0362,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -773,51 +773,51 @@
    "type": "closet_or_wc",
    "polygon": [
     [
-     -0.183,
-     2.9848
+     -0.1842,
+     3.005
     ],
     [
-     -0.183,
-     4.345
+     -0.1842,
+     4.3743
     ],
     [
-     0.6911,
-     4.345
+     0.6958,
+     4.3743
     ],
     [
-     0.6911,
-     2.9848
+     0.6958,
+     3.005
     ]
    ],
    "floor_area": {
-    "value": 1.1889,
+    "value": 1.205,
     "unit": "m2",
-    "sigma": 0.4367,
+    "sigma": 0.447,
     "ci95": [
-     0.3329,
-     2.0449
+     0.3289,
+     2.0811
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 4.4685,
+    "value": 4.4986,
     "unit": "m",
-    "sigma": 0.479,
+    "sigma": 0.4891,
     "ci95": [
-     3.5296,
-     5.4073
+     3.5399,
+     5.4573
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.2744,
+    "value": 2.2897,
     "unit": "m",
-    "sigma": 0.0063,
+    "sigma": 0.0101,
     "ci95": [
-     2.2621,
-     2.2866
+     2.27,
+     2.3094
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 170%)"
@@ -826,50 +826,50 @@
     {
      "id": "R4-W1",
      "start": [
-      -0.183,
-      2.9848
+      -0.1842,
+      3.005
      ],
      "end": [
-      -0.183,
-      4.345
+      -0.1842,
+      4.3743
      ],
      "length": {
-      "value": 1.3601,
+      "value": 1.3693,
       "unit": "m",
-      "sigma": 0.1407,
+      "sigma": 0.1492,
       "ci95": [
-       1.0844,
-       1.6359
+       1.0768,
+       1.6618
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.2777,
+     "face_sigma_m": 0.2799,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R4-W2",
      "start": [
-      -0.183,
-      4.345
+      -0.1842,
+      4.3743
      ],
      "end": [
-      0.6911,
-      4.345
+      0.6958,
+      4.3743
      ],
      "length": {
-      "value": 0.8741,
+      "value": 0.88,
       "unit": "m",
-      "sigma": 0.3081,
+      "sigma": 0.3121,
       "ci95": [
-       0.2702,
-       1.478
+       0.2683,
+       1.4917
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": [
       "O2"
@@ -878,50 +878,50 @@
     {
      "id": "R4-W3",
      "start": [
-      0.6911,
-      4.345
+      0.6958,
+      4.3743
      ],
      "end": [
-      0.6911,
-      2.9848
+      0.6958,
+      3.005
      ],
      "length": {
-      "value": 1.3601,
+      "value": 1.3693,
       "unit": "m",
-      "sigma": 0.1407,
+      "sigma": 0.1492,
       "ci95": [
-       1.0844,
-       1.6359
+       1.0768,
+       1.6618
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.1335,
+     "face_sigma_m": 0.138,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R4-W4",
      "start": [
-      0.6911,
-      2.9848
+      0.6958,
+      3.005
      ],
      "end": [
-      -0.183,
-      2.9848
+      -0.1842,
+      3.005
      ],
      "length": {
-      "value": 0.8741,
+      "value": 0.88,
       "unit": "m",
-      "sigma": 0.3081,
+      "sigma": 0.3121,
       "ci95": [
-       0.2702,
-       1.478
+       0.2683,
+       1.4917
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.1406,
+     "face_sigma_m": 0.1449,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -932,51 +932,51 @@
    "type": "room",
    "polygon": [
     [
-     6.5922,
-     4.0044
+     6.6366,
+     4.0314
     ],
     [
-     6.5922,
-     5.905
+     6.6366,
+     5.9449
     ],
     [
-     8.852,
-     5.905
+     8.9117,
+     5.9449
     ],
     [
-     8.852,
-     4.0044
+     8.9117,
+     4.0314
     ]
    ],
    "floor_area": {
-    "value": 4.2951,
+    "value": 4.3533,
     "unit": "m2",
-    "sigma": 0.7065,
+    "sigma": 0.7264,
     "ci95": [
-     2.9103,
-     5.6799
+     2.9296,
+     5.7769
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 8.3209,
+    "value": 8.377,
     "unit": "m",
-    "sigma": 0.4467,
+    "sigma": 0.4575,
     "ci95": [
-     7.4455,
-     9.1964
+     7.4803,
+     9.2737
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.3437,
+    "value": 2.3595,
     "unit": "m",
-    "sigma": 0.0063,
+    "sigma": 0.0103,
     "ci95": [
-     2.3312,
-     2.3561
+     2.3393,
+     2.3796
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 175%)"
@@ -985,100 +985,100 @@
     {
      "id": "R5-W1",
      "start": [
-      6.5922,
-      4.0044
+      6.6366,
+      4.0314
      ],
      "end": [
-      6.5922,
-      5.905
+      6.6366,
+      5.9449
      ],
      "length": {
-      "value": 1.9007,
+      "value": 1.9135,
       "unit": "m",
-      "sigma": 0.3049,
+      "sigma": 0.3089,
       "ci95": [
-       1.3032,
-       2.4982
+       1.308,
+       2.5189
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0042,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R5-W2",
      "start": [
-      6.5922,
-      5.905
+      6.6366,
+      5.9449
      ],
      "end": [
-      8.852,
-      5.905
+      8.9117,
+      5.9449
      ],
      "length": {
-      "value": 2.2598,
+      "value": 2.275,
       "unit": "m",
-      "sigma": 0.0828,
+      "sigma": 0.0968,
       "ci95": [
-       2.0975,
-       2.4221
+       2.0853,
+       2.4648
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.096,
+     "face_sigma_m": 0.1022,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R5-W3",
      "start": [
-      8.852,
-      5.905
+      8.9117,
+      5.9449
      ],
      "end": [
-      8.852,
-      4.0044
+      8.9117,
+      4.0314
      ],
      "length": {
-      "value": 1.9007,
+      "value": 1.9135,
       "unit": "m",
-      "sigma": 0.3049,
+      "sigma": 0.3089,
       "ci95": [
-       1.3032,
-       2.4982
+       1.308,
+       2.5189
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.0826,
+     "face_sigma_m": 0.0897,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R5-W4",
      "start": [
-      8.852,
-      4.0044
+      8.9117,
+      4.0314
      ],
      "end": [
-      6.5922,
-      4.0044
+      6.6366,
+      4.0314
      ],
      "length": {
-      "value": 2.2598,
+      "value": 2.275,
       "unit": "m",
-      "sigma": 0.0828,
+      "sigma": 0.0968,
       "ci95": [
-       2.0975,
-       2.4221
+       2.0853,
+       2.4648
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.2893,
+     "face_sigma_m": 0.2914,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -1089,51 +1089,51 @@
    "type": "closet_or_wc",
    "polygon": [
     [
-     1.0997,
-     3.894
+     1.1071,
+     3.9203
     ],
     [
-     1.0997,
-     5.2987
+     1.1071,
+     5.3344
     ],
     [
-     2.0211,
-     5.2987
+     2.0348,
+     5.3344
     ],
     [
-     2.0211,
-     3.894
+     2.0348,
+     3.9203
     ]
    ],
    "floor_area": {
-    "value": 1.2943,
+    "value": 1.3118,
     "unit": "m2",
-    "sigma": 0.4252,
+    "sigma": 0.4362,
     "ci95": [
-     0.4609,
-     2.1277
+     0.4569,
+     2.1667
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 4.6522,
+    "value": 4.6836,
     "unit": "m",
-    "sigma": 0.4281,
+    "sigma": 0.4394,
     "ci95": [
-     3.813,
-     5.4913
+     3.8223,
+     5.5448
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.3666,
+    "value": 2.3826,
     "unit": "m",
-    "sigma": 0.0064,
+    "sigma": 0.0104,
     "ci95": [
-     2.3541,
-     2.3792
+     2.3622,
+     2.403
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 125%)"
@@ -1142,50 +1142,50 @@
     {
      "id": "R6-W1",
      "start": [
-      1.0997,
-      3.894
+      1.1071,
+      3.9203
      ],
      "end": [
-      1.0997,
-      5.2987
+      1.1071,
+      5.3344
      ],
      "length": {
-      "value": 1.4047,
+      "value": 1.4141,
       "unit": "m",
-      "sigma": 0.0066,
+      "sigma": 0.0502,
       "ci95": [
-       1.3916,
-       1.4177
+       1.3158,
+       1.5125
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.004,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R6-W2",
      "start": [
-      1.0997,
-      5.2987
+      1.1071,
+      5.3344
      ],
      "end": [
-      2.0211,
-      5.2987
+      2.0348,
+      5.3344
      ],
      "length": {
-      "value": 0.9214,
+      "value": 0.9277,
       "unit": "m",
-      "sigma": 0.3027,
+      "sigma": 0.3067,
       "ci95": [
-       0.3282,
-       1.5147
+       0.3265,
+       1.5288
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.0041,
+     "face_sigma_m": 0.0352,
      "bounded_by_wall_face": true,
      "openings": [
       "O5"
@@ -1194,25 +1194,25 @@
     {
      "id": "R6-W3",
      "start": [
-      2.0211,
-      5.2987
+      2.0348,
+      5.3344
      ],
      "end": [
-      2.0211,
-      3.894
+      2.0348,
+      3.9203
      ],
      "length": {
-      "value": 1.4047,
+      "value": 1.4141,
       "unit": "m",
-      "sigma": 0.0066,
+      "sigma": 0.0502,
       "ci95": [
-       1.3916,
-       1.4177
+       1.3158,
+       1.5125
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.3027,
+     "face_sigma_m": 0.3047,
      "bounded_by_wall_face": false,
      "openings": [
       "O1"
@@ -1221,25 +1221,25 @@
     {
      "id": "R6-W4",
      "start": [
-      2.0211,
-      3.894
+      2.0348,
+      3.9203
      ],
      "end": [
-      1.0997,
-      3.894
+      1.1071,
+      3.9203
      ],
      "length": {
-      "value": 0.9214,
+      "value": 0.9277,
       "unit": "m",
-      "sigma": 0.3027,
+      "sigma": 0.3067,
       "ci95": [
-       0.3282,
-       1.5147
+       0.3265,
+       1.5288
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.0044,
+     "face_sigma_m": 0.0353,
      "bounded_by_wall_face": true,
      "openings": []
     }
@@ -1250,59 +1250,59 @@
    "type": "room",
    "polygon": [
     [
-     -0.1489,
-     5.3007
+     -0.1499,
+     5.3364
     ],
     [
-     -0.1489,
-     5.9708
+     -0.1499,
+     6.0111
     ],
     [
-     -0.7383,
-     5.9708
+     -0.7433,
+     6.0111
     ],
     [
-     -0.7383,
-     8.6666
+     -0.7433,
+     8.725
     ],
     [
-     3.1512,
-     8.6666
+     3.1724,
+     8.725
     ],
     [
-     3.1512,
-     5.3007
+     3.1724,
+     5.3364
     ]
    ],
    "floor_area": {
-    "value": 12.6966,
+    "value": 12.8685,
     "unit": "m2",
-    "sigma": 1.115,
+    "sigma": 1.1474,
     "ci95": [
-     10.5112,
-     14.8821
+     10.6196,
+     15.1174
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
    },
    "perimeter": {
-    "value": 14.5108,
+    "value": 14.6087,
     "unit": "m",
-    "sigma": 0.6842,
+    "sigma": 0.6948,
     "ci95": [
-     13.1698,
-     15.8518
+     13.2468,
+     15.9706
     ],
     "observed": true,
     "method": "lidar:perimeter"
    },
    "ceiling_height": {
-    "value": 2.4119,
+    "value": 2.4282,
     "unit": "m",
-    "sigma": 0.0064,
+    "sigma": 0.0105,
     "ci95": [
-     2.3993,
-     2.4245
+     2.4075,
+     2.4488
     ],
     "observed": true,
     "method": "lidar:ceiling-plane minus floor-plane (ceiling coverage 73%)"
@@ -1311,150 +1311,150 @@
     {
      "id": "R7-W1",
      "start": [
-      -0.1489,
-      5.3007
+      -0.1499,
+      5.3364
      ],
      "end": [
-      -0.1489,
-      5.9708
+      -0.1499,
+      6.0111
      ],
      "length": {
-      "value": 0.6701,
+      "value": 0.6747,
       "unit": "m",
-      "sigma": 0.2641,
+      "sigma": 0.2687,
       "ci95": [
-       0.1526,
-       1.1877
+       0.1481,
+       1.2013
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.3027,
+     "face_sigma_m": 0.3047,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R7-W2",
      "start": [
-      -0.1489,
-      5.9708
+      -0.1499,
+      6.0111
      ],
      "end": [
-      -0.7383,
-      5.9708
+      -0.7433,
+      6.0111
      ],
      "length": {
-      "value": 0.5895,
+      "value": 0.5935,
       "unit": "m",
-      "sigma": 0.3029,
+      "sigma": 0.307,
       "ci95": [
-       -0.0043,
-       1.1832
+       -0.0082,
+       1.1951
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.2482,
+     "face_sigma_m": 0.2506,
      "bounded_by_wall_face": false,
      "openings": []
     },
     {
      "id": "R7-W3",
      "start": [
-      -0.7383,
-      5.9708
+      -0.7433,
+      6.0111
      ],
      "end": [
-      -0.7383,
-      8.6666
+      -0.7433,
+      8.725
      ],
      "length": {
-      "value": 2.6958,
+      "value": 2.7139,
       "unit": "m",
-      "sigma": 0.3639,
+      "sigma": 0.3674,
       "ci95": [
-       1.9826,
-       3.409
+       1.9939,
+       3.4339
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.0131,
+     "face_sigma_m": 0.0374,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R7-W4",
      "start": [
-      -0.7383,
-      8.6666
+      -0.7433,
+      8.725
      ],
      "end": [
-      3.1512,
-      8.6666
+      3.1724,
+      8.725
      ],
      "length": {
-      "value": 3.8895,
+      "value": 3.9157,
       "unit": "m",
-      "sigma": 0.0447,
+      "sigma": 0.068,
       "ci95": [
-       3.802,
-       3.9771
+       3.7824,
+       4.0491
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.2661,
+     "face_sigma_m": 0.2684,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R7-W5",
      "start": [
-      3.1512,
-      8.6666
+      3.1724,
+      8.725
      ],
      "end": [
-      3.1512,
-      5.3007
+      3.1724,
+      5.3364
      ],
      "length": {
-      "value": 3.3659,
+      "value": 3.3886,
       "unit": "m",
-      "sigma": 0.281,
+      "sigma": 0.2856,
       "ci95": [
-       2.8151,
-       3.9167
+       2.8288,
+       3.9484
       ],
       "observed": true,
       "method": "lidar:face-to-face"
      },
-     "face_sigma_m": 0.042,
+     "face_sigma_m": 0.0547,
      "bounded_by_wall_face": true,
      "openings": []
     },
     {
      "id": "R7-W6",
      "start": [
-      3.1512,
-      5.3007
+      3.1724,
+      5.3364
      ],
      "end": [
-      -0.1489,
-      5.3007
+      -0.1499,
+      5.3364
      ],
      "length": {
-      "value": 3.3,
+      "value": 3.3223,
       "unit": "m",
-      "sigma": 0.3056,
+      "sigma": 0.3098,
       "ci95": [
-       2.701,
-       3.899
+       2.715,
+       3.9295
       ],
       "observed": true,
       "method": "lidar:face-to-freespace"
      },
-     "face_sigma_m": 0.0902,
+     "face_sigma_m": 0.0968,
      "bounded_by_wall_face": true,
      "openings": [
       "O4",
@@ -1469,23 +1469,23 @@
    "id": "O1",
    "type": "open_passage",
    "width": {
-    "value": 1.6389,
+    "value": 1.6499,
     "unit": "m",
-    "sigma": 0.0308,
+    "sigma": 0.0313,
     "ci95": [
-     1.5786,
-     1.6992
+     1.5886,
+     1.7112
     ],
     "observed": true,
     "method": "lidar:freespace-chord"
    },
    "start": [
-    1.7611,
-    3.6408
+    1.773,
+    3.6654
    ],
    "end": [
-    1.7611,
-    5.2797
+    1.773,
+    5.3153
    ],
    "rooms": [
     "R3",
@@ -1500,23 +1500,23 @@
    "id": "O2",
    "type": "open_passage",
    "width": {
-    "value": 1.3012,
+    "value": 1.31,
     "unit": "m",
-    "sigma": 0.0089,
+    "sigma": 0.01,
     "ci95": [
-     1.2838,
-     1.3186
+     1.2905,
+     1.3295
     ],
     "observed": true,
     "method": "lidar:jamb-to-jamb"
    },
    "start": [
-    -0.3554,
-    4.7508
+    -0.3578,
+    4.7829
    ],
    "end": [
-    0.9458,
-    4.7508
+    0.9522,
+    4.7829
    ],
    "rooms": [
     "R4",
@@ -1530,23 +1530,23 @@
    "id": "O3",
    "type": "open_passage",
    "width": {
-    "value": 1.145,
+    "value": 1.1527,
     "unit": "m",
-    "sigma": 0.0307,
+    "sigma": 0.0309,
     "ci95": [
-     1.0849,
-     1.2051
+     1.0921,
+     1.2134
     ],
     "observed": true,
     "method": "lidar:freespace-chord"
    },
    "start": [
-    5.4061,
-    0.3308
+    5.4426,
+    0.333
    ],
    "end": [
-    6.5511,
-    0.3308
+    6.5953,
+    0.333
    ],
    "rooms": [
     "R2",
@@ -1560,23 +1560,23 @@
    "id": "O4",
    "type": "door",
    "width": {
-    "value": 1.04,
+    "value": 1.047,
     "unit": "m",
-    "sigma": 0.0307,
+    "sigma": 0.0309,
     "ci95": [
-     0.9799,
-     1.1001
+     0.9865,
+     1.1076
     ],
     "observed": true,
     "method": "lidar:freespace-chord"
    },
    "start": [
-    2.1111,
-    5.2908
+    2.1254,
+    5.3265
    ],
    "end": [
-    3.1512,
-    5.2908
+    3.1724,
+    5.3265
    ],
    "rooms": [
     "R3",
@@ -1591,23 +1591,23 @@
    "id": "O5",
    "type": "door",
    "width": {
-    "value": 0.8017,
+    "value": 0.8071,
     "unit": "m",
-    "sigma": 0.0086,
+    "sigma": 0.0091,
     "ci95": [
-     0.7848,
-     0.8186
+     0.7893,
+     0.8249
     ],
     "observed": true,
     "method": "lidar:jamb-to-jamb"
    },
    "start": [
-    1.1818,
-    5.2908
+    1.1898,
+    5.3265
    ],
    "end": [
-    1.9835,
-    5.2908
+    1.9969,
+    5.3265
    ],
    "rooms": [
     "R6",
@@ -1626,12 +1626,12 @@
    "kind": "wall",
    "wall": "R1-W1",
    "area": {
-    "value": 9.078,
+    "value": 9.2008,
     "unit": "m2",
-    "sigma": 0.081,
+    "sigma": 0.1743,
     "ci95": [
-     8.9192,
-     9.2367
+     8.8592,
+     9.5424
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1643,12 +1643,12 @@
    "kind": "wall",
    "wall": "R1-W2",
    "area": {
-    "value": 8.4097,
+    "value": 8.5235,
     "unit": "m2",
-    "sigma": 0.3437,
+    "sigma": 0.3784,
     "ci95": [
-     7.736,
-     9.0833
+     7.7819,
+     9.2651
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1660,12 +1660,12 @@
    "kind": "wall",
    "wall": "R1-W3",
    "area": {
-    "value": 9.078,
+    "value": 9.2008,
     "unit": "m2",
-    "sigma": 0.081,
+    "sigma": 0.1743,
     "ci95": [
-     8.9192,
-     9.2367
+     8.8592,
+     9.5424
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1677,12 +1677,12 @@
    "kind": "wall",
    "wall": "R1-W4",
    "area": {
-    "value": 8.4097,
+    "value": 8.5235,
     "unit": "m2",
-    "sigma": 0.3437,
+    "sigma": 0.3784,
     "ci95": [
-     7.736,
-     9.0833
+     7.7819,
+     9.2651
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1693,12 +1693,12 @@
    "room": "R1",
    "kind": "floor",
    "area": {
-    "value": 8.7336,
+    "value": 8.8518,
     "unit": "m2",
-    "sigma": 0.3632,
+    "sigma": 0.421,
     "ci95": [
-     8.0217,
-     9.4456
+     8.0267,
+     9.677
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -1709,12 +1709,12 @@
    "room": "R1",
    "kind": "ceiling",
    "area": {
-    "value": 8.7336,
+    "value": 8.8518,
     "unit": "m2",
-    "sigma": 0.3632,
+    "sigma": 0.421,
     "ci95": [
-     8.0217,
-     9.4456
+     8.0267,
+     9.677
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -1726,12 +1726,12 @@
    "kind": "wall",
    "wall": "R2-W1",
    "area": {
-    "value": 6.7575,
+    "value": 6.849,
     "unit": "m2",
-    "sigma": 0.0276,
+    "sigma": 0.1593,
     "ci95": [
-     6.7035,
-     6.8115
+     6.5367,
+     7.1613
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1743,12 +1743,12 @@
    "kind": "wall",
    "wall": "R2-W2",
    "area": {
-    "value": 10.6006,
+    "value": 10.7441,
     "unit": "m2",
-    "sigma": 0.6828,
+    "sigma": 0.7062,
     "ci95": [
-     9.2623,
-     11.9389
+     9.3599,
+     12.1283
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1760,12 +1760,12 @@
    "kind": "wall",
    "wall": "R2-W3",
    "area": {
-    "value": 8.4884,
+    "value": 8.6033,
     "unit": "m2",
-    "sigma": 0.109,
+    "sigma": 0.1932,
     "ci95": [
-     8.2748,
-     8.702
+     8.2247,
+     8.9819
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1777,12 +1777,12 @@
    "kind": "wall",
    "wall": "R2-W4",
    "area": {
-    "value": 8.5014,
+    "value": 8.6165,
     "unit": "m2",
-    "sigma": 0.032,
+    "sigma": 0.1622,
     "ci95": [
-     8.4388,
-     8.5641
+     8.2986,
+     8.9344
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1794,12 +1794,12 @@
    "kind": "wall",
    "wall": "R2-W5",
    "area": {
-    "value": 1.7309,
+    "value": 1.7543,
     "unit": "m2",
-    "sigma": 0.1058,
+    "sigma": 0.1869,
     "ci95": [
-     1.5235,
-     1.9383
+     1.3881,
+     2.1206
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1811,12 +1811,12 @@
    "kind": "wall",
    "wall": "R2-W6",
    "area": {
-    "value": 2.0992,
+    "value": 2.1276,
     "unit": "m2",
-    "sigma": 0.682,
+    "sigma": 0.7036,
     "ci95": [
-     0.7624,
-     3.4359
+     0.7485,
+     3.5066
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1827,12 +1827,12 @@
    "room": "R2",
    "kind": "floor",
    "area": {
-    "value": 9.1239,
+    "value": 9.2474,
     "unit": "m2",
-    "sigma": 0.4962,
+    "sigma": 0.5387,
     "ci95": [
-     8.1513,
-     10.0965
+     8.1915,
+     10.3033
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -1843,12 +1843,12 @@
    "room": "R2",
    "kind": "ceiling",
    "area": {
-    "value": 9.1239,
+    "value": 9.2474,
     "unit": "m2",
-    "sigma": 0.4962,
+    "sigma": 0.5387,
     "ci95": [
-     8.1513,
-     10.0965
+     8.1915,
+     10.3033
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -1860,12 +1860,12 @@
    "kind": "wall",
    "wall": "R3-W1",
    "area": {
-    "value": 6.7099,
+    "value": 6.8007,
     "unit": "m2",
-    "sigma": 0.0333,
+    "sigma": 0.1305,
     "ci95": [
-     6.6447,
-     6.775
+     6.5448,
+     7.0566
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1877,12 +1877,12 @@
    "kind": "wall",
    "wall": "R3-W2",
    "area": {
-    "value": 7.5213,
+    "value": 7.6231,
     "unit": "m2",
-    "sigma": 0.1325,
+    "sigma": 0.1844,
     "ci95": [
-     7.2615,
-     7.7811
+     7.2617,
+     7.9846
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1894,12 +1894,12 @@
    "kind": "wall",
    "wall": "R3-W3",
    "area": {
-    "value": 0.7267,
+    "value": 0.7365,
     "unit": "m2",
-    "sigma": 0.7394,
+    "sigma": 0.7543,
     "ci95": [
-     -0.7224,
-     2.1758
+     -0.7418,
+     2.2148
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1911,12 +1911,12 @@
    "kind": "wall",
    "wall": "R3-W4",
    "area": {
-    "value": 3.2654,
+    "value": 3.3096,
     "unit": "m2",
-    "sigma": 0.7506,
+    "sigma": 0.7656,
     "ci95": [
-     1.7943,
-     4.7365
+     1.8092,
+     4.8101
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1928,12 +1928,12 @@
    "kind": "wall",
    "wall": "R3-W5",
    "area": {
-    "value": 2.5161,
+    "value": 2.5501,
     "unit": "m2",
-    "sigma": 0.7394,
+    "sigma": 0.7544,
     "ci95": [
-     1.0668,
-     3.9653
+     1.0715,
+     4.0287
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1945,12 +1945,12 @@
    "kind": "wall",
    "wall": "R3-W6",
    "area": {
-    "value": 0.9338,
+    "value": 0.9465,
     "unit": "m2",
-    "sigma": 0.7445,
+    "sigma": 0.7593,
     "ci95": [
-     -0.5253,
-     2.393
+     -0.5418,
+     2.4348
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1962,12 +1962,12 @@
    "kind": "wall",
    "wall": "R3-W7",
    "area": {
-    "value": 4.9205,
+    "value": 4.9871,
     "unit": "m2",
-    "sigma": 0.0296,
+    "sigma": 0.1277,
     "ci95": [
-     4.8625,
-     4.9785
+     4.7369,
+     5.2373
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1979,12 +1979,12 @@
    "kind": "wall",
    "wall": "R3-W8",
    "area": {
-    "value": 9.8529,
+    "value": 9.9863,
     "unit": "m2",
-    "sigma": 0.0949,
+    "sigma": 0.1623,
     "ci95": [
-     9.6668,
-     10.0389
+     9.6682,
+     10.3043
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -1995,12 +1995,12 @@
    "room": "R3",
    "kind": "floor",
    "area": {
-    "value": 11.7575,
+    "value": 11.9166,
     "unit": "m2",
-    "sigma": 0.5179,
+    "sigma": 0.5675,
     "ci95": [
-     10.7424,
-     12.7725
+     10.8043,
+     13.0289
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2011,12 +2011,12 @@
    "room": "R3",
    "kind": "ceiling",
    "area": {
-    "value": 11.7575,
+    "value": 11.9166,
     "unit": "m2",
-    "sigma": 0.5179,
+    "sigma": 0.5675,
     "ci95": [
-     10.7424,
-     12.7725
+     10.8043,
+     13.0289
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2028,12 +2028,12 @@
    "kind": "wall",
    "wall": "R4-W1",
    "area": {
-    "value": 3.0935,
+    "value": 3.1353,
     "unit": "m2",
-    "sigma": 0.3201,
+    "sigma": 0.342,
     "ci95": [
-     2.4661,
-     3.7209
+     2.4651,
+     3.8056
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2045,12 +2045,12 @@
    "kind": "wall",
    "wall": "R4-W2",
    "area": {
-    "value": 1.9881,
+    "value": 2.015,
     "unit": "m2",
-    "sigma": 0.7008,
+    "sigma": 0.7147,
     "ci95": [
-     0.6145,
-     3.3616
+     0.6143,
+     3.4157
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2062,12 +2062,12 @@
    "kind": "wall",
    "wall": "R4-W3",
    "area": {
-    "value": 3.0935,
+    "value": 3.1353,
     "unit": "m2",
-    "sigma": 0.3201,
+    "sigma": 0.342,
     "ci95": [
-     2.4661,
-     3.7209
+     2.4651,
+     3.8056
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2079,12 +2079,12 @@
    "kind": "wall",
    "wall": "R4-W4",
    "area": {
-    "value": 1.9881,
+    "value": 2.015,
     "unit": "m2",
-    "sigma": 0.7008,
+    "sigma": 0.7147,
     "ci95": [
-     0.6145,
-     3.3616
+     0.6143,
+     3.4157
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2095,12 +2095,12 @@
    "room": "R4",
    "kind": "floor",
    "area": {
-    "value": 1.1889,
+    "value": 1.205,
     "unit": "m2",
-    "sigma": 0.4367,
+    "sigma": 0.447,
     "ci95": [
-     0.3329,
-     2.0449
+     0.3289,
+     2.0811
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2111,12 +2111,12 @@
    "room": "R4",
    "kind": "ceiling",
    "area": {
-    "value": 1.1889,
+    "value": 1.205,
     "unit": "m2",
-    "sigma": 0.4367,
+    "sigma": 0.447,
     "ci95": [
-     0.3329,
-     2.0449
+     0.3289,
+     2.0811
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2128,12 +2128,12 @@
    "kind": "wall",
    "wall": "R5-W1",
    "area": {
-    "value": 4.4545,
+    "value": 4.5148,
     "unit": "m2",
-    "sigma": 0.7146,
+    "sigma": 0.7291,
     "ci95": [
-     3.054,
-     5.855
+     3.0857,
+     5.9439
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2145,12 +2145,12 @@
    "kind": "wall",
    "wall": "R5-W2",
    "area": {
-    "value": 5.2962,
+    "value": 5.3679,
     "unit": "m2",
-    "sigma": 0.1946,
+    "sigma": 0.2296,
     "ci95": [
-     4.9148,
-     5.6776
+     4.9179,
+     5.8179
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2162,12 +2162,12 @@
    "kind": "wall",
    "wall": "R5-W3",
    "area": {
-    "value": 4.4545,
+    "value": 4.5148,
     "unit": "m2",
-    "sigma": 0.7146,
+    "sigma": 0.7291,
     "ci95": [
-     3.054,
-     5.855
+     3.0857,
+     5.9439
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2179,12 +2179,12 @@
    "kind": "wall",
    "wall": "R5-W4",
    "area": {
-    "value": 5.2962,
+    "value": 5.3679,
     "unit": "m2",
-    "sigma": 0.1946,
+    "sigma": 0.2296,
     "ci95": [
-     4.9148,
-     5.6776
+     4.9179,
+     5.8179
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2195,12 +2195,12 @@
    "room": "R5",
    "kind": "floor",
    "area": {
-    "value": 4.2951,
+    "value": 4.3533,
     "unit": "m2",
-    "sigma": 0.7065,
+    "sigma": 0.7264,
     "ci95": [
-     2.9103,
-     5.6799
+     2.9296,
+     5.7769
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2211,12 +2211,12 @@
    "room": "R5",
    "kind": "ceiling",
    "area": {
-    "value": 4.2951,
+    "value": 4.3533,
     "unit": "m2",
-    "sigma": 0.7065,
+    "sigma": 0.7264,
     "ci95": [
-     2.9103,
-     5.6799
+     2.9296,
+     5.7769
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2228,12 +2228,12 @@
    "kind": "wall",
    "wall": "R6-W1",
    "area": {
-    "value": 3.3243,
+    "value": 3.3693,
     "unit": "m2",
-    "sigma": 0.0181,
+    "sigma": 0.1205,
     "ci95": [
-     3.2888,
-     3.3598
+     3.1332,
+     3.6054
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2245,12 +2245,12 @@
    "kind": "wall",
    "wall": "R6-W2",
    "area": {
-    "value": 2.1807,
+    "value": 2.2102,
     "unit": "m2",
-    "sigma": 0.7164,
+    "sigma": 0.7309,
     "ci95": [
-     0.7767,
-     3.5848
+     0.7778,
+     3.6427
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2262,12 +2262,12 @@
    "kind": "wall",
    "wall": "R6-W3",
    "area": {
-    "value": 3.3243,
+    "value": 3.3693,
     "unit": "m2",
-    "sigma": 0.0181,
+    "sigma": 0.1205,
     "ci95": [
-     3.2888,
-     3.3598
+     3.1332,
+     3.6054
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2279,12 +2279,12 @@
    "kind": "wall",
    "wall": "R6-W4",
    "area": {
-    "value": 2.1807,
+    "value": 2.2102,
     "unit": "m2",
-    "sigma": 0.7164,
+    "sigma": 0.7309,
     "ci95": [
-     0.7767,
-     3.5848
+     0.7778,
+     3.6427
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2295,12 +2295,12 @@
    "room": "R6",
    "kind": "floor",
    "area": {
-    "value": 1.2943,
+    "value": 1.3118,
     "unit": "m2",
-    "sigma": 0.4252,
+    "sigma": 0.4362,
     "ci95": [
-     0.4609,
-     2.1277
+     0.4569,
+     2.1667
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2311,12 +2311,12 @@
    "room": "R6",
    "kind": "ceiling",
    "area": {
-    "value": 1.2943,
+    "value": 1.3118,
     "unit": "m2",
-    "sigma": 0.4252,
+    "sigma": 0.4362,
     "ci95": [
-     0.4609,
-     2.1277
+     0.4569,
+     2.1667
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2328,12 +2328,12 @@
    "kind": "wall",
    "wall": "R7-W1",
    "area": {
-    "value": 1.6163,
+    "value": 1.6382,
     "unit": "m2",
-    "sigma": 0.6369,
+    "sigma": 0.6525,
     "ci95": [
-     0.3679,
-     2.8647
+     0.3594,
+     2.917
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2345,12 +2345,12 @@
    "kind": "wall",
    "wall": "R7-W2",
    "area": {
-    "value": 1.4218,
+    "value": 1.441,
     "unit": "m2",
-    "sigma": 0.7307,
+    "sigma": 0.7454,
     "ci95": [
-     -0.0103,
-     2.8539
+     -0.0199,
+     2.9019
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2362,12 +2362,12 @@
    "kind": "wall",
    "wall": "R7-W3",
    "area": {
-    "value": 6.5019,
+    "value": 6.5899,
     "unit": "m2",
-    "sigma": 0.8778,
+    "sigma": 0.8925,
     "ci95": [
-     4.7814,
-     8.2224
+     4.8407,
+     8.3391
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2379,12 +2379,12 @@
    "kind": "wall",
    "wall": "R7-W4",
    "area": {
-    "value": 9.3811,
+    "value": 9.5081,
     "unit": "m2",
-    "sigma": 0.1106,
+    "sigma": 0.1703,
     "ci95": [
-     9.1643,
-     9.5979
+     9.1743,
+     9.8419
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2396,12 +2396,12 @@
    "kind": "wall",
    "wall": "R7-W5",
    "area": {
-    "value": 8.1182,
+    "value": 8.2281,
     "unit": "m2",
-    "sigma": 0.6782,
+    "sigma": 0.6944,
     "ci95": [
-     6.7891,
-     9.4474
+     6.8671,
+     9.5891
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2413,12 +2413,12 @@
    "kind": "wall",
    "wall": "R7-W6",
    "area": {
-    "value": 7.9593,
+    "value": 8.0671,
     "unit": "m2",
-    "sigma": 0.7374,
+    "sigma": 0.7531,
     "ci95": [
-     6.514,
-     9.4047
+     6.591,
+     9.5432
     ],
     "observed": true,
     "method": "lidar:length*height"
@@ -2429,12 +2429,12 @@
    "room": "R7",
    "kind": "floor",
    "area": {
-    "value": 12.6966,
+    "value": 12.8685,
     "unit": "m2",
-    "sigma": 1.115,
+    "sigma": 1.1474,
     "ci95": [
-     10.5112,
-     14.8821
+     10.6196,
+     15.1174
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2445,12 +2445,12 @@
    "room": "R7",
    "kind": "ceiling",
    "area": {
-    "value": 12.6966,
+    "value": 12.8685,
     "unit": "m2",
-    "sigma": 1.115,
+    "sigma": 1.1474,
     "ci95": [
-     10.5112,
-     14.8821
+     10.6196,
+     15.1174
     ],
     "observed": true,
     "method": "lidar:polygon-area-propagated"
@@ -2460,270 +2460,72 @@
  "damage": [
   {
    "id": "D1",
-   "surface": "R5-CEIL",
+   "surface": "R1-W2-S",
    "class": "mold",
-   "confidence": 0.679,
+   "confidence": 0.782,
    "n_views": 1,
    "extent": {
     "area": {
-     "value": 0.012,
+     "value": 0.0332,
      "unit": "m2",
-     "sigma": 0.0075,
+     "sigma": 0.0156,
      "ci95": [
-      -0.0026,
-      0.0266
+      0.0026,
+      0.0638
      ],
      "observed": true,
      "method": "damage:surface-cells"
     },
     "width": {
-     "value": 0.2427,
+     "value": 0.253,
      "unit": "m",
-     "sigma": 0.0745,
+     "sigma": 0.0799,
      "ci95": [
-      0.0967,
-      0.3888
+      0.0963,
+      0.4096
      ],
      "observed": true,
      "method": "damage:surface-u"
     },
     "height": {
-     "value": 0.0812,
+     "value": 0.1431,
      "unit": "m",
-     "sigma": 0.029,
+     "sigma": 0.0497,
      "ci95": [
-      0.0243,
-      0.1381
+      0.0457,
+      0.2405
      ],
      "observed": true,
      "method": "damage:surface-v"
     }
    },
    "position_on_surface_m": {
-    "u0": 8.598,
-    "v0": 4.008,
-    "u1": 8.841,
-    "v1": 4.089
+    "u0": 1.982,
+    "v0": 2.699,
+    "u1": 2.235,
+    "v1": 2.842
    },
    "plan_footprint": [
     [
-     8.59828066395458,
-     4.007633126611752
+     1.39050205549824,
+     1.9287999999999998
     ],
     [
-     8.841026640593624,
-     4.007633126611752
+     1.6434521154366042,
+     1.9287999999999998
     ],
     [
-     8.841026640593624,
-     4.088851273393694
+     1.6434521154366042,
+     2.0888
     ],
     [
-     8.59828066395458,
-     4.088851273393694
+     1.39050205549824,
+     2.0888
     ]
    ]
   },
   {
    "id": "D2",
-   "surface": "R5-CEIL",
-   "class": "mold",
-   "confidence": 0.599,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.0052,
-     "unit": "m2",
-     "sigma": 0.002,
-     "ci95": [
-      0.0012,
-      0.0092
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.0542,
-     "unit": "m",
-     "sigma": 0.0219,
-     "ci95": [
-      0.0112,
-      0.0972
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.0594,
-     "unit": "m",
-     "sigma": 0.0231,
-     "ci95": [
-      0.0141,
-      0.1047
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 8.578,
-    "v0": 4.289,
-    "u1": 8.632,
-    "v1": 4.349
-   },
-   "plan_footprint": [
-    [
-     8.57819396080601,
-     4.28936034748114
-    ],
-    [
-     8.632433805493235,
-     4.28936034748114
-    ],
-    [
-     8.632433805493235,
-     4.348799828350377
-    ],
-    [
-     8.57819396080601,
-     4.348799828350377
-    ]
-   ]
-  },
-  {
-   "id": "D3",
-   "surface": "R5-W3-S",
-   "class": "crack",
-   "confidence": 0.598,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.0004,
-     "unit": "m2",
-     "sigma": 0.0016,
-     "ci95": [
-      -0.0027,
-      0.0036
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.1433,
-     "unit": "m",
-     "sigma": 0.0461,
-     "ci95": [
-      0.0529,
-      0.2337
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.0158,
-     "unit": "m",
-     "sigma": 0.0174,
-     "ci95": [
-      -0.0183,
-      0.0499
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 0.014,
-    "v0": 0.818,
-    "u1": 0.158,
-    "v1": 0.834
-   },
-   "plan_footprint": [
-    [
-     8.772,
-     4.018718508965787
-    ],
-    [
-     8.772,
-     4.162004857620838
-    ],
-    [
-     8.932,
-     4.162004857620838
-    ],
-    [
-     8.932,
-     4.018718508965787
-    ]
-   ]
-  },
-  {
-   "id": "D4",
-   "surface": "R4-CEIL",
-   "class": "crack",
-   "confidence": 0.573,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.0007,
-     "unit": "m2",
-     "sigma": 0.0075,
-     "ci95": [
-      -0.014,
-      0.0153
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.1054,
-     "unit": "m",
-     "sigma": 0.0348,
-     "ci95": [
-      0.0373,
-      0.1736
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.2224,
-     "unit": "m",
-     "sigma": 0.0683,
-     "ci95": [
-      0.0886,
-      0.3562
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 0.569,
-    "v0": 3.0,
-    "u1": 0.675,
-    "v1": 3.222
-   },
-   "plan_footprint": [
-    [
-     0.5694144253246815,
-     2.9997911565246462
-    ],
-    [
-     0.6748638092547784,
-     2.9997911565246462
-    ],
-    [
-     0.6748638092547784,
-     3.222164569275133
-    ],
-    [
-     0.5694144253246815,
-     3.222164569275133
-    ]
-   ]
-  },
-  {
-   "id": "D5",
    "surface": "R5-W4-S",
    "class": "crack",
    "confidence": 0.525,
@@ -2764,164 +2566,32 @@
     }
    },
    "position_on_surface_m": {
-    "u0": 0.564,
+    "u0": 0.52,
     "v0": 1.043,
-    "u1": 0.684,
+    "u1": 0.639,
     "v1": 1.31
    },
    "plan_footprint": [
     [
      7.156304455217803,
-     3.9244000000000003
+     3.9513999999999996
     ],
     [
      7.275718881322083,
-     3.9244000000000003
+     3.9513999999999996
     ],
     [
      7.275718881322083,
-     4.0844000000000005
+     4.1114
     ],
     [
      7.156304455217803,
-     4.0844000000000005
+     4.1114
     ]
    ]
   },
   {
-   "id": "D6",
-   "surface": "R2-W2-S",
-   "class": "hole",
-   "confidence": 0.516,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.1768,
-     "unit": "m2",
-     "sigma": 0.1509,
-     "ci95": [
-      -0.119,
-      0.4726
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.6291,
-     "unit": "m",
-     "sigma": 0.19,
-     "ci95": [
-      0.2566,
-      1.0015
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.7442,
-     "unit": "m",
-     "sigma": 0.2244,
-     "ci95": [
-      0.3044,
-      1.184
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 2.802,
-    "v0": 1.387,
-    "u1": 3.431,
-    "v1": 2.131
-   },
-   "plan_footprint": [
-    [
-     8.208374690867656,
-     2.9314999999999998
-    ],
-    [
-     8.837445542652192,
-     2.9314999999999998
-    ],
-    [
-     8.837445542652192,
-     3.0915
-    ],
-    [
-     8.208374690867656,
-     3.0915
-    ]
-   ]
-  },
-  {
-   "id": "D7",
-   "surface": "R7-W4-S",
-   "class": "water_stain",
-   "confidence": 0.509,
-   "n_views": 1,
-   "extent": {
-    "area": {
-     "value": 0.0036,
-     "unit": "m2",
-     "sigma": 0.0016,
-     "ci95": [
-      0.0004,
-      0.0068
-     ],
-     "observed": true,
-     "method": "damage:surface-cells"
-    },
-    "width": {
-     "value": 0.0215,
-     "unit": "m",
-     "sigma": 0.0165,
-     "ci95": [
-      -0.0107,
-      0.0538
-     ],
-     "observed": true,
-     "method": "damage:surface-u"
-    },
-    "height": {
-     "value": 0.1027,
-     "unit": "m",
-     "sigma": 0.0343,
-     "ci95": [
-      0.0354,
-      0.17
-     ],
-     "observed": true,
-     "method": "damage:surface-v"
-    }
-   },
-   "position_on_surface_m": {
-    "u0": 2.34,
-    "v0": 0.848,
-    "u1": 2.361,
-    "v1": 0.95
-   },
-   "plan_footprint": [
-    [
-     1.6016457410337892,
-     8.5866
-    ],
-    [
-     1.6231872617370164,
-     8.5866
-    ],
-    [
-     1.6231872617370164,
-     8.7466
-    ],
-    [
-     1.6016457410337892,
-     8.7466
-    ]
-   ]
-  },
-  {
-   "id": "D8",
+   "id": "D3",
    "surface": "R5-W3-S",
    "class": "crack",
    "confidence": 0.486,
@@ -2962,32 +2632,98 @@
     }
    },
    "position_on_surface_m": {
-    "u0": 1.643,
+    "u0": 1.616,
     "v0": 1.889,
-    "u1": 1.68,
+    "u1": 1.653,
     "v1": 2.094
    },
    "plan_footprint": [
     [
-     8.772,
+     8.8317,
      5.647059903397642
     ],
     [
-     8.772,
+     8.8317,
      5.684688359614251
     ],
     [
-     8.932,
+     8.9917,
      5.684688359614251
     ],
     [
-     8.932,
+     8.9917,
      5.647059903397642
     ]
    ]
   },
   {
-   "id": "D9",
+   "id": "D4",
+   "surface": "R5-CEIL",
+   "class": "mold",
+   "confidence": 0.463,
+   "n_views": 1,
+   "extent": {
+    "area": {
+     "value": 0.0052,
+     "unit": "m2",
+     "sigma": 0.0021,
+     "ci95": [
+      0.0011,
+      0.0093
+     ],
+     "observed": true,
+     "method": "damage:surface-cells"
+    },
+    "width": {
+     "value": 0.0575,
+     "unit": "m",
+     "sigma": 0.0227,
+     "ci95": [
+      0.0131,
+      0.1019
+     ],
+     "observed": true,
+     "method": "damage:surface-u"
+    },
+    "height": {
+     "value": 0.061,
+     "unit": "m",
+     "sigma": 0.0235,
+     "ci95": [
+      0.015,
+      0.107
+     ],
+     "observed": true,
+     "method": "damage:surface-v"
+    }
+   },
+   "position_on_surface_m": {
+    "u0": 8.578,
+    "v0": 4.289,
+    "u1": 8.636,
+    "v1": 4.35
+   },
+   "plan_footprint": [
+    [
+     8.57819396080601,
+     4.28936034748114
+    ],
+    [
+     8.635689697782716,
+     4.28936034748114
+    ],
+    [
+     8.635689697782716,
+     4.350352238685183
+    ],
+    [
+     8.57819396080601,
+     4.350352238685183
+    ]
+   ]
+  },
+  {
+   "id": "D5",
    "surface": "R5-CEIL",
    "class": "crack",
    "confidence": 0.462,
@@ -3053,68 +2789,68 @@
    ]
   },
   {
-   "id": "D10",
-   "surface": "R3-W2-S",
-   "class": "water_stain",
-   "confidence": 0.421,
+   "id": "D6",
+   "surface": "R4-CEIL",
+   "class": "crack",
+   "confidence": 0.404,
    "n_views": 1,
    "extent": {
     "area": {
-     "value": 0.0344,
+     "value": 0.0006,
      "unit": "m2",
-     "sigma": 0.0299,
+     "sigma": 0.0058,
      "ci95": [
-      -0.0242,
-      0.093
+      -0.0109,
+      0.012
      ],
      "observed": true,
      "method": "damage:surface-cells"
     },
     "width": {
-     "value": 0.3555,
+     "value": 0.0964,
      "unit": "m",
-     "sigma": 0.1089,
+     "sigma": 0.0323,
      "ci95": [
-      0.1419,
-      0.569
+      0.0331,
+      0.1598
      ],
      "observed": true,
      "method": "damage:surface-u"
     },
     "height": {
-     "value": 0.2553,
+     "value": 0.1875,
      "unit": "m",
-     "sigma": 0.0798,
+     "sigma": 0.0581,
      "ci95": [
-      0.099,
-      0.4117
+      0.0737,
+      0.3013
      ],
      "observed": true,
      "method": "damage:surface-v"
     }
    },
    "position_on_surface_m": {
-    "u0": 0.051,
-    "v0": 0.933,
-    "u1": 0.406,
-    "v1": 1.188
+    "u0": 0.569,
+    "v0": 3.032,
+    "u1": 0.666,
+    "v1": 3.22
    },
    "plan_footprint": [
     [
-     2.3386,
-     0.8660053467969353
+     0.5694144253246815,
+     3.03247493400595
     ],
     [
-     2.3386,
-     1.2214703994435363
+     0.6658357590597554,
+     3.03247493400595
     ],
     [
-     2.4986,
-     1.2214703994435363
+     0.6658357590597554,
+     3.2199971260359845
     ],
     [
-     2.4986,
-     0.8660053467969353
+     0.5694144253246815,
+     3.2199971260359845
     ]
    ]
   }
@@ -3126,27 +2862,17 @@
    "rule": "R1_ceiling_water",
    "severity": "high",
    "evidence": [
-    "D1"
+    "D4"
    ],
    "rationale": "Water staining/mould on a ceiling indicates a leak above (roof, plumbing, upstairs wet room); the cavity above is likely wet. Inspect and moisture-test the void before repair."
   },
   {
    "id": "F2",
    "surface": "R5-CEIL",
-   "rule": "R1_ceiling_water",
-   "severity": "high",
-   "evidence": [
-    "D2"
-   ],
-   "rationale": "Water staining/mould on a ceiling indicates a leak above (roof, plumbing, upstairs wet room); the cavity above is likely wet. Inspect and moisture-test the void before repair."
-  },
-  {
-   "id": "F3",
-   "surface": "R5-CEIL",
    "rule": "R5_long_crack",
    "severity": "medium",
    "evidence": [
-    "D9"
+    "D5"
    ],
    "rationale": "A crack longer than 0.5 m can reflect movement of the structure or a failed board joint; check for continuation behind finishes and on the other side of the wall."
   }
@@ -3154,15 +2880,15 @@
  "scope": [
   {
    "id": "S1",
-   "surface": "R5-CEIL",
+   "surface": "R1-W2-S",
    "action": "mould remediation incl. 0.3 m margin, biocide wash",
    "quantity": {
-    "value": 0.5035,
+    "value": 0.6119,
     "unit": "m",
-    "sigma": 0.0149,
+    "sigma": 0.0312,
     "ci95": [
-     0.4742,
-     0.5328
+     0.5507,
+     0.673
     ],
     "observed": true,
     "method": "damage:area+0.3m margin"
@@ -3174,15 +2900,15 @@
   },
   {
    "id": "S2",
-   "surface": "R5-CEIL",
+   "surface": "R1-W2-S",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 4.2951,
+    "value": 8.5235,
     "unit": "m",
-    "sigma": 0.7065,
+    "sigma": 0.3784,
     "ci95": [
-     2.9104,
-     5.6798
+     7.7818,
+     9.2652
     ],
     "observed": true,
     "method": "surface:area"
@@ -3194,126 +2920,6 @@
   },
   {
    "id": "S3",
-   "surface": "R5-CEIL",
-   "action": "mould remediation incl. 0.3 m margin, biocide wash",
-   "quantity": {
-    "value": 0.4517,
-    "unit": "m",
-    "sigma": 0.004,
-    "ci95": [
-     0.4438,
-     0.4596
-    ],
-    "observed": true,
-    "method": "damage:area+0.3m margin"
-   },
-   "unit": "m2",
-   "because": [
-    "D2"
-   ]
-  },
-  {
-   "id": "S4",
-   "surface": "R5-CEIL",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 4.2951,
-    "unit": "m",
-    "sigma": 0.7065,
-    "ci95": [
-     2.9104,
-     5.6798
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D2"
-   ]
-  },
-  {
-   "id": "S5",
-   "surface": "R5-W3-S",
-   "action": "rake out and fill crack, sand flush",
-   "quantity": {
-    "value": 0.1586,
-    "unit": "m",
-    "sigma": 0.0542,
-    "ci95": [
-     0.0523,
-     0.2649
-    ],
-    "observed": true,
-    "method": "damage:length+10%"
-   },
-   "unit": "m",
-   "because": [
-    "D3"
-   ]
-  },
-  {
-   "id": "S6",
-   "surface": "R5-W3-S",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 4.4545,
-    "unit": "m",
-    "sigma": 0.7146,
-    "ci95": [
-     3.0539,
-     5.8551
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D3"
-   ]
-  },
-  {
-   "id": "S7",
-   "surface": "R4-CEIL",
-   "action": "rake out and fill crack, sand flush",
-   "quantity": {
-    "value": 0.2707,
-    "unit": "m",
-    "sigma": 0.0843,
-    "ci95": [
-     0.1056,
-     0.4359
-    ],
-    "observed": true,
-    "method": "damage:length+10%"
-   },
-   "unit": "m",
-   "because": [
-    "D4"
-   ]
-  },
-  {
-   "id": "S8",
-   "surface": "R4-CEIL",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 1.1889,
-    "unit": "m",
-    "sigma": 0.4367,
-    "ci95": [
-     0.333,
-     2.0448
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D4"
-   ]
-  },
-  {
-   "id": "S9",
    "surface": "R5-W4-S",
    "action": "rake out and fill crack, sand flush",
    "quantity": {
@@ -3329,111 +2935,31 @@
    },
    "unit": "m",
    "because": [
-    "D5"
+    "D2"
    ]
   },
   {
-   "id": "S10",
+   "id": "S4",
    "surface": "R5-W4-S",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 5.2962,
+    "value": 5.3679,
     "unit": "m",
-    "sigma": 0.1946,
+    "sigma": 0.2296,
     "ci95": [
-     4.9148,
-     5.6776
+     4.9179,
+     5.8179
     ],
     "observed": true,
     "method": "surface:area"
    },
    "unit": "m2",
    "because": [
-    "D5"
+    "D2"
    ]
   },
   {
-   "id": "S11",
-   "surface": "R2-W2-S",
-   "action": "patch hole (mesh + filler / board patch)",
-   "quantity": {
-    "value": 0.2652,
-    "unit": "m",
-    "sigma": 0.2264,
-    "ci95": [
-     -0.1785,
-     0.7089
-    ],
-    "observed": true,
-    "method": "damage:area+50%"
-   },
-   "unit": "m2",
-   "because": [
-    "D6"
-   ]
-  },
-  {
-   "id": "S12",
-   "surface": "R2-W2-S",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 10.6006,
-    "unit": "m",
-    "sigma": 0.6828,
-    "ci95": [
-     9.2623,
-     11.9389
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D6"
-   ]
-  },
-  {
-   "id": "S13",
-   "surface": "R7-W4-S",
-   "action": "scrape loose material, stain-block primer on affected area",
-   "quantity": {
-    "value": 0.0047,
-    "unit": "m",
-    "sigma": 0.0021,
-    "ci95": [
-     0.0005,
-     0.0088
-    ],
-    "observed": true,
-    "method": "damage:area+30%"
-   },
-   "unit": "m2",
-   "because": [
-    "D7"
-   ]
-  },
-  {
-   "id": "S14",
-   "surface": "R7-W4-S",
-   "action": "redecorate full surface (mist coat + 2 coats)",
-   "quantity": {
-    "value": 9.3811,
-    "unit": "m",
-    "sigma": 0.1106,
-    "ci95": [
-     9.1643,
-     9.5979
-    ],
-    "observed": true,
-    "method": "surface:area"
-   },
-   "unit": "m2",
-   "because": [
-    "D7"
-   ]
-  },
-  {
-   "id": "S15",
+   "id": "S5",
    "surface": "R5-W3-S",
    "action": "rake out and fill crack, sand flush",
    "quantity": {
@@ -3449,31 +2975,71 @@
    },
    "unit": "m",
    "because": [
-    "D8"
+    "D3"
    ]
   },
   {
-   "id": "S16",
+   "id": "S6",
    "surface": "R5-W3-S",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 4.4545,
+    "value": 4.5148,
     "unit": "m",
-    "sigma": 0.7146,
+    "sigma": 0.7291,
     "ci95": [
-     3.0539,
-     5.8551
+     3.0858,
+     5.9438
     ],
     "observed": true,
     "method": "surface:area"
    },
    "unit": "m2",
    "because": [
-    "D8"
+    "D3"
    ]
   },
   {
-   "id": "S17",
+   "id": "S7",
+   "surface": "R5-CEIL",
+   "action": "mould remediation incl. 0.3 m margin, biocide wash",
+   "quantity": {
+    "value": 0.4517,
+    "unit": "m",
+    "sigma": 0.0041,
+    "ci95": [
+     0.4436,
+     0.4599
+    ],
+    "observed": true,
+    "method": "damage:area+0.3m margin"
+   },
+   "unit": "m2",
+   "because": [
+    "D4"
+   ]
+  },
+  {
+   "id": "S8",
+   "surface": "R5-CEIL",
+   "action": "redecorate full surface (mist coat + 2 coats)",
+   "quantity": {
+    "value": 4.3533,
+    "unit": "m",
+    "sigma": 0.7264,
+    "ci95": [
+     2.9296,
+     5.777
+    ],
+    "observed": true,
+    "method": "surface:area"
+   },
+   "unit": "m2",
+   "because": [
+    "D4"
+   ]
+  },
+  {
+   "id": "S9",
    "surface": "R5-CEIL",
    "action": "rake out and fill crack, sand flush",
    "quantity": {
@@ -3489,71 +3055,71 @@
    },
    "unit": "m",
    "because": [
-    "D9"
+    "D5"
    ]
   },
   {
-   "id": "S18",
+   "id": "S10",
    "surface": "R5-CEIL",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 4.2951,
+    "value": 4.3533,
     "unit": "m",
-    "sigma": 0.7065,
+    "sigma": 0.7264,
     "ci95": [
-     2.9104,
-     5.6798
+     2.9296,
+     5.777
     ],
     "observed": true,
     "method": "surface:area"
    },
    "unit": "m2",
    "because": [
-    "D9"
+    "D5"
    ]
   },
   {
-   "id": "S19",
-   "surface": "R3-W2-S",
-   "action": "scrape loose material, stain-block primer on affected area",
+   "id": "S11",
+   "surface": "R4-CEIL",
+   "action": "rake out and fill crack, sand flush",
    "quantity": {
-    "value": 0.0447,
+    "value": 0.2319,
     "unit": "m",
-    "sigma": 0.0389,
+    "sigma": 0.0731,
     "ci95": [
-     -0.0315,
-     0.121
+     0.0887,
+     0.3752
     ],
     "observed": true,
-    "method": "damage:area+30%"
+    "method": "damage:length+10%"
    },
-   "unit": "m2",
+   "unit": "m",
    "because": [
-    "D10"
+    "D6"
    ]
   },
   {
-   "id": "S20",
-   "surface": "R3-W2-S",
+   "id": "S12",
+   "surface": "R4-CEIL",
    "action": "redecorate full surface (mist coat + 2 coats)",
    "quantity": {
-    "value": 7.5213,
+    "value": 1.205,
     "unit": "m",
-    "sigma": 0.1325,
+    "sigma": 0.447,
     "ci95": [
-     7.2616,
-     7.781
+     0.3289,
+     2.0811
     ],
     "observed": true,
     "method": "surface:area"
    },
    "unit": "m2",
    "because": [
-    "D10"
+    "D6"
    ]
   },
   {
-   "id": "S21",
+   "id": "S13",
    "surface": "R5-CEIL",
    "action": "investigate concealed damage (R1_ceiling_water): moisture/structural survey",
    "quantity": {
@@ -3573,27 +3139,7 @@
    ]
   },
   {
-   "id": "S22",
-   "surface": "R5-CEIL",
-   "action": "investigate concealed damage (R1_ceiling_water): moisture/structural survey",
-   "quantity": {
-    "value": 1.0,
-    "unit": "count",
-    "sigma": 0.0,
-    "ci95": [
-     1.0,
-     1.0
-    ],
-    "observed": true,
-    "method": "count"
-   },
-   "unit": "each",
-   "because": [
-    "F2"
-   ]
-  },
-  {
-   "id": "S23",
+   "id": "S14",
    "surface": "R5-CEIL",
    "action": "investigate concealed damage (R5_long_crack): moisture/structural survey",
    "quantity": {
@@ -3609,7 +3155,7 @@
    },
    "unit": "each",
    "because": [
-    "F3"
+    "F2"
    ]
   }
  ],
@@ -3617,15 +3163,16 @@
   "tier_sigma_multiplier": 1.0
  },
  "timing_s": {
-  "coarse_fusion_s": 8.41,
-  "drift_s": 3.25,
-  "fusion_s": 30.68,
-  "layout_s": 3.22,
-  "total_s": 45.56,
-  "damage_s": 108.42,
-  "wall_clock_s": 154.21
+  "coarse_fusion_s": 8.31,
+  "drift_s": 3.21,
+  "fusion_s": 29.51,
+  "layout_s": 3.61,
+  "total_s": 44.64,
+  "damage_s": 106.66,
+  "wall_clock_s": 151.52
  },
  "notes": [
+  "LiDAR scale calibrated x1.0067 (laser GT, benchmark/arkitscenes/calibration.md).",
   "Damage: classical candidates + CLIP ViT-B/32 zero-shot classification (no damage-specific training); confidence = CLIP probability. Scope: quantities only; pricing intentionally omitted (use local rate tables)."
  ]
 }

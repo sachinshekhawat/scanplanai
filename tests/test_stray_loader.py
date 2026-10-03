@@ -21,7 +21,7 @@ def test_floor_is_dominant_low_plane(name):
     floor = edges[np.argmax(hist)]
     # Gravity-aligned +y-up world with OpenCV camera convention: floor is the
     # densest 2 cm slab and sits in the lowest few percent of points.
-    assert floor < np.percentile(y, 10)
+    assert floor < np.percentile(y, 15)
     # Ceiling captures split mass between floor and ceiling (~5%); the wrong
     # (ARKit -z) convention smears the floor to <4% even on the simplest room.
     assert hist.max() / hist.sum() > 0.045

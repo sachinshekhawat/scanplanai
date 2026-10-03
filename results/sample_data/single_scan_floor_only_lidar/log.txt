@@ -1,7 +1,7 @@
-[22:33:14] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_floor_only tier=lidar drift=True
-[22:33:20] [drift] 22 submaps over 53.8 m; max yaw corr 3.31 deg, max shift 10.3 cm
-[22:33:38] [lidar] 6 rooms, 7 openings, floor -1.409 ceiling None, 23.9 s
-[22:33:57] [damage] rgb/odometry offset [18, 27, 24, 21, 30, 15] frames (18 s)
-[22:34:59] [damage] 258 views, 557 candidates -> CLIP
-[22:35:18] [damage] 3 accepted detections -> 3 regions
-[22:35:18] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_scan_floor_only_lidar/plan.json (6 rooms, 7 openings, 3 damage regions) in 124.0 s
+[16:11:58] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_floor_only tier=lidar drift=True
+[16:12:04] [drift] 22 submaps over 53.8 m; max yaw corr 3.31 deg, max shift 10.3 cm
+[16:12:22] [lidar] 6 rooms, 7 openings, floor -1.409 ceiling None, 24.1 s
+[16:12:42] [damage] rgb/odometry offset [18, 27, 24, 21, 30, 15] frames (20 s)
+[16:13:43] [damage] 258 views, 558 candidates -> CLIP
+[16:14:01] [damage] 2 accepted detections -> 2 regions
+[16:14:01] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_scan_floor_only_lidar/plan.json (6 rooms, 7 openings, 2 damage regions) in 123.4 s

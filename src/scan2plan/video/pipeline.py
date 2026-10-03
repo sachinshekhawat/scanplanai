@@ -631,7 +631,7 @@ def run_video(src: Path, meta: dict, drift: bool = True, log=print):
     T["total_s"] = time.time() - t0
     res = LidarResult(pc, cloud, level, theta, R2, seg, dres, T)
     meta.update({"n_frames_used": pc.n_frames, "video": str(video), "sfm": vstats})
-    plan = lidar_to_plan(res, meta)
+    plan = lidar_to_plan(res, meta, scale=1.0)
     plan.tier = "video"
     _video_error_model(plan)
     plan.notes.append("Video tier: poses from COLMAP SfM on RGB only; metric scale from Depth-Anything-V2 "

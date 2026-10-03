@@ -73,7 +73,9 @@ Lengths combine the two perpendicular bounding faces and the scale term in quadr
 |---|---|---|---|---|
 | LiDAR cross-session walls, baseline | 20 | 0.30 | 5.2 | over-confident |
 | LiDAR cross-session walls, after fix | 20 | **0.80** | **0.75** | close to calibrated (target 0.95) |
-| LiDAR cross-session walls, final (+ min_edge 0.4) | 22 | **0.86** | 0.82 | close to calibrated |
+| LiDAR cross-session walls, final (+ min_edge 0.4, + 3.5 cm layout term) | 22 | **0.91** | 0.77 | close to calibrated |
+| LiDAR walls vs **laser GT** (dev / held-out) | 13 / 1 | **0.92 / 1.00** | — | calibrated |
+| LiDAR ceilings vs **laser GT** (dev / held-out) | 4 / 2 | **1.00 / 0.50** | — | dev calibrated; held-out has 1 miss at −2.2 cm |
 | video vs LiDAR walls (final; 3 captures) | 6 / 5 / 5 | 0.67 / 0.60 / 0.40 | — | over-confident |
 | video floor area vs LiDAR (final) | 3 | 0 of 3 in CI (−24%, −35%, −28%) | — | partial coverage, not scale: footprint IoU 0.39 / 0.33 / 0.43 |
 | photo floor area vs LiDAR (final) | 3 | 0 of 3 in CI (−82%, −43%, −76%) | — | only 2–4 photos register per room on video-derived stills |
@@ -94,7 +96,12 @@ The sample data has no ground truth, so we scored the unchanged LiDAR pipeline o
 
 The wall errors come from the room polygon, not depth noise. In these 2–6 m² bathrooms, the shower curtain, basin and shelving cut the observed free space and create false jogs. Cloud-to-laser agreement is 1.2 cm, and the ceiling (an unobstructed plane) is within about 2 cm.
 
-Scale: before this benchmark the LiDAR scale term was 0.2%. It is now **0.7%**, the dev-visit bias, entered as 1-σ uncertainty (`measure.py::SCALE_REL`). We did not subtract it, because one visit is not enough to trust a correction. The held-out visit shows the same sign and size (−0.9 to −1.6%).
+**Calibration round (`benchmark/arkitscenes/calibration.md`):** fitted on the dev visit only, then checked on the held-out visit and the sample pair.
+- **Depth-scale correction:** ×1/0.9933, applied to the output geometry. Dev ceilings move to −0.7 … +0.5 cm (4/4 within the gate); held-out ceilings are −2.2 and −0.7 cm.
+- **Room-boundary term:** 3.5 cm per wall face. Wall CI coverage rises from 79% to 92% on dev and 100% on held-out; on the sample pair, from 0.86 to 0.91.
+- **Rejected:** a full-height outward-snap variant. It improved dev accuracy but hurt the sample pair, so it ships off.
+
+Scale history: before this benchmark the LiDAR scale term was 0.2%. It is now **0.7%**, the dev-visit bias, entered as 1-σ uncertainty (`measure.py::SCALE_REL`). We did not subtract it, because one visit is not enough to trust a correction. The held-out visit shows the same sign and size (−0.9 to −1.6%).
 
 ## 6. Fix loop (`docs/fix_loop.md`)
 - **Worst LiDAR gate:** repeatability. 25% of walls pass, median 13.8 cm.

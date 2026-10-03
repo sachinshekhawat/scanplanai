@@ -5,7 +5,7 @@ import numpy as np
 import shapely
 
 from scan2plan.lidar.pipeline import LidarResult
-from scan2plan.measure import (SCALE_REL, SIGMA_JAMB, SIGMA_JAMB_RAW, SIGMA_LEVEL_SYS, SIGMA_UNSNAPPED,
+from scan2plan.measure import (SCALE_REL, SIGMA_LAYOUT, SIGMA_JAMB, SIGMA_JAMB_RAW, SIGMA_LEVEL_SYS, SIGMA_UNSNAPPED,
                                Measurement, face_sigma, unobserved)
 from scan2plan.plan import Plan, PlanEdge, PlanOpening, PlanRoom
 
@@ -49,7 +49,24 @@ def room_heights(res: LidarResult, poly, cam_hi: float):
     return unobserved(*CEILING_PRIOR, "prior: ceiling not observed in this capture (scan the ceiling to measure)")
 
 
-def lidar_to_plan(res: LidarResult, capture_meta: dict) -> Plan:
+def _apply_scale(rooms, openings, k: float) -> None:
+    from shapely import affinity
+
+    for r in rooms:
+        r.polygon = affinity.scale(r.polygon, k, k, origin=(0, 0))
+        for e in r.edges:
+            e.a, e.b = e.a * k, e.b * k
+        if r.ceiling is not None and r.ceiling.observed:
+            r.ceiling = Measurement(r.ceiling.value * k, r.ceiling.sigma, r.ceiling.method, r.ceiling.unit, True)
+    for o in openings:
+        o.a, o.b = o.a * k, o.b * k
+
+
+def lidar_to_plan(res: LidarResult, capture_meta: dict, scale: float | None = None) -> Plan:
+    """scale: metric correction of the sensor (default LIDAR_DEPTH_SCALE for the LiDAR tier)."""
+    from scan2plan.io.stray import LIDAR_DEPTH_SCALE
+
+    scale = LIDAR_DEPTH_SCALE if scale is None else scale
     seg = res.seg
     cam_hi = float(np.percentile(res.cloud.cam_y, 98))
     rooms: list[PlanRoom] = []
@@ -58,7 +75,7 @@ def lidar_to_plan(res: LidarResult, capture_meta: dict) -> Plan:
         edges = []
         for e in seg.edges[lbl]:
             s = face_sigma(e["sigma"], e["support"]) if e["snapped"] else SIGMA_UNSNAPPED
-            s = float(np.hypot(s, e.get("amb", 0.0)))
+            s = float(np.sqrt(s**2 + e.get("amb", 0.0) ** 2 + SIGMA_LAYOUT**2))
             edges.append(PlanEdge(np.array(e["a"]), np.array(e["b"]), s, bool(e["snapped"])))
         if len(edges) < 3:
             continue
@@ -83,7 +100,9 @@ def lidar_to_plan(res: LidarResult, capture_meta: dict) -> Plan:
         h = st["match_median_residual_m"]
         drift["loop_residual_m_first_last"] = [round(h[0], 4), round(h[-1], 4)] if h else None
         drift["n_loop_matches_found"] = bool(h)
-    notes = []
+    if scale != 1.0:
+        _apply_scale(rooms, openings, scale)
+    notes = [f"LiDAR scale calibrated x{scale:.4f} (laser GT, benchmark/arkitscenes/calibration.md)."] if scale != 1.0 else []
     if res.level.ceiling_y is None:
         notes.append("Ceiling not observed: ceiling heights are priors (observed=false) with wide intervals.")
     return Plan("lidar", rooms, openings, capture_meta, drift, dict(res.timing), notes)

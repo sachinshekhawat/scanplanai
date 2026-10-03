@@ -50,11 +50,11 @@ Learned-model outputs are cached under `data/cache/` in deterministic npz files.
 
 - **Same flat, two LiDAR sessions:** stitched footprint IoU **0.848** with drift correction vs 0.791 without. The two areas, 47.4 and 49.1 m², are mutually consistent within their intervals.
 - **Repeatability gate:** fails (23% of walls within 1 cm). The cause is that each walk divides the open-plan area into rooms differently (`docs/fix_loop.md`). The fully observed room agrees within 1.4 cm.
-- **Calibration:** intervals cover the cross-session differences 86% of the time.
+- **Calibration:** intervals cover the cross-session differences 91% of the time (target 95%).
 - **Video and photo** reconstruct a reduced part of the flat from these LiDAR-style sweeps (close range, fast turns). Their areas are under-estimates against the LiDAR reference, which is reported, not hidden.
 - **No ground truth in the sample data.** For absolute accuracy we added an **external laser-scanner benchmark**: ARKitScenes, Apple's dataset of iPad Pro LiDAR walks with Faro laser scans of the same rooms (CC BY-NC-SA). We used 5 walks over 2 visits, with no parameters tuned on the held-out visit. Run it with `python scripts/arkitscenes_gt.py <visit> <videos...>`; the reports are `benchmark/arkitscenes/report_*.md`.
-  - **Ceiling height:** errors of −0.6 to −3.7 cm on 5 rooms, median −2.0 cm. The result is *repeatable but biased* (about −0.9%, consistent with LiDAR depth scale). 2 of 5 rooms are within 1.5 cm; 4 of 5 are inside the 95% CI.
-  - **Wall lengths** (small cluttered bathrooms, 14 walls with laser GT): median error 7–19 cm, 7% within 1 cm, and 79% of the 95% CIs contain the GT.
+  - **Ceiling height:** after a depth-scale correction fitted on the dev visit only, errors are −0.7, 0.0, −0.2 and +0.5 cm on the dev rooms, all within the 1.5 cm gate. On the held-out rooms they are −2.2 and −0.7 cm (`benchmark/arkitscenes/calibration.md`).
+  - **Wall lengths:** 95% intervals now hold the laser GT 92% of the time on dev and 100% on held-out, up from 79%. Accuracy is still layout-limited in cluttered bathrooms (median about 11 cm).
 
 ## Docs
 - `docs/capture_protocol.md`: the one-page protocol a non-engineer follows. `docs/device_matrix.md`: which tier runs on which hardware, and the accuracy each tier delivers.

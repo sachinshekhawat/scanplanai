@@ -45,7 +45,7 @@ def _room_from_capture(name, pc, log=print):
                         cloud.fan_range, R2, level.floor_y, level.ceiling_y, min_room_area=0.8, min_cam_px=1,
                         min_views=1)  # 2-8 photos: a cell seen by one photo is evidence enough
     res = LidarResult(pc, cloud, level, theta, R2, seg, None, {})
-    plan = lidar_to_plan(res, {"name": name})
+    plan = lidar_to_plan(res, {"name": name}, scale=1.0)
     if not plan.rooms:
         plan.rooms = _fallback_room(seg, level)
         if not plan.rooms:

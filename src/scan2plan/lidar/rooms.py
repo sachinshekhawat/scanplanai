@@ -68,6 +68,7 @@ class WallRun:
     hi: float
     support: int
     line_id: int = -1
+    top: float = 9.0  # 95th percentile height of the face's points above the floor (m)
 
 
 @dataclass
@@ -179,6 +180,7 @@ def extract_runs(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, floor_y: float
         for sign in (1, -1):
             sel = full & (vn[:, axis] * sign > 0.9)
             p, pd = vxy[sel], door_band[sel]
+            ph = vy[sel] - floor_y
             if len(p) < min_support:
                 continue
             c = p[:, axis]
@@ -211,7 +213,10 @@ def extract_runs(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, floor_y: float
                     # refine jamb ends with in-run point quantiles (robust to stray voxels)
                     aa = a[(a >= s - 0.01) & (a <= e + 0.01)]
                     s2, e2 = np.quantile(aa, [0.002, 0.998])
-                    runs.append(WallRun(axis, sign, med, sig, float(s2), float(e2), int(len(aa)), line_id))
+                    along_all = p[m, 1 - axis]
+                    hm = ph[m][(along_all >= s2) & (along_all <= e2)]
+                    top = float(np.percentile(hm, 95)) if len(hm) > 20 else 0.0
+                    runs.append(WallRun(axis, sign, med, sig, float(s2), float(e2), int(len(aa)), line_id, top))
                 line_id += 1
     # merge runs separated by tiny gaps (< split_gap) on the same line
     runs.sort(key=lambda r: (r.line_id, r.lo))
@@ -361,7 +366,8 @@ def segment_rooms(vxy: np.ndarray, vn: np.ndarray, vy: np.ndarray, cam_xy: np.nd
 
 # Fix loop (docs/fix_loop.md): edges bounded only by free space are pushed outward to the
 # nearest wall face; short jogs between edges that snap to the same face are collapsed.
-SNAP_OUTWARD = False  # tried in fix loop: no repeatability gain (see docs/fix_loop.md)
+SNAP_OUTWARD = False
+TALL_MIN = 1.8  # a structural face reaches >= 1.8 m above the floor
 OUT_SNAP_MAX = 0.6
 JOG_MAX = 0.35
 
@@ -390,34 +396,31 @@ def _edge_ambiguity(e: dict, runs: list[WallRun]) -> float:
 
 
 def _snap_outward(edges: list[dict], runs: list[WallRun]) -> list[dict]:
+    """Push each edge outward to the outermost FULL-HEIGHT wall face within OUT_SNAP_MAX.
+    Clutter (basins, shelving, radiators, sofas) produces vertical faces that stop well below
+    the ceiling; structural walls reach the top of the wall band. Free space always ends at or
+    before the true wall, so the true face can only lie outward (normal pointing into the room)."""
     for e in edges:
-        # every edge (snapped or not) moves to the OUTERMOST compatible face within reach:
-        # inner faces (wardrobe fronts, radiators, shelving) are what one session sees and the
-        # other does not; the structural wall behind them is common to both.
         ax, inward = e["axis"], e["inward"]
-        # free space stops at or before the wall: the true face lies on the outward side,
-        # i.e. at c' with (c' - c) * inward <= 0, and the face's normal must point inward
+        if e["snapped"] and e.get("top", 9.0) >= TALL_MIN:
+            continue  # already on a full-height (structural) face
         best, bd = None, -1.0
         for r in runs:
-            if r.axis != ax or r.sign != inward:
+            if r.axis != ax or r.sign != inward or r.top < TALL_MIN:
                 continue
-            d = (e["c"] - r.c) * inward
+            d = (e["c"] - r.c) * inward  # >0: face is outward of the edge
             ov = min(e["hi"], r.hi) - max(e["lo"], r.lo)
-            reach = OUT_SNAP_MAX if not e["snapped"] else 0.12
-            if -0.03 <= d < reach and ov > 0.3 * (e["hi"] - e["lo"]) and (best is None or d > bd):
+            if -0.03 <= d < OUT_SNAP_MAX and ov > 0.3 * (e["hi"] - e["lo"]) and d > bd:
                 best, bd = r, d
         if best is not None:
             e.update(c=best.c, snapped=True, sigma=best.sigma, support=best.support)
-    # collapse jogs: A(axis k, c1) - J(short, other axis) - B(axis k, c2) with |c1-c2| small
-    # after snapping both to the same face -> merge into one edge
     changed = True
     while changed and len(edges) > 4:
         changed = False
         n = len(edges)
         for i in range(n):
             a, j, b = edges[i], edges[(i + 1) % n], edges[(i + 2) % n]
-            if a["axis"] == b["axis"] and j["axis"] != a["axis"] and abs(a["c"] - b["c"]) < 0.02 \
-                    and (j["hi"] - j["lo"]) < JOG_MAX:
+            if a["axis"] == b["axis"] and j["axis"] != a["axis"] and abs(a["c"] - b["c"]) < 0.02:
                 a["lo"], a["hi"] = min(a["lo"], b["lo"]), max(a["hi"], b["hi"])
                 for idx in sorted({(i + 1) % n, (i + 2) % n}, reverse=True):
                     del edges[idx]
@@ -500,7 +503,8 @@ def room_polygon(mask: np.ndarray, grid: Grid, runs: list[WallRun], snap: float 
                 best, bd = r, dist
         edges.append({"axis": ax, "c": best.c if best else c_raw, "lo": lo, "hi": hi,
                       "snapped": best is not None, "sigma": best.sigma if best else 0.03,
-                      "support": best.support if best else 0, "inward": inward})
+                      "support": best.support if best else 0, "inward": inward,
+                      "top": best.top if best else 0.0})
     if SNAP_OUTWARD:
         edges = _snap_outward(edges, runs)
     if AMBIGUITY:

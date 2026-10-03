@@ -23,6 +23,11 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 RGB_W, RGB_H = 1920, 1440
+# iPhone/iPad LiDAR depth reads 0.67% short vs a Faro laser scanner: mean pred/GT ceiling ratio
+# 0.9933 on ARKitScenes dev visit 422382 (4 rooms). Fitted on dev only; held-out visit 422386
+# checks it (benchmark/arkitscenes/calibration.md). Applied to the output geometry (lidar/to_plan.py),
+# not to raw depth, so layout thresholds behave identically with and without calibration.
+LIDAR_DEPTH_SCALE = 1.0 / 0.9933
 DEPTH_W, DEPTH_H = 256, 192
 
 

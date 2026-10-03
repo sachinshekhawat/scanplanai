@@ -1,6 +1,6 @@
-[22:41:26] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_with_ceiling tier=lidar drift=False
-[22:41:59] [lidar] 6 rooms, 6 openings, floor -1.492 ceiling 1.579045723141331, 33.3 s
-[22:42:34] [damage] rgb/odometry offset [12, 54, 48, 81, 66, 27] frames (35 s)
-[22:43:28] [damage] 257 views, 400 candidates -> CLIP
-[22:43:43] [damage] 7 accepted detections -> 7 regions
-[22:43:43] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_scan_with_ceiling_lidar_nodrift/plan.json (6 rooms, 6 openings, 7 damage regions) in 137.3 s
+[16:18:22] capture=/Users/parv/Desktop/AppliedAIEnggProject/data/raw/single_scan_with_ceiling tier=lidar drift=False
+[16:18:56] [lidar] 6 rooms, 6 openings, floor -1.492 ceiling 1.579045723141331, 33.6 s
+[16:19:31] [damage] rgb/odometry offset [12, 54, 48, 81, 66, 27] frames (35 s)
+[16:20:25] [damage] 257 views, 402 candidates -> CLIP
+[16:20:40] [damage] 12 accepted detections -> 12 regions
+[16:20:40] wrote /Users/parv/Desktop/AppliedAIEnggProject/runs/bench_final/single_scan_with_ceiling_lidar_nodrift/plan.json (6 rooms, 6 openings, 12 damage regions) in 138.1 s

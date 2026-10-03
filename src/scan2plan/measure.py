@@ -27,11 +27,17 @@ SIGMA_FACE_SYS = 0.004
 # iPhone/iPad LiDAR depth scale: 0.7% short vs laser on ARKitScenes visit 422382 (ceiling
 # pred/GT 0.990-0.997, benchmark/arkitscenes/report_422382.md); one visit is not enough to
 # correct the bias, so it enters as 1-sigma uncertainty. Held-out check: visit 422386.
-SCALE_REL = 0.007
+SCALE_REL = 0.004  # residual after LIDAR_DEPTH_SCALE correction (dev ratio spread 0.3%)
 SIGMA_UNSNAPPED = 0.04
 SIGMA_JAMB = 0.006
 SIGMA_JAMB_RAW = 0.03
 SIGMA_LEVEL_SYS = 0.003
+
+# Room-boundary term (1-sigma per wall face): where the layout puts a wall relative to the true
+# structural face (clutter, partial observation). Fitted on ARKitScenes dev visit 422382 only
+# (smallest value giving >= 95% coverage of laser GT); validated on held-out visit 422386 and on
+# the sample-data cross-session pair (benchmark/arkitscenes/calibration.md).
+SIGMA_LAYOUT = 0.035
 
 # Per-tier calibration multipliers on sigma (updated by benchmark/calibrate.py)
 TIER_K = {"lidar": 1.0, "video": 1.0, "photo": 1.0}

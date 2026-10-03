@@ -108,7 +108,13 @@ def main(visit="422382", *videos):
             run(str(BASE / "raw" / v), "lidar", str(rd))
         doc = json.loads((rd / "plan.json").read_text())
         cap = load_arkitscenes(BASE / "raw" / v)
-        T, q = icp_ipad_to_laser(cap, L)
+        icp_cache = BASE / "raw" / v / "icp_to_laser.json"
+        if icp_cache.exists():
+            c_ = json.loads(icp_cache.read_text())
+            T, q = np.array(c_["T"]), c_["q"]
+        else:
+            T, q = icp_ipad_to_laser(cap, L)
+            icp_cache.write_text(json.dumps({"T": T.tolist(), "q": q}))
         # laser -> iPad ARKitScenes world -> our gravity frame -> plan frame
         Li = (L.astype(np.float64) - T[:3, 3]) @ T[:3, :3]
         P = Li @ cap.world_to_ours.T
